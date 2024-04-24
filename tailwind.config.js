@@ -28,15 +28,18 @@ export default {
       },
       fontFamily: {
         NotoSansKR: ['Noto Sans KR'],
+        BlackHanSans: ['Black Han Sans'],
+        NanumGothicCoding: ['Nanum Gothic Coding']
       }
     },
     screens: {
-      ss: "480px",
+      ss: '480px',
       sm: "620px",
       sl: "768px",
       md: "1060px",
       lg: "1200px",
       xl: '1500px',
+      xxl: '1920px',
     },
   },
   plugins: [],
