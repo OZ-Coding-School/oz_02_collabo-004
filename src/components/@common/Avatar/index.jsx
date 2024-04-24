@@ -18,6 +18,8 @@ const Avatar = ({
     height: diameter,
     borderRadius: "50%", 
     backgroundColor: source ? "transparent" : "#2f2f2f", 
+    objectFit: "cover",
+    cursor: "pointer",
     ...style 
   };
 
