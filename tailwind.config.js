@@ -2,9 +2,26 @@
 
 export default {
   content: [
-    "./src/**/*.{html,js,jsx}",
+    './src/**/*.{html,js,jsx,ts,tsx,mdx}',
+    './components/**/*.{html,js,jsx,ts,tsx,mdx}',
+    './pages/**/*.{js,jsx,ts,tsx,mdx}',
+    './app/**/*.{js,jsx,ts,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      ss: '480px',
+      sm: "620px",
+      sl: "768px",
+      md: "1060px",
+      lg: "1200px",
+      xl: '1500px',
+      xxl: '1920px',
+    },
+    fontFamily: {
+      NotoSansKR: ['Noto Sans KR'],
+      BlackHanSans: ['Black Han Sans'],
+      NanumGothicCoding: ['Nanum Gothic Coding']
+    },
     extend: {
       colors: {
         white: '#FFF',
@@ -26,20 +43,6 @@ export default {
         keygreen: '#61E80E',
         keydeepgreen: '#00CD52',
       },
-      fontFamily: {
-        NotoSansKR: ['Noto Sans KR'],
-        BlackHanSans: ['Black Han Sans'],
-        NanumGothicCoding: ['Nanum Gothic Coding']
-      }
-    },
-    screens: {
-      ss: '480px',
-      sm: "620px",
-      sl: "768px",
-      md: "1060px",
-      lg: "1200px",
-      xl: '1500px',
-      xxl: '1920px',
     },
   },
   plugins: [],
