@@ -23,6 +23,7 @@ const StyleGuide = () => {
           </div>
         </div>
       </div>
+
       {/* Location */}
       <div>
         <p>Location</p>
