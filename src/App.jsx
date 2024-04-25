@@ -9,8 +9,7 @@ function App() {
       {/* <Route index element={<IndexPage/>} />  */}
       <Route path="/" element={<IndexPage />} />
       <Route path="/login" element={<LoginPage />} />
-
-      <Route path="/StyleGuide" element={<StyleGuide />} />
+        <Route path="/styleguide" element={<StyleGuide/>}/>
     </Routes>
   );
 }
