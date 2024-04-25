@@ -1,8 +1,10 @@
+import Input from '../../components/@common/Input';
+import Textarea from '../../components/@common/Textarea';
 import Avatar from "../../components/@common/Avatar"
 import Location from "../../components/@common/Location";
 
 const StyleGuide = () => {
-
+  
   return (
     <div className="flex justify-center pt-10">
       <div className="flex flex-col gap-10 w-[1080px]">
@@ -55,24 +57,28 @@ const StyleGuide = () => {
         {/* Button */}
         <div>
           <p>Button</p>
+          <div className="flex items-center justify-between"></div>
           <hr className="border-t-2 my-3"/>
           <div className="flex items-center justify-between">
-
           </div>
         </div>
 
         {/* Input */}
         <div>
           <p>Input</p>
+          <div className="flex items-center justify-between flex-col">
+            <div className="bg-yellow-200 h-40 w-full flex justify-center items-center">
+              <Textarea />
+            </div>
+            <Input element={'admin'} placeholder={'하이'}></Input>
+            <Input element={'user'} placeholder={'여기에 입력'} />
           <hr className="border-t-2 my-3"/>
           <div className="flex items-center justify-between">
-            
           </div>
         </div>
-        
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default StyleGuide;

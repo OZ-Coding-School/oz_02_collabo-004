@@ -36,7 +36,7 @@
   .keyocean { color: #00FFFF; }
   .keygreen { color: #61E80E; }
   .keydeepgreen { color: #00CD52; }
-
+  
   h1 {
     @apply text-4xl;
   }
