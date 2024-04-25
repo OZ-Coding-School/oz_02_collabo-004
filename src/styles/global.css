@@ -1,11 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
   * {
     font-family: 'Noto Sans KR', sans-serif;
   }
+  .BlackHanSans {
+    font-family: 'Black Han Sans', sans-serif;
+  }
+  .NanumGothicCoding {
+    font-family: 'Nanum Gothic Coding', sans-serif;
+  }
+  .white { color: #fff; }
+  .black { color: #000; }
+  .primary { color: #FCF2C9; }
+  .secondary { color: #517CCE; }
+  .graymain { color: #D0D0D0; }
+  .graylight { color: #EAEAEA; }
+  .graymedium { color: #D1D1D1; }
+  .gray5 { color: #555; }
+  .gray8 { color: #888; }
+  .keyred { color: #FF0606; }
+  .keyyellow { color: #FFD600; }
+  .keypurple { color: #EB00FF; }
+  .keydeeppurple { color: #5200FF; }
+  .keyblue { color: #00B2FE; }
+  .keydeepblue { color: #061FFF; }
+  .keyocean { color: #00FFFF; }
+  .keygreen { color: #61E80E; }
+  .keydeepgreen { color: #00CD52; }
 }
 
 h1 {
