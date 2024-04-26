@@ -76,6 +76,10 @@
   h1 {
     @apply text-4xl;
   }
+
+  .mypagesidebar-list-style {
+    @apply flex w-[200px] h-12 pl-5 items-center rounded-full text-gray-700;
+  }
 }
 
 @media (min-width: 480px) {
