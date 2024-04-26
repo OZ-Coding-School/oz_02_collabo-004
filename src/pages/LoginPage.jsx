@@ -9,7 +9,7 @@ const LoginPage = () => {
     height: '40px',
     background: '#fae101',
     borderRadius: '7px',
-    cursor: 'pointer',
+    cursor: 'pointer'
   }
 
   return (
