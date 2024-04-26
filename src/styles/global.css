@@ -18,27 +18,67 @@
   .NanumGothicCoding {
     font-family: 'Nanum Gothic Coding', sans-serif;
   }
-  .white { color: #fff; }
-  .black { color: #000; }
-  .primary { color: #FCF2C9; }
-  .secondary { color: #517CCE; }
-  .graymain { color: #D0D0D0; }
-  .graylight { color: #EAEAEA; }
-  .graymedium { color: #D1D1D1; }
-  .gray5 { color: #555; }
-  .gray8 { color: #888; }
-  .keyred { color: #FF0606; }
-  .keyyellow { color: #FFD600; }
-  .keypurple { color: #EB00FF; }
-  .keydeeppurple { color: #5200FF; }
-  .keyblue { color: #00B2FE; }
-  .keydeepblue { color: #061FFF; }
-  .keyocean { color: #00FFFF; }
-  .keygreen { color: #61E80E; }
-  .keydeepgreen { color: #00CD52; }
-  
+  .white {
+    color: #fff;
+  }
+  .black {
+    color: #000;
+  }
+  .primary {
+    color: #fcf2c9;
+  }
+  .secondary {
+    color: #517cce;
+  }
+  .graymain {
+    color: #d0d0d0;
+  }
+  .graylight {
+    color: #eaeaea;
+  }
+  .graymedium {
+    color: #d1d1d1;
+  }
+  .gray5 {
+    color: #555;
+  }
+  .gray8 {
+    color: #888;
+  }
+  .keyred {
+    color: #ff0606;
+  }
+  .keyyellow {
+    color: #ffd600;
+  }
+  .keypurple {
+    color: #eb00ff;
+  }
+  .keydeeppurple {
+    color: #5200ff;
+  }
+  .keyblue {
+    color: #00b2fe;
+  }
+  .keydeepblue {
+    color: #061fff;
+  }
+  .keyocean {
+    color: #00ffff;
+  }
+  .keygreen {
+    color: #61e80e;
+  }
+  .keydeepgreen {
+    color: #00cd52;
+  }
+
   h1 {
     @apply text-4xl;
+  }
+
+  .mypagesidebar-list-style {
+    @apply flex w-[200px] h-12 pl-5 items-center rounded-full text-gray-700;
   }
 }
 
