@@ -1,6 +1,5 @@
-import React from "react";
-
 const Footer = () => {
+  
   return (
     <div className="bg-white h-52 pl-24 flex content-center max-w-screen-xl">
       <div className="content-center">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import home from '../../../assets/images/icons/home.svg'; 
 import arrow_right from '../../../assets/images/icons/arrow_right.svg'; 
 
-const Location = forwardRef(function LocationComponent(props, ref) {
+const Location = forwardRef((props, ref) => {
   const {
     number = 2,
     link1 = '/',

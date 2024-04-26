@@ -1,0 +1,54 @@
+import { useState } from "react";
+import page_arrow_left from '../../../assets/images/icons/page_arrow_left.svg'; 
+import page_arrow_right from '../../../assets/images/icons/page_arrow_right.svg'; 
+
+const Pagination = () => {
+  const [activeButton, setActiveButton] = useState(1);
+
+  const handleButtonClick = (pageNumber) => {
+    setActiveButton(pageNumber);
+  };
+
+  const prevPage = () => {
+    if (activeButton > 1) {
+      setActiveButton(activeButton - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (activeButton < 10) {
+      setActiveButton(activeButton + 1);
+    }
+  };
+
+  const startPage = activeButton <= 5 ? 1 : activeButton - 4;
+  const endPage = Math.min(startPage + 4,  10);
+
+  return (
+    <div className='flex items-center'>
+      <div className='flex h-[45px] items-center gray8 font400'>
+        <button onClick={prevPage}> 
+          <img src={page_arrow_left} className='p-5'></img> 
+        </button>
+        {Array.from({length: endPage - startPage + 1}, (_, index) => startPage + index).map((pageNumber) => (
+          <button
+            key={pageNumber}
+            className={`relative p-5 font12 group ${activeButton === pageNumber ? 'secondary font800' : 'hover:gray3'}`}
+            onClick={() => handleButtonClick(pageNumber)}
+            style={{ position: "relative" }}
+          >
+            {pageNumber}
+            {activeButton === pageNumber && (
+              <div className="absolute w-8 h-8 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full transition-all ease-in hover:bg-secondary opacity-20"></div>
+            )}
+          </button>
+        ))}
+        <button onClick={nextPage}> 
+          <img src={page_arrow_right} className='p-5'></img> 
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default Pagination;
