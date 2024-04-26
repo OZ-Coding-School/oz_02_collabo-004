@@ -4,6 +4,7 @@ import page_arrow_right from '../../../assets/images/icons/page_arrow_right.svg'
 
 const Pagination = () => {
   const [activeButton, setActiveButton] = useState(1);
+  const [startPage, setStartPage] = useState(1);
 
   const handleButtonClick = (pageNumber) => {
     setActiveButton(pageNumber);
@@ -12,17 +13,20 @@ const Pagination = () => {
   const prevPage = () => {
     if (activeButton > 1) {
       setActiveButton(activeButton - 1);
+      if (startPage > 1 && activeButton - 1 < startPage) {
+        setStartPage(startPage - 1);
+      }
     }
   };
 
   const nextPage = () => {
     if (activeButton < 10) {
       setActiveButton(activeButton + 1);
+      if (activeButton + 1 > startPage + 4) {
+        setStartPage(startPage + 1);
+      }
     }
   };
-
-  const startPage = activeButton <= 5 ? 1 : activeButton - 4;
-  const endPage = Math.min(startPage + 4,  10);
 
   return (
     <div className='flex items-center'>
@@ -30,7 +34,7 @@ const Pagination = () => {
         <button onClick={prevPage}> 
           <img src={page_arrow_left} className='p-5'></img> 
         </button>
-        {Array.from({length: endPage - startPage + 1}, (_, index) => startPage + index).map((pageNumber) => (
+        {Array.from({length: 5}, (_, index) => startPage + index).map((pageNumber) => (
           <button
             key={pageNumber}
             className={`relative p-5 font12 group ${activeButton === pageNumber ? 'secondary font800' : 'hover:gray3'}`}
