@@ -2,18 +2,33 @@ import Input from '../../components/@common/Input';
 import Textarea from '../../components/@common/Textarea';
 import Avatar from '../../components/@common/Avatar';
 import Location from '../../components/@common/Location';
+import Pagination from '../../components/@common/Pagination';
+import Comment from '../../components/Comment';
 
 const StyleGuide = () => {
+
+  const comments = [
+    { id: 1, text: '첫 번째 댓글' },
+    { id: 2, text: '두 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+  ];
+
   return (
     <div className="flex justify-center pt-10">
       <div className="flex flex-col gap-10 w-[1080px]">
         <div>📌공통 UI 컴포넌트 StyleGuide</div>
 
+        <div className="flex w-[960px]">
+          <Comment comments={comments} />
+        </div>
+
         {/* Avatar */}
         <div>
           <p>Avatar</p>
           <hr className="border-t-2 my-3" />
-          <div className="flex items-center w-[300px] justify-between">
+          <div className="flex items-center gap-2">
             <Avatar size="small">TEXT</Avatar>
             <Avatar size="large">TEXT</Avatar>
             <Avatar
@@ -22,7 +37,6 @@ const StyleGuide = () => {
             />
           </div>
         </div>
-      </div>
 
       {/* Location */}
       <div>
@@ -54,10 +68,18 @@ const StyleGuide = () => {
         </div>
       </div>
 
+      {/* Pagination */}
+      <div>
+        <p>Pagination</p>
+        <hr className="border-t-2 my-3" />
+        <div className="flex flex-col justify-between">
+          <Pagination/>
+        </div>
+      </div>
+
       {/* Button */}
       <div>
         <p>Button</p>
-        <div className="flex items-center justify-between"></div>
         <hr className="border-t-2 my-3" />
         <div className="flex items-center justify-between"></div>
       </div>
@@ -65,6 +87,7 @@ const StyleGuide = () => {
       {/* Input */}
       <div>
         <p>Input</p>
+        <hr className="border-t-2 my-3" />
         <div className="flex items-center justify-between flex-col">
           <div className="bg-yellow-200 h-40 w-full flex justify-center items-center">
             <Textarea />
@@ -76,6 +99,7 @@ const StyleGuide = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

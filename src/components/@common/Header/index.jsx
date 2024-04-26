@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
+import logo_noText from "../../../assets/images/logo_noText.png";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
 
   return (
-    <div className="max-w-screen-xl h-24 bg-white content-center">
-      <div className="flex justify-between px-10 content-center">
+    <div className="w-full bg-white flex items-center justify-center">
+      <div className="md h-[80px] flex justify-between items-center">
         <div>
-          {/*  src 로고이미지 받으면 나중에 변경!! */}
           <img
-            className="w-16 cursor-pointer"
+            className="w-14 cursor-pointer"
             onClick={() => {
               window.location.href = "/";
             }}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9pA88aciGeiDLl6EkVV4mEdLgkFJS5feZoEh8ClrXpw&s"
+            src={logo_noText}
             alt="로고 이미지"
           ></img>
         </div>

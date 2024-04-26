@@ -18,61 +18,61 @@
   .NanumGothicCoding {
     font-family: 'Nanum Gothic Coding', sans-serif;
   }
-  .white {
-    color: #fff;
-  }
-  .black {
-    color: #000;
-  }
-  .primary {
-    color: #fcf2c9;
-  }
-  .secondary {
-    color: #517cce;
-  }
-  .graymain {
-    color: #d0d0d0;
-  }
-  .graylight {
-    color: #eaeaea;
-  }
-  .graymedium {
-    color: #d1d1d1;
-  }
-  .gray5 {
-    color: #555;
-  }
-  .gray8 {
-    color: #888;
-  }
-  .keyred {
-    color: #ff0606;
-  }
-  .keyyellow {
-    color: #ffd600;
-  }
-  .keypurple {
-    color: #eb00ff;
-  }
-  .keydeeppurple {
-    color: #5200ff;
-  }
-  .keyblue {
-    color: #00b2fe;
-  }
-  .keydeepblue {
-    color: #061fff;
-  }
-  .keyocean {
-    color: #00ffff;
-  }
-  .keygreen {
-    color: #61e80e;
-  }
-  .keydeepgreen {
-    color: #00cd52;
-  }
+  .font12 { font-size: 12px; }
+  .font14 { font-size: 14px; }
+  .font16 { font-size: 16px; }
+  .font18 { font-size: 18px; }
+  .font20 { font-size: 20px; }
+  .font22 { font-size: 22px; }
+  .font24 { font-size: 24px; }
+  .font26 { font-size: 26px; }
+  .font28 { font-size: 28px; }
+  .font30 { font-size: 30px; }
+  .font32 { font-size: 32px; }
+  .font34 { font-size: 34px; }
+  .font36 { font-size: 36px; }
+  .font38 { font-size: 38px; }
+  .font40 { font-size: 40px; }
 
+  .font400 { font-weight: 400; }
+  .font500 { font-weight: 500; }
+  .font600 { font-weight: 600; }
+  .font700 { font-weight: 700; }
+  .font800 { font-weight: 800; }
+  .font900 { font-weight: 900; }
+
+  .white { color: #fff; }
+  .black { color: #000; }
+  .primary { color: #FCF2C9; }
+  .secondary { color: #517CCE; }
+  .graymain { color: #D0D0D0; }
+  .graylight { color: #EAEAEA; }
+  .graymedium { color: #D1D1D1; }
+  .grayb { color: #bbb; }
+  .gray3 { color: #333; }
+  .gray5 { color: #555; }
+  .gray8 { color: #888; }
+
+  .bg-white { background-color: #fff; }
+  .bg-black { background-color: #000; }
+  .bg-primary { background-color: #FCF2C9; }
+  .bg-secondary { background-color: #517CCE; }
+  .bg-graymain { background-color: #D0D0D0; }
+  .bg-graylight { background-color: #EAEAEA; }
+  .bg-graymedium { background-color: #D1D1D1; }
+  .bg-gray5 { background-color: #555; }
+  .bg-gray8 { background-color: #888; }
+
+  .keyred { background-color: #FF0606; }
+  .keyyellow { background-color: #FFD600; }
+  .keypurple { background-color: #EB00FF; }
+  .keydeeppurple { background-color: #5200FF; }
+  .keyblue { background-color: #00B2FE; }
+  .keydeepblue { background-color: #061FFF; }
+  .keyocean { background-color: #00FFFF; }
+  .keygreen { background-color: #61E80E; }
+  .keydeepgreen { background-color: #00CD52; }
+  
   h1 {
     @apply text-4xl;
   }
