@@ -1,6 +1,6 @@
 import KakaoLogin from "react-kakao-login";
-import logo from "../assets/images/logo.png"
-import kakao from "../assets/images/icons/kakao.svg"
+import logo from "../../assets/images/logo.png"
+import kakao from "../../assets/images/icons/kakao.svg"
 
 const LoginPage = () => {
 
