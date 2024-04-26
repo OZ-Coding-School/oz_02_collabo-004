@@ -3,7 +3,7 @@ export { default as AdminBookListPage } from './Admin/AdminBookListPage';
 export { default as AdminChellengePage } from './Admin/AdminChellengePage';
 export { default as AdminCommentPage } from './Admin/AdminCommentPage';
 export { default as AdminUserPage } from './Admin/AdminUserPage';
-export { default as BookSpoilerDetail } from './BookSpoiler/BookSpoilerDetail';
+export { default as BookSpoilerDetailPage } from './BookSpoiler/BookSpoilerDetailPage';
 export { default as BookSpoilerPage } from './BookSpoiler/BookSpoilerPage';
 export { default as ChallengeActionPage } from './Challenge/ChallengeActionPage';
 export { default as ChallengePage } from './Challenge/ChallengePage';
