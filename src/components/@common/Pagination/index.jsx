@@ -37,7 +37,7 @@ const Pagination = () => {
         {Array.from({length: 5}, (_, index) => startPage + index).map((pageNumber) => (
           <button
             key={pageNumber}
-            className={`relative p-5 font12 group ${activeButton === pageNumber ? 'secondary font800' : 'hover:gray3'}`}
+            className={`relative p-5 font14 group ${activeButton === pageNumber ? 'secondary font800' : 'hover:gray3'}`}
             onClick={() => handleButtonClick(pageNumber)}
             style={{ position: "relative" }}
           >

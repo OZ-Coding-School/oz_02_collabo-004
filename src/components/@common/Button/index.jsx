@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ type, children, onClick, width, height, fontSize }) => {
+const Button = ({ type, children, onClick, width, height, fontSize, fontWeight }) => {
   const buttonType = type === 'submit' ? 'submit' : 'button';
 
   const buttonStyle = {
     width: width,
     height: height,
     fontSize: fontSize,
+    fontWeight: fontWeight,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: "center", 
   };
 
   return (

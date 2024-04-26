@@ -7,7 +7,14 @@ const Avatar = ({
   children 
 }) => {
 
-  let diameter = size === "large" ? 120 : 44;
+  let diameter = size === "large" ? 58 : 44;
+  if (size === "large") {
+    diameter = 58;
+    style.height = 59;
+  } else {
+    diameter = 44;
+    style.height = 42; 
+  }
 
   const containerStyle = {
     position: "relative",
