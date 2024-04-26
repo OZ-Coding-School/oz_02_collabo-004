@@ -5,10 +5,11 @@ import { IndexPage, LoginPage, StyleGuide } from './pages';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout/>} /> 
+      <Route path="/" element={<Layout/>} > 
         <Route index element={<IndexPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/styleguide" element={<StyleGuide/>} />
+      </Route>  
     </Routes>
   );
 }
