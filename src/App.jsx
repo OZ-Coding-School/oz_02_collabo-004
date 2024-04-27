@@ -15,11 +15,8 @@ function App() {
         <Route index element={<IndexPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/styleguide" element={<StyleGuide />} />
-        <Route path="/bookspoilerpage" element={<BookSpoilerPage />} />
-        <Route
-          path="/bookspolierdetailpage"
-          element={<BookSpoilerDetailPage />}
-        />
+        <Route path="/bookspoiler" element={<BookSpoilerPage />} />
+        <Route path="/bookspolierdetail" element={<BookSpoilerDetailPage />} />
       </Route>
     </Routes>
   );
