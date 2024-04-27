@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ type, children, onClick, width, height, fontSize, fontWeight }) => {
+const Button = ({
+  type,
+  children,
+  onClick,
+  width,
+  height,
+  fontSize,
+  fontWeight,
+}) => {
   const buttonType = type === 'submit' ? 'submit' : 'button';
 
   const buttonStyle = {
@@ -11,7 +19,7 @@ const Button = ({ type, children, onClick, width, height, fontSize, fontWeight }
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: "center", 
+    justifyContent: 'center',
   };
 
   return (
@@ -31,7 +39,7 @@ const Button = ({ type, children, onClick, width, height, fontSize, fontWeight }
 Button.propTypes = {
   type: PropTypes.oneOf(['button', 'submit']),
   children: PropTypes.node,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   width: PropTypes.string,
   height: PropTypes.string,
   fontSize: PropTypes.string,
