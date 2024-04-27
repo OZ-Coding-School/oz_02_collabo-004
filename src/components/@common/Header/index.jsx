@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
-import logo_noText from "../../../assets/images/icons/logo_noText.png";
+import logo_noText from "../../../assets/images/logo_noText.png";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);

@@ -3,21 +3,32 @@ import Textarea from '../../components/@common/Textarea';
 import Avatar from '../../components/@common/Avatar';
 import Location from '../../components/@common/Location';
 import Pagination from '../../components/@common/Pagination';
-import Header from '../../components/@common/Header';
-
+import Comment from '../../components/Comment';
 
 const StyleGuide = () => {
+
+  const comments = [
+    { id: 1, text: '첫 번째 댓글' },
+    { id: 2, text: '두 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+    { id: 3, text: '세 번째 댓글' },
+  ];
 
   return (
     <div className="flex justify-center pt-10">
       <div className="flex flex-col gap-10 w-[1080px]">
         <div>📌공통 UI 컴포넌트 StyleGuide</div>
 
+        <div className="flex w-[960px]">
+          <Comment comments={comments} />
+        </div>
+
         {/* Avatar */}
         <div>
           <p>Avatar</p>
           <hr className="border-t-2 my-3" />
-          <div className="flex items-center w-[300px] justify-between">
+          <div className="flex items-center gap-2">
             <Avatar size="small">TEXT</Avatar>
             <Avatar size="large">TEXT</Avatar>
             <Avatar
@@ -62,8 +73,7 @@ const StyleGuide = () => {
         <p>Pagination</p>
         <hr className="border-t-2 my-3" />
         <div className="flex flex-col justify-between">
-          <Pagination
-          />
+          <Pagination/>
         </div>
       </div>
 
