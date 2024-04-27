@@ -1,5 +1,7 @@
 const MyBookSpoilerPage = () => {
-  return <div>MyBookSpoilerPage</div>;
-};
+  return (
+    <div>MyBookSpoilerPage</div>
+  )
+}
 
-export default MyBookSpoilerPage;
+export default MyBookSpoilerPage
