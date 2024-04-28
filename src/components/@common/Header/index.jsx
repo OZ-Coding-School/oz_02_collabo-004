@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import logo_noText from "../../../assets/images/logo_noText.png";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [scrollShadow, setScrollShadow] = useState(false);
+
+  const handleScroll = () => {
+    const bottomShadow = window.scrollY > 0;
+    setScrollShadow(bottomShadow);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="w-full bg-white flex items-center justify-center">
+    <div className={`w-full h-[80px] bg-white flex items-center justify-center fixed top-0 z-10 ${scrollShadow ? 'shadow-md' : ''}`}>
       <div className="md h-[80px] flex justify-between items-center">
         <div>
           <img
