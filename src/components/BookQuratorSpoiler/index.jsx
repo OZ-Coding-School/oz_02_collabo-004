@@ -16,26 +16,43 @@ const BookQuratorSpoiler = () => {
 
   const toggleAction = (actionType) => {
     const updateAction = { ...action };
-    updateAction[actionType].active = !updateAction[actionType].active;
-    updateAction[actionType].count += updateAction[actionType].active ? 1 : -1;
-
-    setAction(updateAction);
-  };
-
-  const toggleShare = () => {
-    if (!action.share.active) {
-      navigator.clipboard.writeText(location.href)
-      .then(() => {
-        alert("링크가 복사되었습니다.");
-        toggleAction("share");
-      })
-      .catch((error) => {
-        console.error("링크 복사 중 오류가 발생했습니다:", error);
-      });
+    const isActive = updateAction[actionType].active;
+  
+    if (actionType === "like") {
+      if (!isActive) {
+        updateAction[actionType].active = true;
+        updateAction[actionType].count = 1;
+        setAction(updateAction);
+        alert("❤️를 누르셨습니다.");
+      } else {
+        updateAction[actionType].active = false;
+        updateAction[actionType].count = 0;
+        setAction(updateAction);
+      }
+    } else if (actionType === "bookmark" && !isActive) {
+      updateAction[actionType].active = true;
+      updateAction[actionType].count += 1;
+      setAction(updateAction);
+      alert("콘텐츠를 저장했습니다.");
+    } else if (actionType === "share") {
+      if (!isActive) {
+        navigator.clipboard.writeText(location.href)
+          .then(() => {
+            updateAction[actionType].active = true;
+            setAction(updateAction);
+            alert("링크가 복사되었습니다.");
+          })
+          .catch((error) => {
+            console.error("링크 복사 중 오류가 발생했습니다:", error);
+          });
+      } else {
+        alert("이미 링크가 복사되었습니다.");
+      }
     } else {
-      alert("이미 링크가 복사되었습니다.");
+      alert("이미 콘텐츠를 저장했습니다. \n마이페이지에서 '저장된 스포일러'에서 확인할 수 있습니다.");
     }
   };
+
 
   return (
     <>
@@ -72,7 +89,7 @@ const BookQuratorSpoiler = () => {
               <img 
                 src={action.share.active ? share_fill : share_line} 
                 className="w-6 h-7"
-                onClick={toggleShare}
+                onClick={() => toggleAction("share")}
               />
             </div>
           </div>
