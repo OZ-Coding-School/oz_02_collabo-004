@@ -7,8 +7,8 @@ import { useState } from "react";
 const Comment = ({ comments }) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 5;
 
+  const perPage = 5;
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
   const currentComments = comments.slice(firstIndex, lastIndex);
@@ -31,7 +31,7 @@ const Comment = ({ comments }) => {
           <p className="font600">namepen7</p>
           <p className="font14 grayb">5시간 전</p>
         </div>
-        <div className="w-[550px] font14">
+        <div className="w-[480px] font14">
           <p>
             사업가의 길을 가기로 결심했는데, 엄선해준 스포일러 덕분에 좋은 내용 알고 갑니다.
             사업가의 길을 가기로 결심했는데, 엄선해준 스포일러 덕분에 좋은 내용 알고 갑니다.
@@ -43,25 +43,27 @@ const Comment = ({ comments }) => {
   ));
 
   return (
-    <div className="flex flex-col w-[960px] gap-3 pt-7 pb-3 md bg-primary items-center justify-center rounded-2xl shadow-lg">
-      <div className="flex flex-col gap-4 w-[900px]">
-       <div className="flex items-center bg-white justify-evenly rounded-lg">
-        <textarea 
-            className="w-4/5 font14 resize-none p-5 placeholder-multiline whitespace-pre-line focus:outline-none overflow-hidden" 
-            placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 
-                         망각하지 않도록 꼭 생각을 글로 남겨보세요!"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)} 
-            />
-          <Button onClick={handleSubmitComment} width="130px" height="40px" fontSize="18px" fontWeight="500">
-            등록
-          </Button>
-       </div>
-       <div className="flex flex-col gap-2">
-        {commentList}
+    <div className="flex w-[860px]">
+      <div className="flex flex-col gap-3 pt-7 pb-3 md bg-primary items-center justify-center rounded-2xl shadow-lg">
+        <div className="flex flex-col gap-4 w-[800px]">
+          <div className="flex items-center bg-white justify-between rounded-lg p-5">
+            <textarea 
+              className="w-4/5 font14 resize-none px-5 placeholder-multiline whitespace-pre-line focus:outline-none overflow-hidden" 
+              placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 
+                          망각하지 않도록 꼭 생각을 글로 남겨보세요!"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)} 
+              />
+              <Button onClick={handleSubmitComment} width="130px" height="40px" fontSize="18px" fontWeight="500">
+                등록
+              </Button>
+          </div>
+          <div className="flex flex-col gap-2">
+            {commentList}
+          </div>
         </div>
+        <Pagination/>
       </div>
-      <Pagination/>
     </div>
   )
 }
