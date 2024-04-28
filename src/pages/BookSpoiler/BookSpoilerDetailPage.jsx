@@ -19,8 +19,8 @@ const BookSpoilerDetailPage = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center pt-10">
-      <div className="flex flex-col md justify-center">
+    <div className="w-full flex justify-center pt-[80px]">
+      <div className="flex flex-col md justify-center pt-10 pb-20">
       <Location
         number={3}
         link1="/"
