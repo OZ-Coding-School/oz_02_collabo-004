@@ -3,6 +3,7 @@ import Textarea from '../../components/@common/Textarea';
 import Avatar from '../../components/@common/Avatar';
 import Location from '../../components/@common/Location';
 import Pagination from '../../components/@common/Pagination';
+import Button from '../../components/@common/Button';
 
 const StyleGuide = () => {
   const handleButtonClick = () => {
