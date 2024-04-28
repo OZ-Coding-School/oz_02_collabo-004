@@ -4,6 +4,7 @@ import {
   IndexPage, 
   LoginPage, 
   BookSpoilerDetailPage, 
+  ChallengeActionPage,
   StyleGuide
 } from './pages';
 
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<IndexPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/bookspoilerdetail" element={<BookSpoilerDetailPage/>} />
+        <Route path="/challengeaction" element={<ChallengeActionPage/>} />
         <Route path="/styleguide" element={<StyleGuide/>} />
       </Route>  
     </Routes>
