@@ -7,13 +7,13 @@ const Avatar = ({
   children 
 }) => {
 
-  let diameter = size === "large" ? 58 : 44;
+  let width, height;
   if (size === "large") {
-    diameter = 58;
-    style.height = 59;
+    width = 58;
+    height = 60;
   } else {
-    diameter = 44;
-    style.height = 42; 
+    width = 44;
+    height = 42; 
   }
 
   const containerStyle = {
@@ -21,8 +21,8 @@ const Avatar = ({
     display: "flex",
     justifyContent: "center", 
     alignItems: "center", 
-    width: diameter,
-    height: diameter,
+    width: width,
+    height: height,
     borderRadius: "50%", 
     backgroundColor: source ? "transparent" : "#2f2f2f", 
     objectFit: "cover",
@@ -40,7 +40,7 @@ const Avatar = ({
       {source ? (
         <img
           src={source}
-          style={{ width: diameter, height: diameter, borderRadius: "50%" }} 
+          style={{ width: width, height: height, borderRadius: "50%" }} 
         />
       ) : (
         <span style={textStyle}>{children}</span>
