@@ -4,6 +4,7 @@ import comment from "../../assets/images/comment.png"
 import Location from "../../components/@common/Location";
 import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
+import challenge_spoiler from "../../assets/images/challenge_spoiler.png"
 import ChallengeStatus from "../../components/ChallengeStatus";
 
 const ChallengeActionPage = () => {
@@ -68,8 +69,8 @@ const ChallengeActionPage = () => {
             </div>
             <div className="flex flex-col items-center md gap-14 py-6 rounded-3xl border-2">
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <img src={comment} alt="comment" className="w-20 h-18"/>
+                <div className="flex items-center gap-3 pl-1">
+                  <img src={challenge_spoiler} alt="comment" className="w-20 h-18"/>
                   <p className="font20 font800">챌린지 n일차</p>
                 </div> 
                 <ChallengeSpoiler />
