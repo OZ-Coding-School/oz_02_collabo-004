@@ -7,6 +7,7 @@ import {
   LoginPage,
   StyleGuide,
   ChallengeActionPage,
+  MyPaymentListPage,
 } from './pages';
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
         <Route path="/bookspoilerdetail" element={<BookSpoilerDetailPage />} />
-        <Route path="/challengeaction" element={<ChallengeActionPage/>} />
+        <Route path="/challengeaction" element={<ChallengeActionPage />} />
+        <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
       </Route>
     </Routes>
   );

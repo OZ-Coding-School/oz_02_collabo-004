@@ -1,5 +1,4 @@
 const Footer = () => {
-  
   return (
     <div className="w-full bg-white h-52 pl-24 flex content-center border">
       <div className="content-center gray5">

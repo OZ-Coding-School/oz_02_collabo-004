@@ -13,7 +13,7 @@ const BookInfoCard = ({ onClick, count }) => {
       <div className="flex gap-14 justify-around flex-wrap">
         <div className=" bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-5 ">
-            <Link to="/bookspolierdetail">
+            <Link to="/bookspoilerdetail">
               <img
                 // book_img
                 src={BookImage}
@@ -52,7 +52,7 @@ const BookInfoCard = ({ onClick, count }) => {
 
         <div className=" bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-5 relative">
-            <Link to="/bookspolierdetail">
+            <Link to="/bookspoilerdetail">
               <img
                 // book_img
                 src={BookImage}
@@ -91,7 +91,7 @@ const BookInfoCard = ({ onClick, count }) => {
 
         <div className="relative bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-5 relative">
-            <Link to="/bookspolierdetail">
+            <Link to="/bookspoilerdetail">
               <img
                 // book_img
                 src={BookImage}
