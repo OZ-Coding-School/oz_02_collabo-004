@@ -38,7 +38,7 @@ const BookSpoilerDetailPage = () => {
         depthLast="북스포일러 상세페이지"
         />
         <div className="flex flex-col gap-14 pt-10">
-          <p className="font30 font800">도서명 북스포일러</p>
+          <p className="font30 font800 w-[230px] textHighlight">도서명 북스포일러</p>
           <div className="flex-col flex items-center gap-14">
             <div className="flex gap-10 justify-center">
               <img src={booksample} className="w-48"/>
@@ -65,7 +65,7 @@ const BookSpoilerDetailPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-center md gap-14 pt-4 pb-6 rounded-3xl border-2">
+            <div className="flex flex-col items-center md gap-14 pt-4 pb-14 rounded-3xl border-2">
               <div className="flex items-center w-[1040px] bg-primary justify-between px-8 py-7 rounded-2xl">
                 <div className="flex items-center gap-5">
                   <img src={bookstep} className="w-20"/>

@@ -38,7 +38,7 @@ const ChallengeActionPage = () => {
         depthLast="챌린지 북스포일러"
         />
         <div className="flex flex-col gap-14 pt-10">
-          <p className="font30 font800">챌린지 북스포일러</p>
+          <p className="font30 font800 textHighlight w-[230px]">챌린지 북스포일러</p>
           <div className="flex-col flex items-center gap-14">
             <div className="flex gap-10 justify-center">
               <div className="flex flex-col justify-center">
@@ -67,7 +67,7 @@ const ChallengeActionPage = () => {
                 <ChallengeStatus />
               </div>
             </div>
-            <div className="flex flex-col items-center md gap-14 py-6 rounded-3xl border-2">
+            <div className="flex flex-col items-center md gap-14 pt-10 pb-14 rounded-3xl border-2">
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 pl-1">
                   <img src={challenge_spoiler} alt="comment" className="w-20 h-18"/>
