@@ -36,7 +36,7 @@ const Header = () => {
           <a
             className="cursor-pointer"
             onClick={() => {
-              window.location.href = "/";
+              window.location.href = "/bookspoiler";
             }}
           >
             북스포일러
