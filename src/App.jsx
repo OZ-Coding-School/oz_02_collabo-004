@@ -6,6 +6,7 @@ import {
   IndexPage,
   LoginPage,
   StyleGuide,
+  ChallengeActionPage,
 } from './pages';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
         <Route path="/bookspolierdetail" element={<BookSpoilerDetailPage />} />
+        <Route path="/challengeaction" element={<ChallengeActionPage/>} />
       </Route>
     </Routes>
   );

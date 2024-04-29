@@ -75,7 +75,7 @@ const BookSpoilerDetailPage = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <img src={comment} alt="comment" className="w-20 h-18"/>
-                  <p className="font20 font600">내 생각 공유하기</p>
+                  <p className="font20 font800">내 생각 공유하기</p>
                 </div> 
                 <BookComment comments={comments} />
               </div>

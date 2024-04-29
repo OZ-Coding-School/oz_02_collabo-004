@@ -1,6 +1,83 @@
+import BookComment from "../../components/BookComment"
+import ChallengeSpoiler from "../../components/ChallengeSpoiler"
+import comment from "../../assets/images/comment.png"
+import Location from "../../components/@common/Location";
+import arrow_right from "../../assets/images/icons/arrow_right.svg"
+import booksample from "../../assets/images/booksample.png"
+
 const ChallengeActionPage = () => {
+  //챌린지 댓글 임시리스트
+  const comments = [
+    { id: 1, text: '1' },
+    { id: 2, text: '2' },
+    { id: 3, text: '3' },
+    { id: 3, text: '4' },
+    { id: 3, text: '5' },
+  ];
+
   return (
-    <div>ChallengeActionPage</div>
+    <div className="w-full flex justify-center pt-[80px]">
+      <div className="flex flex-col md justify-center pt-10 pb-20">
+      <Location
+        number={3}
+        link1="/"
+        link2="/challenge"
+        depth1="Home"
+        depth2="챌린지"
+        linkLast="/bookspoilerdetail"
+        depthLast="챌린지 북스포일러"
+        />
+        <div className="flex flex-col gap-14 pt-10">
+          <p className="font30 font800">챌린지 북스포일러</p>
+          <div className="flex-col flex items-center gap-14">
+            <div className="flex gap-10 justify-center">
+              <div className="flex flex-col">
+                <img src={booksample} className="w-64"/>
+                <div 
+                    className="flex gap-2 items-center cursor-pointer pt-5"
+                    onClick={() => open('https://www.coupang.com/', '_blank')}
+                  >
+                  <p className="font600 font12 grayb pl-3">책 사러가기</p>
+                  <img src={arrow_right} className="w-2"/>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <p className="font900 font22 secondary">당신은 사업가입니까</p>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center">
+                    <p className="font600">캐럴 로스 저 ·</p>
+                    <p className="gray5">알에이치코리아</p>
+                  </div>
+                  <div className="flex white items-center gap-1">
+                    <div className="keypurple rounded-md px-2 py-1 w-[65px] text-center">창업</div>
+                    <div className="keyred rounded-md px-2 py-1 w-[65px] text-center">자청</div>
+                    <div className="keydeepblue rounded-md px-2 py-1 w-[65px] text-center">김성공</div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div className="flex flex-col items-center md gap-14 py-6 rounded-3xl border-2">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <img src={comment} alt="comment" className="w-20 h-18"/>
+                  <p className="font20 font800">챌린지 n일차</p>
+                </div> 
+                <ChallengeSpoiler />
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <img src={comment} alt="comment" className="w-20 h-18"/>
+                  <p className="font20 font800">챌린지 완료하기</p>
+                </div> 
+                <BookComment comments={comments} />
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
