@@ -5,7 +5,7 @@ const BookSnsContent = () => {
   return (
     <>
       <div className='flex flex-col gap-3'>
-        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight">
+        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight cursor-pointer">
           <div className="flex justify-between">
             <div className="font600 font20">사업을 하지 말아야 할 사람과 이유</div>
             <div className='flex items-center gap-3'>
@@ -18,7 +18,7 @@ const BookSnsContent = () => {
             그리고 사업을 시작할 때 고려해야 할 이유들에 대해 다루고 있습니다. 자신의 역량과 ...
           </div>
         </div>
-        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight">
+        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight cursor-pointer">
           <div className="flex justify-between">
             <div className="font600 font20">보스라는 환상 / 당신은 사업가 입니까?</div>
             <div className='flex items-center gap-3'>
@@ -31,7 +31,7 @@ const BookSnsContent = () => {
             사업을 꿈구는 분들에게 현실적인 준비와 접근이 얼마나 중요한지 알려주는 ...
           </div>
         </div>
-        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight">
+        <div className="flex flex-col w-[860px] gap-1 px-8 py-5 rounded-xl bg-graylight cursor-pointer">
           <div className="flex justify-between">
             <div className="font600 font20">사업의 이면을 보여주는 책</div>
             <div className='flex items-center gap-3'>

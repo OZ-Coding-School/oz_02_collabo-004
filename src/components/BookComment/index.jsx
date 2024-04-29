@@ -20,6 +20,9 @@ const Comment = ({ comments }) => {
     setNewComment("");
   };
 
+  //TODO: 저장해놓은 페이지 넘버(몇페이지?) 로 페이지에 잘라서 보여줄 라스트,퍼스트 로직 
+
+
   const commentList = currentComments.map((comment, index) => ( 
     <div key={index} className="flex flex-row px-4 py-3 rounded-lg bg-white justify-between">
       <div className="flex gap-5 items-center">
@@ -28,13 +31,13 @@ const Comment = ({ comments }) => {
           source="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/1a92/image/_9FUTEe2WluHy6oMjq-hQ77RlEE.JPG"
         />
         <div className="flex flex-col justify-center">
-          <p className="font600">namepen7</p>
+          <p className="font600">{comment.username}</p>
           <p className="font14 grayb">5시간 전</p>
         </div>
         <div className="w-[480px] font14">
           <p>
-            사업가의 길을 가기로 결심했는데, 엄선해준 스포일러 덕분에 좋은 내용 알고 갑니다.
-            사업가의 길을 가기로 결심했는데, 엄선해준 스포일러 덕분에 좋은 내용 알고 갑니다.
+            {comment.comment_content}
+        
           </p>
         </div>
       </div>
@@ -62,7 +65,7 @@ const Comment = ({ comments }) => {
             {commentList}
           </div>
         </div>
-        <Pagination/>
+        <Pagination />
       </div>
     </div>
   )
