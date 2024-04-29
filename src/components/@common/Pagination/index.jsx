@@ -28,6 +28,9 @@ const Pagination = () => {
     }
   };
 
+  // TODO: 전체 원소개수, 페이지 당 보여줄 원소 개수 파라미터로 받아서 pagination 로직 totalElements, pagePerNumber
+  // TODO:몇페이지 눌렀는지? 저장해놓기 
+
   return (
     <div className='flex items-center'>
       <div className='flex h-[45px] items-center gray8 font400'>
