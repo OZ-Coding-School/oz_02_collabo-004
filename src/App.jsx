@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
-        <Route path="/bookspolierdetail" element={<BookSpoilerDetailPage />} />
+        <Route path="/bookspoilerdetail" element={<BookSpoilerDetailPage />} />
         <Route path="/challengeaction" element={<ChallengeActionPage/>} />
       </Route>
     </Routes>

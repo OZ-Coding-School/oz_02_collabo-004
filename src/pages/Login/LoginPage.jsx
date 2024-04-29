@@ -13,7 +13,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="w-full flex items-center justify-center py-[100px]">
+    <div className="w-full flex items-center justify-center py-[180px]">
       <div className="flex flex-col justify-center items-center gap-5 py-[10px]">
         <div className="flex justify-center"> 
           <img src={logo} alt="logo" className='w-[130px] h-[200px]'/>
