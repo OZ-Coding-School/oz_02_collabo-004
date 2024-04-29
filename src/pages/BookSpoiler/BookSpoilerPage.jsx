@@ -10,7 +10,7 @@ const BookSpoilerPage = () => {
   };
   return (
     <>
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap pt-[100px] pb-20">
         <div className="flex flex-col md gap-y-7">
           <div className="font-bold text-3xl flex">북스포일러</div>
           <BookInfoCard onClick={handleClicked} count={count} />
