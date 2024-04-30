@@ -9,7 +9,9 @@ import {
   ChallengeActionPage,
   MyPaymentListPage,
   ChallengePage,
-} from "./pages";
+  MyChallengePage,
+  MyBookSpoilerPage,
+} from './pages';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/challengeaction" element={<ChallengeActionPage />} />
         <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
+        <Route path="/mychallenge" element={<MyChallengePage />} />
+        <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
       </Route>
     </Routes>
   );
