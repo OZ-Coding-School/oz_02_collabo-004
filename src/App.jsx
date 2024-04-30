@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import {
   BookSpoilerDetailPage,
   BookSpoilerPage,
@@ -8,7 +8,8 @@ import {
   StyleGuide,
   ChallengeActionPage,
   MyPaymentListPage,
-} from './pages';
+  ChallengePage,
+} from "./pages";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
         <Route path="/bookspoilerdetail" element={<BookSpoilerDetailPage />} />
         <Route path="/challengeaction" element={<ChallengeActionPage />} />
+        <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
       </Route>
     </Routes>
