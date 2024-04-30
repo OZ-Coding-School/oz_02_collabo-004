@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import Avatar from '../Avatar';
-import { Link } from 'react-router-dom';
-import logo_noText from '../../../assets/images/logo_noText.png';
+import { useEffect, useState } from "react";
+import Avatar from "../Avatar";
+import { Link } from "react-router-dom";
+import logo_noText from "../../../assets/images/logo_noText.png";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -13,16 +13,16 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <div
-      className={`w-full h-[80px] bg-white flex items-center justify-center fixed top-0 z-10 ${
-        scrollShadow ? 'shadow-md' : ''
+      className={`w-full h-[80px] bg-white flex items-center justify-center fixed top-0 z-50 ${
+        scrollShadow ? "shadow-md" : ""
       }`}
     >
       <div className="md h-[80px] flex justify-between items-center">
@@ -30,7 +30,7 @@ const Header = () => {
           <img
             className="w-14 cursor-pointer"
             onClick={() => {
-              window.location.href = '/';
+              window.location.href = "/";
             }}
             src={logo_noText}
             alt="로고 이미지"
@@ -40,14 +40,14 @@ const Header = () => {
           <a
             className="cursor-pointer"
             onClick={() => {
-              window.location.href = '/bookspoiler';
+              window.location.href = "/bookspoiler";
             }}
           >
             북스포일러
           </a>
           <a
             onClick={() => {
-              window.location.href = '/challenge';
+              window.location.href = "/challenge";
             }}
           >
             챌린지
@@ -55,7 +55,7 @@ const Header = () => {
           {isLoggedIn ? (
             <Avatar>로그아웃</Avatar>
           ) : (
-            <Link to={'/login'}>
+            <Link to={"/login"}>
               <Avatar>로그인</Avatar>
             </Link>
           )}
