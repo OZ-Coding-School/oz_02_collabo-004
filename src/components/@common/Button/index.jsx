@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const Button = ({
   type,
@@ -8,8 +9,13 @@ const Button = ({
   height,
   fontSize,
   fontWeight,
+  outline = false,
 }) => {
   const buttonType = type === 'submit' ? 'submit' : 'button';
+  const [isHover, setIsHover] = useState(false);
+  const hoverStyle = {
+    backgroundColor: outline ? (isHover ? '#eee' : 'transparent') : (isHover ? '#649EF4' : '#517cce'),
+  };
 
   const buttonStyle = {
     width: width,
@@ -20,6 +26,10 @@ const Button = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: outline ? 'transparent' : '#517cce', 
+    color: outline ? '#517cce' : '#fcf2c9', 
+    border: outline ? '1px solid #517cce' : 'none', 
+    ...hoverStyle,
   };
 
   return (
@@ -27,9 +37,9 @@ const Button = ({
       type={buttonType}
       style={buttonStyle}
       onClick={onClick}
-      className={
-        'p-2 rounded-[10px] bg-secondary text-primary hover:bg-[#649EF4] active:bg-[#3A5DAB]'
-      }
+      onMouseEnter={() => setIsHover(true)} 
+      onMouseLeave={() => setIsHover(false)}
+      className="p-2 rounded-[10px] bg-secondary text-primary hover:bg-[#649EF4] active:bg-[#3A5DAB]"
     >
       {children}
     </button>
@@ -43,6 +53,7 @@ Button.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   fontSize: PropTypes.string,
+  outline: PropTypes.bool,
 };
 
 export default Button;

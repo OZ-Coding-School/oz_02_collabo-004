@@ -6,8 +6,12 @@ import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
 import challenge_spoiler from "../../assets/images/challenge_spoiler.png"
 import ChallengeStatus from "../../components/ChallengeStatus";
+import Modal from "../../components/@common/Modal";
+import { useState } from "react";
 
 const ChallengeActionPage = () => {
+  const [modalOpen, setModalOpen] = useState(false); 
+
   // TODO:
   //let comments = await axiosInstance.get(`/comments/{challenge_spoiler_id}`);
   let comments = [
@@ -17,13 +21,12 @@ const ChallengeActionPage = () => {
     { id: 16, comment_content: 'comment15' , created_at: '2024-08-30', username: 'name4'},
     { id: 81, comment_content: 'comment14' , created_at: '2024-09-30', username: 'name6'},
     { id: 81, comment_content: 'comment15' , created_at: '2024-09-30', username: 'name7'},
-    { id: 81, comment_content: 'comment17' , created_at: '2024-09-30', username: 'name8'},
-    { id: 81, comment_content: 'comment18' , created_at: '2024-09-30', username: 'name5'},
-    { id: 81, comment_content: 'comment19' , created_at: '2024-09-30', username: 'name10'},
-    { id: 81, comment_content: 'comment19' , created_at: '2024-09-30', username: 'name11'},
-    { id: 81, comment_content: 'comment10' , created_at: '2024-09-30', username: 'name12'},
-    { id: 81, comment_content: 'comment16' , created_at: '2024-09-30', username: 'name13'},
   ];
+
+  const handleCancel = () => {
+    setModalOpen(false); 
+  };
+
 
   return (
     <div className="w-full flex justify-center pt-[80px]">
@@ -80,13 +83,25 @@ const ChallengeActionPage = () => {
                   <img src={comment} alt="comment" className="w-20 h-18"/>
                   <p className="font20 font800">챌린지 완료하기</p>
                 </div> 
-                <BookComment comments={comments} />
+                <BookComment 
+                  comments={comments} 
+                  setModalOpen={setModalOpen}
+                />
               </div>
 
             </div>
           </div>
         </div>
       </div>
+      {modalOpen ? 
+        <Modal 
+          setModalOpen={setModalOpen}
+          message="댓글을 삭제하시겠습니까?"
+          // onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        />
+      : null
+      }
     </div>
   )
 }

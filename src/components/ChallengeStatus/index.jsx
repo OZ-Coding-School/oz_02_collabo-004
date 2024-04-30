@@ -31,26 +31,34 @@ const ChallengeStatus = () => {
   const statusCard = Array.from({ length: 6 }, (_, index) => ({
     day: index + 1,
   })).map(({day}, index) => (
-    <div
-      key={index}
-      className={`flex flex-col w-32 justify-center ${index + 1 === currentDay ? 'bg-white' : 'bg-graymain'} h-28 px-3 rounded-2xl gap-2`}
+    <div 
+      key={index} 
       style={{ 
         transform: `translateX(${(-currentDay * 128) + (-currentDay * 20) + 148}px)`,
         transition: "transform 0.5s ease-in-out", 
       }}
-      onClick={() => toggleComplete(index)}
-    > 
-    {( index <= 4 ? 
-      <p className="font800 font22 text-center">
-        챌린지 <br/> {day}일차
-      </p>
-     : (
-        <p className="font800 font20 text-center">챌린지 완주</p>
-    ))}
-      <div className="flex items-center gap-1">
-        <img src={completed[index] ? checkbox_fill : checkbox} className="w-3 h-3 cursor-pointer" />
-        <p className={`flex justify-start font12 font600 ${completed[index] ? 'white' : 'black'}`}>{completed[index] ? '완료' : '미완료'}</p>
+    >
+      <div
+        className={`flex flex-col w-32 justify-center ${index + 1 === currentDay ? 'bg-white' : 'bg-graymain'} h-28 px-3 rounded-2xl gap-2`}
+        onClick={() => toggleComplete(index)}
+      > 
+      {( index <= 4 ? 
+        <p className="font800 font22 text-center">
+          챌린지 <br/> {day}일차
+        </p>
+      : (
+          <p className="font800 font20 text-center">
+            챌린지 완주
+          </p>
+      ))}
+        <div className="flex items-center gap-1">
+          <img src={completed[index] ? checkbox_fill : checkbox} className="w-3 h-3 cursor-pointer" />
+          <p className="flex justify-start font12 font600 black">
+            {completed[index] ? '완료' : '미완료'}
+          </p>
+        </div>
       </div>
+      <p className="text-[10px] primary font500 flex justify-end pr-2 pt-1">2024.04.13 까지</p>
     </div>
   ));
 
@@ -71,7 +79,7 @@ const ChallengeStatus = () => {
           onClick={nextDay}
         />
       </div>
-      <div className="flex flex-col px-5 py-4 gap-1">
+      <div className="flex flex-col px-5 pt-2 pb-4 gap-1">
         <p className="font12 white"> {'userId'} 님의 챌린지 현황 </p>
         <div className="relative h-1 bg-black w-full rounded-full">
           <div className="absolute top-0 h-1 bg-primary rounded-full" style={{ width: `${completePercentage}%` }}></div>
