@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import {
   BookSpoilerDetailPage,
   BookSpoilerPage,
@@ -8,6 +8,7 @@ import {
   StyleGuide,
   ChallengeActionPage,
   MyPaymentListPage,
+  ChallengePage,
   MyChallengePage,
   MyBookSpoilerPage,
 } from './pages';
@@ -22,6 +23,7 @@ function App() {
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
         <Route path="/bookspoilerdetail" element={<BookSpoilerDetailPage />} />
         <Route path="/challengeaction" element={<ChallengeActionPage />} />
+        <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
