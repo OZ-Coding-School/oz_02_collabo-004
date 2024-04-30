@@ -26,6 +26,9 @@ const ChallengeActionPage = () => {
   const handleCancel = () => {
     setModalOpen(false); 
   };
+  const handleConfirm = () => {
+    setModalOpen(true); 
+  };
 
 
   return (
@@ -97,7 +100,7 @@ const ChallengeActionPage = () => {
         <Modal 
           setModalOpen={setModalOpen}
           message="댓글을 삭제하시겠습니까?"
-          // onConfirm={handleConfirm}
+          onConfirm={handleConfirm}
           onCancel={handleCancel}
         />
       : null

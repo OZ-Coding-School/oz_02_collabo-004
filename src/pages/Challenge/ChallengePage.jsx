@@ -23,7 +23,7 @@ const ChallengePage = () => {
             className="
         justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]"
           >
-            <p>></p>
+            <p></p>
             <div className="justify-evenly flex items-center slide_carrousel w-[980px] h-[490px] overflow-hidden">
               <BookCaroussel></BookCaroussel>
               <BookCaroussel></BookCaroussel>
@@ -31,7 +31,7 @@ const ChallengePage = () => {
               <BookCaroussel></BookCaroussel>
               <BookCaroussel></BookCaroussel>
             </div>
-            <p>></p>
+            <p></p>
           </div>
           <div className="w-full">
             {/* 챌린지 설명 하드코딩 부분 */}
