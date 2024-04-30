@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useOnClickOutside from '../../../hooks/useOnClickOuiside';
+import useOnClickOutside from '../../../hooks/useOnClickOuiside'; 
 import { useRef, useState } from 'react';
 import exit from '../../../assets/images/icons/exit.svg';
 import modal_check from '../../../assets/images/icons/modal_check.svg';
@@ -8,19 +8,19 @@ import Button from '../Button';
 
 const Modal = ({ setModalOpen, message, onConfirm, onCancel }) => {
   const [confirmed, setConfirmed] = useState(false);
-  const [isOpen, setIsOpen] = useState(true); 
   const ref = useRef(null);
   
   useOnClickOutside(ref, () => {
-    setModalOpen(false);
-  }, isOpen);
+    if (onConfirm) { 
+      setModalOpen(false);
+    }
+  });
 
   const handleConfirmClick = () => {
     if (onConfirm) {
       onConfirm();
     }
     setConfirmed(true);
-    setIsOpen(false);
   };
 
   const handleCancelClick = () => {
