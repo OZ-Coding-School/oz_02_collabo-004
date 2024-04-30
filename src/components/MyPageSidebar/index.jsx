@@ -26,7 +26,7 @@ const MyPageSidebar = () => {
           className={`mypagesidebar-list-style text-${color}`}
           style={hoveredItemStyle(index)}
         >
-          {hoveredItem === index && <span>●&emsp;</span>}
+          {hoveredItem === index && <span>&ensp;●&emsp;</span>}
           {children}
         </li>
       </Link>
@@ -36,7 +36,7 @@ const MyPageSidebar = () => {
   return (
     <nav className="w-[200px] h-[360px] flex justify-end text-xl">
       <ul className="flex flex-col justify-between">
-        <li className="h-12 flex items-center font-bold text-gray-800">
+        <li className="h-12 flex items-center font-bold text-2xl text-gray-800">
           마이페이지
         </li>
 

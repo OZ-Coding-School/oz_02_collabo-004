@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,19 +7,19 @@
 
 @layer base {
   html {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   * {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   body {
     background-color: #fff;
   }
   .BlackHanSans {
-    font-family: "Black Han Sans", sans-serif;
+    font-family: 'Black Han Sans', sans-serif;
   }
   .NanumGothicCoding {
-    font-family: "Nanum Gothic Coding", sans-serif;
+    font-family: 'Nanum Gothic Coding', sans-serif;
   }
   .font12 {
     font-size: 12px;
@@ -181,7 +181,7 @@
   }
 
   .mypagesidebar-list-style {
-    @apply flex w-[200px] h-12 pl-5 items-center rounded-full text-gray-700;
+    @apply flex w-[200px] h-12 pl-2 items-center rounded-full text-gray-700;
   }
 
   .textHighlight {
