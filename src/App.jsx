@@ -8,6 +8,7 @@ import {
   StyleGuide,
   ChallengeActionPage,
   MyPaymentListPage,
+  PaymentPage,
   ChallengePage,
   MyChallengePage,
   MyBookSpoilerPage,
@@ -25,6 +26,7 @@ function App() {
         <Route path="/challengeaction" element={<ChallengeActionPage />} />
         <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
       </Route>
