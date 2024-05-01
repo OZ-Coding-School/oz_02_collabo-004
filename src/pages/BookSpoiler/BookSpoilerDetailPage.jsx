@@ -24,9 +24,6 @@ const BookSpoilerDetailPage = () => {
     { id: 7, comment_content: 'comment7' , created_at: '2024-09-30', username: 'name7'},
   ]); 
 
-  // const handleCancel = () => {
-  //   setModalOpen(false); 
-  // };
 
   const handleConfirmDelete = () => {
     if (deleteCommentIndex !== null) {
