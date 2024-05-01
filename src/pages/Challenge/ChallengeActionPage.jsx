@@ -69,7 +69,6 @@ const ChallengeActionPage = () => {
                   <div className="keyred rounded-md px-2 py-1 w-[80px] text-center">자청</div>
                   <div className="keydeepblue rounded-md px-2 py-1 w-[80px] text-center">김성공</div>
                 </div>
-
                 <ChallengeStatus />
               </div>
             </div>
