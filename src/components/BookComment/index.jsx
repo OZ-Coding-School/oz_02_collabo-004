@@ -41,11 +41,15 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
   
 
   const handleSubmitComment = () => {
-    if (!newComment.trim() || editMode !== -1) {
-      alert("댓글 수정을 완료해주세요!")
-      setNewComment("")
-    return;
-  }
+    if (isEditing) {
+      alert("댓글 수정을 완료해주세요!");
+      return;
+    }
+  
+    if (!newComment.trim()) {
+      alert("내용을 입력하셔야 등록됩니다.");
+      return;
+    }
   
     //TODO: 임시 객체 !!!
     const newUserComment = {
@@ -209,7 +213,13 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)} 
               />
-              <Button onClick={handleSubmitComment} width="130px" height="40px" fontSize="18px" fontWeight="500">
+              <Button 
+                onClick={handleSubmitComment} 
+                width="130px" 
+                height="40px" 
+                fontSize="18px" 
+                fontWeight="500" 
+              >
                 등록
               </Button>
             </div>
