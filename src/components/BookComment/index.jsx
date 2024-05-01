@@ -2,7 +2,7 @@ import Avatar from "../@common/Avatar";
 import Button from "../@common/Button";
 import Pagination from "../@common/Pagination";
 import more from "../../assets/images/icons/more.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) => {
@@ -12,16 +12,41 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
   const [isMoreVisible, setIsMoreVisible] = useState(false); 
   const [editMode, setEditMode] = useState(-1);
   const [editContent, setEditContent] = useState(""); 
+  const [isEditing, setIsEditing] = useState(false);
+
+  const textareaRef = useRef(null); 
 
   const perPage = 5;
   const lastIndex = currentPage * perPage;
   const firstIndex = lastIndex - perPage;
   const currentComments = comments.slice(firstIndex, lastIndex);
 
+  useEffect(() => {
+    const handleClickOutsideTextarea = (event) => {
+      if (isEditing && textareaRef.current && !textareaRef.current.contains(event.target)) {
+        textareaRef.current.style.border = "2px solid red"; 
+        textareaRef.current.style.borderRadius = "4px";
+        textareaRef.current.classList.add("textarea-shake"); 
+      } else {
+        if (textareaRef.current) {
+          textareaRef.current.style.border = "none"; 
+          textareaRef.current.classList.remove("textarea-shake"); 
+        }
+      }
+    };
+    document.addEventListener("click", handleClickOutsideTextarea);
+    return () => {
+      document.removeEventListener("click", handleClickOutsideTextarea);
+    };
+  }, [isEditing]);
+  
+
   const handleSubmitComment = () => {
-    if (!newComment.trim()) {
-      return;
-    }
+    if (!newComment.trim() || editMode !== -1) {
+      alert("댓글 수정을 완료해주세요!")
+      setNewComment("")
+    return;
+  }
   
     //TODO: 임시 객체 !!!
     const newUserComment = {
@@ -55,6 +80,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
   const handleEditClick = (index) => {
     setEditMode(index);
     setEditContent(comments[index].comment_content);
+    setIsEditing(true);
   };
 
   const handleEditSubmit = () => {
@@ -65,13 +91,18 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
 
     setComments(updateComments);
     setEditMode(-1); 
+    setIsEditing(false);
   };
 
   const handleDeleteClick = (index) => {
     onDeleteComment(index);
     setModalOpen(true); 
   };
-
+  const handleCommentClick = (index) => {
+    if (editMode === index) {
+      setIsEditing(true); 
+    }
+  };
 
   const commentList = currentComments.map((comment, index) => ( 
     <div 
@@ -89,9 +120,14 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
           <p className="font600">{comment.username}</p>
           <p className="font14 grayb">{comment.created_at}</p>
         </div>
-        <div className="w-[480px] font14 flex items-center">
+        <div 
+          className="w-[480px] font14 flex items-center"
+          onClick={() => handleCommentClick(index)} 
+        >
           {editMode === index ? (
             <textarea
+              ref={textareaRef}
+              id={`comment-textarea-${index}`}
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
               className="resize-none w-full whitespace-pre-line focus:outline-none secondary"
@@ -101,13 +137,22 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
           )}
         </div>
       </div>
-      <div className="relative flex flex-col justify-between items-center w-6">
+      <div className="relative flex flex-col items-center w-6">
         <div className="cursor-pointer" onClick={handleMoreClick}>
-          <img src={more}/>
-          { hoverCommentIndex === index && isMoreVisible && ( 
-            <div className="absolute top-0 left-15 mt-3 bg-white shadow-lg rounded-md z-10">
+        {editMode === index ? (
+         <div 
+            onClick={handleEditSubmit}
+            className="font12 font600 cursor-pointer hover:font800 secondary hover:black pt-2"
+          >
+            수정
+          </div>
+          ) : (
+            <img src={more} className="pt-3"/>
+        )}
+          {hoverCommentIndex === index && isMoreVisible && ( 
+            <div className="absolute top-0 left-15 mt-6 bg-white shadow-lg rounded-md z-10">
               <ul className="flex items-center w-40">
-                <li className="flex justify-center cursor-pointer w-20 px-6 py-3 hover:bg-graylight hover:rounded-l-md hover:font700 font14"
+                <li className="flex justify-center cursor-pointer w-20 px-6 py-3 hover:bg-graylight hover:rounded-l-md hover:font700 font14 "
                     onClick={() => handleEditClick(index)}
                 >
                   수정
@@ -121,11 +166,6 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
             </div>
           )}
         </div>
-        {editMode === index && (
-          <div onClick={handleEditSubmit} className="font12 font600 cursor-pointer gray8 hover:font800 hover:secondary">
-            수정
-          </div>
-        )}
       </div>
     </div>  
   ));
