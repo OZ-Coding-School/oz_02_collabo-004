@@ -17,9 +17,8 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
   const textareaRef = useRef(null); 
 
   const perPage = 5;
-  const lastIndex = currentPage * perPage;
-  const firstIndex = lastIndex - perPage;
-  const currentComments = comments.slice(firstIndex, lastIndex);
+  const firstIndex = (currentPage - 1) * perPage;
+  const currentComments = comments.slice(firstIndex, firstIndex + perPage);
 
   useEffect(() => {
     const handleClickOutsideTextarea = (event) => {
@@ -51,7 +50,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
     //TODO: 임시 객체 !!!
     const newUserComment = {
       username: "사용자명", 
-      created_at: new Date().toLocaleString(), 
+      created_at: new Date().toISOString(), 
       comment_content: newComment
     };
 
@@ -60,9 +59,6 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
     setCurrentPage(1); 
     setNewComment("");
   };
-
-  //TODO: 저장해놓은 페이지 넘버(몇페이지?) 로 페이지에 잘라서 보여줄 라스트,퍼스트 로직 !!
-  //TODO: 등록,수정 시간 데이터 > n분전 단위만들어서 자르기 !!
 
   const handleMouseEnter = (index) => {
     setHoverCommentIndex(index);
@@ -104,6 +100,35 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
     }
   };
 
+  const formatTime = (timeString) => {
+    const currentTime = new Date();
+    const commentTime = new Date(timeString);
+    const diffMilliseconds = currentTime - commentTime;
+    const diffSeconds = Math.floor(diffMilliseconds / 1000);
+    const diffMinutes = Math.floor(diffMilliseconds / (1000 * 60));
+    const diffHours = Math.floor(diffMilliseconds / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24 * 7));
+    const diffMonths = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24 * 30));
+    const diffYears = Math.floor(diffMilliseconds / (1000 * 60 * 60 * 24 * 365));
+  
+    if (diffSeconds < 60) {
+      return "방금 전";
+    } else if (diffMinutes < 60) {
+      return `${diffMinutes}분 전`;
+    } else if (diffHours < 24) {
+      return `${diffHours}시간 전`;
+    } else if (diffDays < 7) {
+      return `${diffDays}일 전`;
+    } else if (diffWeeks < 4) {
+      return `${diffWeeks}주 전`;
+    } else if (diffMonths < 12) {
+      return `${diffMonths}달 전`;
+    } else {
+      return `${Math.floor(diffYears / 365)}년 전`;
+    }
+  };
+
   const commentList = currentComments.map((comment, index) => ( 
     <div 
       key={index} 
@@ -118,7 +143,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
         />
         <div className="flex flex-col justify-center">
           <p className="font600">{comment.username}</p>
-          <p className="font14 grayb">{comment.created_at}</p>
+          <p className="font14 grayb">{formatTime(comment.created_at)}</p>
         </div>
         <div 
           className="w-[480px] font14 flex items-center"
@@ -173,8 +198,8 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
 
   return (
     <>
-      <div className="flex w-[860px]">
-        <div className="flex flex-col gap-3 pt-7 pb-3 md bg-primary items-center justify-center rounded-2xl shadow-lg">
+      <div className="flex w-[860px] ">
+        <div className="flex flex-col gap-3 pt-7 pb-3 md bg-primary items-center justify-between rounded-2xl shadow-lg">
           <div className="flex flex-col gap-4 w-[800px]">
             <div className="flex items-center bg-white justify-between rounded-lg p-5">
               <textarea 
@@ -192,7 +217,12 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
               {commentList}
             </div>
           </div>
-          <Pagination />
+          <Pagination 
+            totalElements={comments.length} 
+            pagePerNumber={perPage} 
+            currentPage={currentPage} 
+            onPageChange={setCurrentPage} 
+          />
         </div>
       </div>
     </>

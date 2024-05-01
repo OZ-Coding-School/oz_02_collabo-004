@@ -15,13 +15,13 @@ const BookSpoilerDetailPage = () => {
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
   const [comments, setComments] = useState([
     //TODO: 데이터 (임시 리스트)
-    { id: 1, comment_content: 'comment1' , created_at: '2024-04-20', update_at: '2014-04-21', username: 'name1'},
-    { id: 2, comment_content: 'comment2' , created_at: '2024-06-30', username: 'name2'},
-    { id: 3, comment_content: 'comment3' , created_at: '2024-07-30', username: 'name3'},
-    { id: 4, comment_content: 'comment4' , created_at: '2024-08-30', username: 'name4'},
-    { id: 5, comment_content: 'comment5' , created_at: '2024-09-30', username: 'name6'},
-    { id: 6, comment_content: 'comment6' , created_at: '2024-09-30', username: 'name7'},
-    { id: 7, comment_content: 'comment7' , created_at: '2024-09-30', username: 'name7'},
+    { id: 1, comment_content: 'comment1' , created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
+    { id: 2, comment_content: 'comment2' , created_at: '2024-04-20T00:00:00Z', username: 'name2'},
+    { id: 3, comment_content: 'comment3' , created_at: '2024-03-30T00:00:00Z', username: 'name3'},
+    { id: 4, comment_content: 'comment4' , created_at: '2024-03-30T00:00:00Z', username: 'name4'},
+    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name6'},
+    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name7'},
+    { id: 7, comment_content: 'comment7' , created_at: '2024-01-30T00:00:00Z', username: 'name7'},
   ]); 
 
 
