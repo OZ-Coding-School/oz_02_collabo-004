@@ -5,13 +5,13 @@ import more from "../../assets/images/icons/more.svg";
 import { useState } from "react";
 
 
-const BookComment = ({ comments, setModalOpen, setComments }) => {
+const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverCommentIndex, setHoverCommentIndex] = useState(-1); 
   const [isMoreVisible, setIsMoreVisible] = useState(false); 
   const [editMode, setEditMode] = useState(-1);
-  const [editeContent, setEditeContent] = useState(""); 
+  const [editContent, setEditContent] = useState(""); 
 
   const perPage = 5;
   const lastIndex = currentPage * perPage;
@@ -19,19 +19,30 @@ const BookComment = ({ comments, setModalOpen, setComments }) => {
   const currentComments = comments.slice(firstIndex, lastIndex);
 
   const handleSubmitComment = () => {
-    console.log("댓글 작성 후 제출", newComment);
+    if (!newComment.trim()) {
+      return;
+    }
+  
+    //TODO: 임시 객체 !!!
+    const newUserComment = {
+      username: "사용자명", 
+      created_at: new Date().toLocaleString(), 
+      comment_content: newComment
+    };
 
-    // TODO: 댓글 생성
-
+    const createComments = [newUserComment, ...comments]; 
+    setComments(createComments);
+    setCurrentPage(1); 
     setNewComment("");
   };
 
-  //TODO: 저장해놓은 페이지 넘버(몇페이지?) 로 페이지에 잘라서 보여줄 라스트,퍼스트 로직 
-  //TODO: 등록,수정 시간 데이터 > n 분전 으로 자르기 
+  //TODO: 저장해놓은 페이지 넘버(몇페이지?) 로 페이지에 잘라서 보여줄 라스트,퍼스트 로직 !!
+  //TODO: 등록,수정 시간 데이터 > n분전 단위만들어서 자르기 !!
 
   const handleMouseEnter = (index) => {
     setHoverCommentIndex(index);
   };
+
   const handleMouseLeave = () => {
     setHoverCommentIndex(-1);
     setIsMoreVisible(false);
@@ -43,12 +54,12 @@ const BookComment = ({ comments, setModalOpen, setComments }) => {
   
   const handleEditClick = (index) => {
     setEditMode(index);
-    setEditeContent(comments[index].comment_content);
+    setEditContent(comments[index].comment_content);
   };
 
   const handleEditSubmit = () => {
     const updateComments = [...comments];
-    updateComments[editMode].comment_content = editeContent;
+    updateComments[editMode].comment_content = editContent;
 
     //TODO: 수정된 내용 서버 저장
 
@@ -56,16 +67,11 @@ const BookComment = ({ comments, setModalOpen, setComments }) => {
     setEditMode(-1); 
   };
 
-  const handleDeleteClick = () => {
-    setModalOpen(true);
+  const handleDeleteClick = (index) => {
+    onDeleteComment(index);
+    setModalOpen(true); 
   };
 
-  // const handleConfirm = () => {
-  //   // TODO: 댓글 삭제
-  //
-  //   setModalOpen(true);
-  //   setDeleteMessage(true); 
-  // };
 
   const commentList = currentComments.map((comment, index) => ( 
     <div 
@@ -86,8 +92,8 @@ const BookComment = ({ comments, setModalOpen, setComments }) => {
         <div className="w-[480px] font14 flex items-center">
           {editMode === index ? (
             <textarea
-              value={editeContent}
-              onChange={(e) => setEditeContent(e.target.value)}
+              value={editContent}
+              onChange={(e) => setEditContent(e.target.value)}
               className="resize-none w-full whitespace-pre-line focus:outline-none secondary"
             />
           ) : (
@@ -107,7 +113,7 @@ const BookComment = ({ comments, setModalOpen, setComments }) => {
                   수정
                 </li>
                 <li className="flex justify-center cursor-pointer w-20 px-6 py-3 hover:bg-graylight hover:rounded-r-md hover:font700 font14"
-                    onClick={handleDeleteClick}
+                    onClick={() => handleDeleteClick(index)}
                 >
                   삭제
                 </li>

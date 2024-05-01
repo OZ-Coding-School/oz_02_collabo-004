@@ -12,23 +12,33 @@ import { useState } from "react";
 
 const BookSpoilerDetailPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
   const [comments, setComments] = useState([
-    //TODO: 
-    { id: 1, comment_content: 'comment1' , created_at: '2024-04-20', update_at: '2014-04-21', username: 'name'},
-    { id: 13, comment_content: 'comment12' , created_at: '2024-06-30', username: 'name2'},
-    { id: 15, comment_content: 'comment13' , created_at: '2024-07-30', username: 'name3'},
-    { id: 16, comment_content: 'comment15' , created_at: '2024-08-30', username: 'name4'},
-    { id: 81, comment_content: 'comment14' , created_at: '2024-09-30', username: 'name6'},
-    { id: 81, comment_content: 'comment15' , created_at: '2024-09-30', username: 'name7'},
-    { id: 81, comment_content: 'comment15' , created_at: '2024-09-30', username: 'name7'},
+    //TODO: 데이터 (임시 리스트)
+    { id: 1, comment_content: 'comment1' , created_at: '2024-04-20', update_at: '2014-04-21', username: 'name1'},
+    { id: 2, comment_content: 'comment2' , created_at: '2024-06-30', username: 'name2'},
+    { id: 3, comment_content: 'comment3' , created_at: '2024-07-30', username: 'name3'},
+    { id: 4, comment_content: 'comment4' , created_at: '2024-08-30', username: 'name4'},
+    { id: 5, comment_content: 'comment5' , created_at: '2024-09-30', username: 'name6'},
+    { id: 6, comment_content: 'comment6' , created_at: '2024-09-30', username: 'name7'},
+    { id: 7, comment_content: 'comment7' , created_at: '2024-09-30', username: 'name7'},
   ]); 
 
-  const handleCancel = () => {
-    setModalOpen(false); 
+  // const handleCancel = () => {
+  //   setModalOpen(false); 
+  // };
+
+  const handleConfirmDelete = () => {
+    if (deleteCommentIndex !== null) {
+      const updateComments = [...comments];
+      updateComments.splice(deleteCommentIndex, 1);
+      
+      setComments(updateComments);
+      setDeleteCommentIndex(null);
+      setModalOpen(false);
+    }
   };
-  const handleConfirm = () => {
-    setModalOpen(true); 
-  };
+
 
   return (
     <div className="w-full flex justify-center pt-[80px]">
@@ -94,6 +104,7 @@ const BookSpoilerDetailPage = () => {
                   comments={comments} 
                   setModalOpen={setModalOpen}
                   setComments={setComments}
+                  onDeleteComment={setDeleteCommentIndex}
                 />
               </div>
             </div>
@@ -104,8 +115,8 @@ const BookSpoilerDetailPage = () => {
         <Modal 
           setModalOpen={setModalOpen}
           message="댓글을 삭제하시겠습니까?"
-          onConfirm={handleConfirm}
-          onCancel={handleCancel}
+          onCancel={() => setModalOpen(false)}
+          onConfirm={handleConfirmDelete}
         />
       : null
       }
