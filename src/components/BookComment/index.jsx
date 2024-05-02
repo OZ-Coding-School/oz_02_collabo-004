@@ -4,15 +4,15 @@ import Pagination from "../@common/Pagination";
 import more from "../../assets/images/icons/more.svg";
 import { useEffect, useRef, useState } from "react";
 
-
-const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, placeholder, minLength }) => {
+const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, placeholder, minLength, showCharCount }) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverCommentIndex, setHoverCommentIndex] = useState(-1); 
   const [isMoreVisible, setIsMoreVisible] = useState(false); 
   const [editMode, setEditMode] = useState(-1);
   const [editContent, setEditContent] = useState(""); 
-  const [isEditing, setIsEditing] = useState(false);
+  const [charCount, setCharCount] = useState(0); 
+  const [editCharCount, setEditCharCount] = useState(0); 
 
   const textareaRef = useRef(null); 
 
@@ -22,7 +22,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
 
   useEffect(() => {
     const handleClickOutsideTextarea = (event) => {
-      if (isEditing && textareaRef.current && !textareaRef.current.contains(event.target)) {
+      if (editMode !== -1 && textareaRef.current && !textareaRef.current.contains(event.target)) {
         textareaRef.current.style.border = "2px solid red"; 
         textareaRef.current.style.borderRadius = "4px";
         textareaRef.current.classList.add("textarea-shake"); 
@@ -37,11 +37,11 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
     return () => {
       document.removeEventListener("click", handleClickOutsideTextarea);
     };
-  }, [isEditing]);
+  }, [editMode]);
   
 
   const handleSubmitComment = () => {
-    if (isEditing) {
+    if (editMode !== -1) {
       alert("댓글 수정을 완료해주세요!");
       return;
     }
@@ -55,9 +55,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
       alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
       return;
     }
-
   
-    //TODO: 임시 객체 !!!
     const newUserComment = {
       username: "사용자명", 
       created_at: new Date().toISOString(), 
@@ -86,10 +84,14 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
   const handleEditClick = (index) => {
     setEditMode(index);
     setEditContent(comments[index].comment_content);
-    setIsEditing(true);
+    setEditCharCount(comments[index].comment_content.length);
   };
 
   const handleEditSubmit = () => {
+    if (editContent.length < minLength) {
+      alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
+      return;
+    }
     const updateComments = [...comments];
     updateComments[editMode].comment_content = editContent;
 
@@ -97,17 +99,21 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
 
     setComments(updateComments);
     setEditMode(-1); 
-    setIsEditing(false);
   };
 
   const handleDeleteClick = (index) => {
     onDeleteComment(index);
     setModalOpen(true); 
   };
-  const handleCommentClick = (index) => {
-    if (editMode === index) {
-      setIsEditing(true); 
-    }
+
+  const handleCharCount = (event) => {
+    const count = event.target.value.length;
+    setCharCount(count);
+  };
+
+  const handleEditCharCount = (event) => {
+    const count = event.target.value.length;
+    setEditCharCount(count);
   };
 
   const formatTime = (timeString) => {
@@ -155,18 +161,22 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
           <p className="font600">{comment.username}</p>
           <p className="font14 grayb">{formatTime(comment.created_at)}</p>
         </div>
-        <div 
-          className="w-[480px] font14 flex items-center"
-          onClick={() => handleCommentClick(index)} 
-        >
+        <div className="w-[500px] font14 flex items-center relative">
           {editMode === index ? (
-            <textarea
-              ref={textareaRef}
-              id={`comment-textarea-${index}`}
-              value={editContent}
-              onChange={(e) => setEditContent(e.target.value)}
-              className="resize-none w-full whitespace-pre-line focus:outline-none secondary"
-            />
+            <div className="relative">
+              <textarea
+                ref={textareaRef}
+                id={`comment-textarea-${index}`}
+                value={editContent}
+                onChange={(e) => {setEditContent(e.target.value); handleEditCharCount(e);}}
+                className="resize-none w-[500px] whitespace-pre-line focus:outline-none secondary box"
+              />
+              {showCharCount && (
+                <span className={`absolute bottom-2 right-0 top-12 ${editCharCount > minLength ? 'text-red-500' : ''} text-[10px]`}>
+                  {editCharCount}/{minLength}
+                </span>
+              )}
+            </div>
           ) : (
             <p>{comment.comment_content}</p>
           )}
@@ -174,16 +184,16 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
       </div>
       <div className="relative flex flex-col items-center w-6">
         <div className="cursor-pointer" onClick={handleMoreClick}>
-        {editMode === index ? (
-         <div 
-            onClick={handleEditSubmit}
-            className="font12 font600 cursor-pointer hover:font800 secondary hover:black pt-2"
-          >
-            수정
-          </div>
+          {editMode === index ? (
+            <div 
+              onClick={handleEditSubmit}
+              className="font12 font600 cursor-pointer hover:font800 secondary hover:black pt-2"
+            >
+              수정
+            </div>
           ) : (
             <img src={more} className="pt-3"/>
-        )}
+          )}
           {hoverCommentIndex === index && isMoreVisible && ( 
             <div className="absolute top-0 left-15 mt-6 bg-white shadow-lg rounded-md z-10">
               <ul className="flex items-center w-40">
@@ -204,20 +214,26 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
       </div>
     </div>  
   ));
-  
 
   return (
     <>
       <div className="flex w-[860px] ">
         <div className="flex flex-col gap-3 pt-7 pb-3 md bg-primary items-center justify-between rounded-2xl shadow-lg">
           <div className="flex flex-col gap-4 w-[800px]">
-            <div className="flex items-center bg-white justify-between rounded-lg p-5">
-              <textarea 
-                className="w-4/5 font14 resize-none px-5 placeholder-multiline whitespace-pre-line focus:outline-none" 
-                placeholder={placeholder}
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)} 
-              />
+            <div className="flex items-center bg-white justify-between rounded-lg p-8">
+              <div className="flex w-full relative items-center">
+                <textarea 
+                  className="w-full font14 resize-none pl-5 pr-12 placeholder-multiline whitespace-pre-line focus:outline-none box" 
+                  placeholder={placeholder}
+                  value={newComment}
+                  onChange={(e) => {setNewComment(e.target.value); handleCharCount(e);}} 
+                />
+                {showCharCount && newComment && (
+                  <span className={`absolute bottom-2 right-12 top-12 ${charCount > minLength ? 'text-red-500' : ''} text-[10px]`}>
+                    {charCount}/{minLength}
+                  </span>
+                )}
+              </div>
               <Button 
                 onClick={handleSubmitComment} 
                 width="130px" 

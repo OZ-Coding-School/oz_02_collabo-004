@@ -97,6 +97,7 @@ const ChallengeActionPage = () => {
                   placeholder="댓글을 작성하셔야 오늘의 챌린지가 완료됩니다.
                                망각하지 않도록 꼭 생각을 글로 남겨보세요!"
                   minLength={400}
+                  showCharCount={true}
                 />
               </div>
 
