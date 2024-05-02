@@ -181,7 +181,7 @@
   }
 
   .mypagesidebar-list-style {
-    @apply flex w-[200px] h-12 pl-2 items-center rounded-full text-gray-700;
+    @apply flex w-[200px] h-12 font18 pl-1 items-center rounded-full text-gray-700;
   }
 
   .textHighlight {
