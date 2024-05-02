@@ -1,5 +1,7 @@
 import Button from "../../components/@common/Button";
 import mainBanner from "../../assets/images/mainBanner.png";
+import BookCaroussel from "../../components/BookCaroussel/BookCarrousel";
+
 const IndexPage = () => {
   return (
     <div className="w-full flex justify-center pt-[60px]">
@@ -13,10 +15,23 @@ const IndexPage = () => {
           </span>
         </div>
         <div className="flex flex-col items-center slide_container gap-10">
-          <div className="slide_carrousel w-[900px] h-[300px] bg-slate-400"></div>
+          <div
+            className="
+        justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]"
+          >
+            <p></p>
+            <div className="justify-evenly flex items-center slide_carrousel w-[980px] h-[490px] overflow-hidden">
+              <BookCaroussel></BookCaroussel>
+              <BookCaroussel></BookCaroussel>
+              <BookCaroussel></BookCaroussel>
+              <BookCaroussel></BookCaroussel>
+              <BookCaroussel></BookCaroussel>
+            </div>
+            <p></p>
+          </div>
           <Button
             onClick={() => {
-              window.location.href = "/bookspoilerdetail";
+              window.location.href = "/bookspoiler";
             }}
             width="220px"
             height="50px"
