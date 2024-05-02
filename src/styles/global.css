@@ -191,6 +191,12 @@
   .textarea-shake {
     animation: shake 0.5s ease-in-out;
   }
+  .box::-webkit-scrollbar{
+    display:none;
+  }
+  .box{
+    -ms-overflow-style: none;
+ }
 }
 
 @keyframes shake {
