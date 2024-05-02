@@ -19,8 +19,8 @@ const BookSpoilerDetailPage = () => {
     { id: 2, comment_content: 'comment2' , created_at: '2024-04-20T00:00:00Z', username: 'name2'},
     { id: 3, comment_content: 'comment3' , created_at: '2024-03-30T00:00:00Z', username: 'name3'},
     { id: 4, comment_content: 'comment4' , created_at: '2024-03-30T00:00:00Z', username: 'name4'},
-    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name6'},
-    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name7'},
+    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name5'},
+    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name6'},
     { id: 7, comment_content: 'comment7' , created_at: '2024-01-30T00:00:00Z', username: 'name7'},
   ]); 
 
@@ -32,7 +32,7 @@ const BookSpoilerDetailPage = () => {
       
       setComments(updateComments);
       setDeleteCommentIndex(null);
-      setModalOpen(false);
+      setModalOpen(true);
     }
   };
 
@@ -102,6 +102,8 @@ const BookSpoilerDetailPage = () => {
                   setModalOpen={setModalOpen}
                   setComments={setComments}
                   onDeleteComment={setDeleteCommentIndex}
+                  placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 
+                               망각하지 않도록 꼭 생각을 글로 남겨보세요!"
                 />
               </div>
             </div>

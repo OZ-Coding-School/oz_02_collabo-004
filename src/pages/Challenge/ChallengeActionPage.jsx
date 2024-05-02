@@ -18,8 +18,8 @@ const ChallengeActionPage = () => {
     { id: 2, comment_content: 'comment2' , created_at: '2024-04-20T00:00:00Z', username: 'name2'},
     { id: 3, comment_content: 'comment3' , created_at: '2024-03-30T00:00:00Z', username: 'name3'},
     { id: 4, comment_content: 'comment4' , created_at: '2024-03-30T00:00:00Z', username: 'name4'},
-    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name6'},
-    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name7'},
+    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name5'},
+    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name6'},
     { id: 7, comment_content: 'comment7' , created_at: '2024-01-30T00:00:00Z', username: 'name7'},
   ]); 
 
@@ -30,7 +30,7 @@ const ChallengeActionPage = () => {
       
       setComments(updateComments);
       setDeleteCommentIndex(null);
-      setModalOpen(false);
+      setModalOpen(true);
     }
   };
 
@@ -94,6 +94,9 @@ const ChallengeActionPage = () => {
                   setModalOpen={setModalOpen}
                   setComments={setComments}
                   onDeleteComment={setDeleteCommentIndex}
+                  placeholder="댓글을 작성하셔야 오늘의 챌린지가 완료됩니다.
+                               망각하지 않도록 꼭 생각을 글로 남겨보세요!"
+                  minLength={400}
                 />
               </div>
 

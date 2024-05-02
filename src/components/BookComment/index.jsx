@@ -5,7 +5,7 @@ import more from "../../assets/images/icons/more.svg";
 import { useEffect, useRef, useState } from "react";
 
 
-const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) => {
+const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, placeholder, minLength }) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverCommentIndex, setHoverCommentIndex] = useState(-1); 
@@ -50,6 +50,12 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
       alert("내용을 입력하셔야 등록됩니다.");
       return;
     }
+
+    if (newComment.length < minLength) {
+      alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
+      return;
+    }
+
   
     //TODO: 임시 객체 !!!
     const newUserComment = {
@@ -208,8 +214,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment }) =
             <div className="flex items-center bg-white justify-between rounded-lg p-5">
               <textarea 
                 className="w-4/5 font14 resize-none px-5 placeholder-multiline whitespace-pre-line focus:outline-none" 
-                placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 
-                            망각하지 않도록 꼭 생각을 글로 남겨보세요!"
+                placeholder={placeholder}
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)} 
               />
