@@ -15,3 +15,4 @@ export { default as MyInfoPage } from './MyPage/MyInfoPage';
 export { default as MyPaymentListPage } from './MyPage/MyPaymentListPage';
 export { default as PaymentPage } from './Payment/PaymentPage';
 export { default as StyleGuide } from './ui/StyleGuide';
+export { default as PaymentComplete } from './Payment/PaymentComplete';
