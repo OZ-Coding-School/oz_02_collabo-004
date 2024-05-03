@@ -1,6 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
-import AdminLayout from './components/AdminLayout';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import {
   BookSpoilerDetailPage,
   BookSpoilerPage,
@@ -13,12 +12,8 @@ import {
   ChallengePage,
   MyChallengePage,
   MyBookSpoilerPage,
-  AdminUserPage,
-  AdminCommentPage,
-  AdminChallengePage,
-  AdminBookListPage,
-  AdminBookCreatePage,
-} from './pages';
+  MyInfoPage,
+} from "./pages";
 
 function App() {
   return (
@@ -35,13 +30,7 @@ function App() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
-      </Route>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminUserPage />} />
-        <Route path="comment" element={<AdminCommentPage />} />
-        <Route path="challenge" element={<AdminChallengePage />} />
-        <Route path="booklist" element={<AdminBookListPage />} />
-        <Route path="bookcreate" element={<AdminBookCreatePage />} />
+        <Route path="/myinfo" element={<MyInfoPage />} />
       </Route>
     </Routes>
   );
