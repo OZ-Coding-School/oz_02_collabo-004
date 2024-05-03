@@ -37,7 +37,7 @@ function App() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
-        <Route path="/payment/complete" element={<PaymentComplete />}></Route>
+        <Route path="/payment/complete" element={<PaymentComplete />} />
         <Route path="/myinfo" element={<MyInfoPage />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
