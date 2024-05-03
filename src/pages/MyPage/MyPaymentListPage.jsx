@@ -22,10 +22,10 @@ const MyPaymentListPage = () => {
         <div className="w-full py-10 flex md pb-20 justify-between">
           <MyPageSidebar />
           <div className="w-[850px]">
-            <p className=" border-b-2 border-black w-full py-5 text-3xl font-bold">
-              결제 내역
+            <p className="font800 font30 textHighlight mb-10 w-[15rem]">
+              내 챌린지 결제 내역
             </p>
-            <div className="pb-[2rem] pt-[2rem] flex justify-start text-center border-b">
+            <div className="pb-[2rem] pt-[2rem] flex justify-start text-center border-t-2 border-t-black border-b">
               <p className="w-32 font-bold">주문번호</p>
               <p className="w-32 font-bold">결제일</p>
               <p className="w-80 font-bold">신청 챌린지</p>

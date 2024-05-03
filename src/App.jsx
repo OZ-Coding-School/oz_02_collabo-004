@@ -18,6 +18,9 @@ import {
   AdminCommentPage,
   AdminChallengePage,
   AdminBookListPage,
+  AdminBookCreatePage,
+} from './pages';
+import PaymentComplete from './pages/Payment/PaymentComplete';
   AdminBookCreatePage
 } from "./pages";
 
@@ -36,6 +39,7 @@ function App() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
+        <Route path="/payment/complete" element={<PaymentComplete />}></Route>
         <Route path="/myinfo" element={<MyInfoPage />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
