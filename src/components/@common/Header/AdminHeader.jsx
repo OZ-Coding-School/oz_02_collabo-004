@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import logo_noText from '../../../assets/images/logo_noText.png';
 
 const AdminHeader = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scrollShadow, setScrollShadow] = useState(false);
 
   const handleScroll = () => {
@@ -38,7 +38,9 @@ const AdminHeader = () => {
         </div>
         <div>
           {isLoggedIn ? (
-            <Avatar>로그아웃</Avatar>
+            <Link to={'/logout'}>
+              <Avatar>나가기</Avatar>
+            </Link>
           ) : (
             <Link to={'/login'}>
               <Avatar>로그인</Avatar>
