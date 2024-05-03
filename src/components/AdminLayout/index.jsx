@@ -7,12 +7,14 @@ const AdminLayout = () => {
   return (
     <>
       <AdminHeader />
-      <div className="w-full flex justify-center pt-[120px]">
-        <div className="w-[1080px] flex justify-between">
-          <AdminSidebar />
-          <Outlet />
+        <div className="flex justify-center">
+          <div className="md flex justify-between pt-[120px] pb-[80px]">
+            <div className='h-full'>
+              <AdminSidebar />
+            </div>
+            <Outlet />
+          </div>
         </div>
-      </div>
       <Footer />
     </>
   );

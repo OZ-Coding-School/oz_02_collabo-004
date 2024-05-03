@@ -8,8 +8,8 @@ const AdminSidebar = () => {
     return (
       <li
         className={`${
-          location.pathname === `${link}` ? 'text-blue-700' : ''
-        } ${height} font18 pl-1 font-bold`}
+          location.pathname === `${link}` ? 'secondary' : ''
+        } ${height} font18 font-bold hover:secondary`}
       >
         <Link to={link}>{children}</Link>
       </li>
@@ -17,12 +17,12 @@ const AdminSidebar = () => {
   };
 
   return (
-    <nav className="w-[200px] h-full border-2 border-black rounded-3xl">
-      <div>
-        <p className="flex items-center justify-center font24 h-14 font-extrabold">
+    <nav className="rounded-3xl bg-secondary bg-opacity-15">
+      <div className='w-[220px] py-5 flex flex-col gap-5'>
+        <p className="flex h-20 items-center justify-center font24 font800">
           BOOKSPOILER
         </p>
-        <ul className="ml-5">
+        <ul className="ml-7">
           <ListItem link="/admin">회원 관리</ListItem>
           <li className="font18 pl-1 font-bold">
             도서 관리
