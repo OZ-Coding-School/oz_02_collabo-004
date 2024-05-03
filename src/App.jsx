@@ -19,8 +19,8 @@ import {
   AdminChallengePage,
   AdminBookListPage,
   AdminBookCreatePage,
+  PaymentComplete,
 } from './pages';
-import PaymentComplete from './pages/Payment/PaymentComplete';
 
 function App() {
   return (
