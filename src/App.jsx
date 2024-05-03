@@ -1,6 +1,6 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import AdminLayout from "./components/AdminLayout";
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import AdminLayout from './components/AdminLayout';
 import {
   BookSpoilerDetailPage,
   BookSpoilerPage,
@@ -21,8 +21,6 @@ import {
   AdminBookCreatePage,
 } from './pages';
 import PaymentComplete from './pages/Payment/PaymentComplete';
-  AdminBookCreatePage
-} from "./pages";
 
 function App() {
   return (
