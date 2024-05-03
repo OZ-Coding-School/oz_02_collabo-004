@@ -1,6 +1,6 @@
 export { default as AdminBookCreatePage } from './Admin/AdminBookCreatePage';
 export { default as AdminBookListPage } from './Admin/AdminBookListPage';
-export { default as AdminChellengePage } from './Admin/AdminChellengePage';
+export { default as AdminChallengePage } from './Admin/AdminChallengePage';
 export { default as AdminCommentPage } from './Admin/AdminCommentPage';
 export { default as AdminUserPage } from './Admin/AdminUserPage';
 export { default as BookSpoilerDetailPage } from './BookSpoiler/BookSpoilerDetailPage';
@@ -15,5 +15,3 @@ export { default as MyInfoPage } from './MyPage/MyInfoPage';
 export { default as MyPaymentListPage } from './MyPage/MyPaymentListPage';
 export { default as PaymentPage } from './Payment/PaymentPage';
 export { default as StyleGuide } from './ui/StyleGuide';
-
-
