@@ -1,13 +1,19 @@
 import { Outlet } from 'react-router-dom';
 import AdminHeader from '../@common/Header/AdminHeader';
-import AdminFooter from '../@common/Footer/AdminFooter';
+import Footer from '../@common/Footer/Footer';
+import AdminSidebar from '../@common/AdminSidebar';
 
 const AdminLayout = () => {
   return (
     <>
       <AdminHeader />
-      <Outlet />
-      <AdminFooter />
+      <div className="w-full flex justify-center pt-[120px]">
+        <div className="w-[1080px] flex justify-between">
+          <AdminSidebar />
+          <Outlet />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };
