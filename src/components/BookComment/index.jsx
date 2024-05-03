@@ -172,7 +172,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
                 className="resize-none w-[500px] whitespace-pre-line focus:outline-none secondary box"
               />
               {showCharCount && editMode === index && (
-                <span className={`absolute bottom-2 right-0 top-12 ${editCharCount < minLength ? 'text-red-500' : ''} text-[10px]`}>
+                <span className={`absolute bottom-2 right-0 top-12 ${editCharCount > minLength ? 'text-red-500' : ''} text-[10px]`}>
                   {editCharCount}/{minLength}
                 </span>
               )}
