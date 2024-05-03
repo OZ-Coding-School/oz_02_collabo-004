@@ -229,7 +229,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
                   onChange={(e) => {setNewComment(e.target.value); handleCharCount(e);}} 
                 />
                 {showCharCount && newComment && (
-                  <span className={`absolute bottom-2 right-12 top-12 ${charCount > minLength ? 'text-red-500' : ''} text-[10px]`}>
+                  <span className={`absolute bottom-2 right-12 top-12 ${charCount < minLength ? 'text-red-500' : ''} text-[10px]`}>
                     {charCount}/{minLength}
                   </span>
                 )}

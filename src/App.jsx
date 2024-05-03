@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
-import AdminLayout from './components/AdminLayout';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import AdminLayout from "./components/AdminLayout";
 import {
   BookSpoilerDetailPage,
   BookSpoilerPage,
@@ -13,6 +13,7 @@ import {
   ChallengePage,
   MyChallengePage,
   MyBookSpoilerPage,
+  MyInfoPage,
   AdminUserPage,
   AdminCommentPage,
   AdminChallengePage,
@@ -20,6 +21,8 @@ import {
   AdminBookCreatePage,
 } from './pages';
 import PaymentComplete from './pages/Payment/PaymentComplete';
+  AdminBookCreatePage
+} from "./pages";
 
 function App() {
   return (
@@ -37,6 +40,7 @@ function App() {
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
         <Route path="/payment/complete" element={<PaymentComplete />}></Route>
+        <Route path="/myinfo" element={<MyInfoPage />} />
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminUserPage />} />
