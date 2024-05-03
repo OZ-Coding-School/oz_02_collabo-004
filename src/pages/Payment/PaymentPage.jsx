@@ -1,13 +1,38 @@
 import { useState } from 'react';
 import Merchandise from '../../components/Merchandise/Merchandise';
 import MerchandiseList from '../../components/Merchandise/MerchandiseList';
+import * as PortOne from '@portone/browser-sdk/v2';
+
+//   const PORTONE_API_SECRET = HAni3hvd4rQbti284IXqInvYeEifEopO1MfRqYE1NtoXmDlYtv1223Dn3OoQErCXCHSIyLGRBQF1ppF
 
 const PaymentPage = () => {
+  async function requestPayment() {
+    const response = await PortOne.requestPayment({
+      // Store ID 설정
+      storeId: 'store-a562ce28-4422-443f-8f13-ea188b9996a1',
+      // 채널 키 설정
+      channelKey: 'channel-key-bc8299e7-bb3c-4f59-8729-a2f3ae1a1b45',
+      paymentId: `payment-${crypto.randomUUID()}`,
+      orderName: '폭풍의 언덕',
+      totalAmount: 1000,
+      currency: 'CURRENCY_KRW',
+      payMethod: payMethod,
+    })
+      .then(() => {
+        location.href = '/payment/complete';
+      })
+      .catch(() => {
+        return alert('결제 수단을 선택해주세요.');
+      });
+  }
+
+  const [payMethod, setPayMethod] = useState();
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
     setIsSelected(!isSelected);
     console.log(isSelected);
+    setPayMethod(isSelected ? '' : 'EASY_PAY');
   };
 
   return (
@@ -28,7 +53,6 @@ const PaymentPage = () => {
                 <p className="font-semibold text-lg">결제 수단 선택</p>
                 <button
                   onClick={handleClick}
-                  selected={isSelected}
                   className={`border bg-yellow-400 w-32 text-sm font-bold ${
                     isSelected ? 'border-blue-700 border-4' : ''
                   }`}
@@ -64,9 +88,7 @@ const PaymentPage = () => {
               <div className="pt-7">
                 <button
                   className="border w-80 bg-blue-500 text-white px-5 py-2 rounded-lg"
-                  onClick={() => {
-                    alert('결제 시스템은 조금 더 기다려주세요!');
-                  }}
+                  onClick={requestPayment}
                 >
                   1,000원 결제하기
                 </button>

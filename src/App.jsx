@@ -19,6 +19,7 @@ import {
   AdminBookListPage,
   AdminBookCreatePage,
 } from './pages';
+import PaymentComplete from './pages/Payment/PaymentComplete';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/mychallenge" element={<MyChallengePage />} />
         <Route path="/mybookspoiler" element={<MyBookSpoilerPage />} />
+        <Route path="/payment/complete" element={<PaymentComplete />}></Route>
       </Route>
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminUserPage />} />
