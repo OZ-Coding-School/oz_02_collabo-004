@@ -6,7 +6,7 @@ const MyPaymentListPage = () => {
   return (
     <>
       <div className="w-full flex justify-center">
-        <div className="flex pt-[100px] md justify-end">
+        <div className="flex pt-[120px] md">
           <Location
             number={3}
             link1="/"
@@ -19,9 +19,9 @@ const MyPaymentListPage = () => {
         </div>
       </div>
       <div className="w-full flex justify-center">
-        <div className="py-10 flex md pb-20">
+        <div className="w-full py-10 flex md pb-20 justify-between">
           <MyPageSidebar />
-          <div className="w-full">
+          <div className="w-[850px]">
             <p className=" border-b-2 border-black w-full py-5 text-3xl font-bold">
               결제 내역
             </p>
