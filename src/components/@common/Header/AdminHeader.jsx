@@ -21,11 +21,11 @@ const AdminHeader = () => {
 
   return (
     <div
-      className={`w-full h-[80px] bg-white flex items-center justify-center fixed top-0 z-50 ${
+      className={`w-full h-[90px] bg-white flex items-center justify-center fixed top-0 z-50 ${
         scrollShadow ? 'shadow-md' : ''
       }`}
     >
-      <div className="md h-[80px] flex justify-between items-center">
+      <div className="md h-[90px] flex justify-between items-center">
         <div>
           <img
             className="w-14 cursor-pointer"
