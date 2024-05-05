@@ -25,7 +25,7 @@ const Header = () => {
         scrollShadow ? "shadow-md" : ""
       }`}
     >
-      <div className="md h-[80px] flex justify-between items-center">
+      <div className="md h-[90px] flex justify-between items-center">
         <div>
           <img
             className="w-14 cursor-pointer"
