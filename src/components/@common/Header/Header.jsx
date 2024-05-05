@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full h-[80px] bg-white flex items-center justify-center fixed top-0 z-50 ${
+      className={`w-full h-[90px] bg-white flex items-center justify-center fixed top-0 z-50 ${
         scrollShadow ? "shadow-md" : ""
       }`}
     >

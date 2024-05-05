@@ -14,7 +14,7 @@ const Button = ({
   const buttonType = type === 'submit' ? 'submit' : 'button';
   const [isHover, setIsHover] = useState(false);
   const hoverStyle = {
-    backgroundColor: outline ? (isHover ? '#eee' : 'transparent') : (isHover ? '#649EF4' : '#517cce'),
+    backgroundColor: outline ? (isHover ? '#eee' : '#fff') : (isHover ? '#649EF4' : '#517cce'),
   };
 
   const buttonStyle = {

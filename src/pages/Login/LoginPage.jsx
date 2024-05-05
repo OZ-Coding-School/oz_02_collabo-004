@@ -1,8 +1,13 @@
 import KakaoLogin from "react-kakao-login";
 import logo from "../../assets/images/logo.png"
 import kakao from "../../assets/images/icons/kakao.svg"
+import axiosInstance from '../../utils/axios'
 
 const LoginPage = () => {
+  //TODO: 
+  const kakaoLogin = () => {
+    axiosInstance.post('user/account/login');
+  }
 
   const buttonStyle = {
     width: '330px',
@@ -33,7 +38,7 @@ const LoginPage = () => {
           style={buttonStyle}
         >
           <div className="flex justify-center">
-            <img src={kakao} alt="kakao" className='w-[23px] mr-2'/>
+            <img src={kakao} alt="kakao" className='w-[23px] mr-2' onClick={kakaoLogin}/>
             카카오로 3초만에 시작하기
           </div>
         </KakaoLogin>
