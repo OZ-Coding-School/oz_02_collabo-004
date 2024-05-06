@@ -8,21 +8,65 @@ import Location from "../../components/@common/Location";
 import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
 import Modal from "../../components/@common/Modal";
-import { useState } from "react";
+// import axiosInstance from "../../utils/axios"
+import { useEffect, useState } from "react";
+// import { useParams } from "react-router-dom";
 
 const BookSpoilerDetailPage = () => {
+  // const { id } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
-  const [comments, setComments] = useState([
-    //TODO: 데이터 (임시 리스트)
-    { id: 1, comment_content: 'comment1' , created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
-    { id: 2, comment_content: 'comment2' , created_at: '2024-04-20T00:00:00Z', username: 'name2'},
-    { id: 3, comment_content: 'comment3' , created_at: '2024-03-30T00:00:00Z', username: 'name3'},
-    { id: 4, comment_content: 'comment4' , created_at: '2024-03-30T00:00:00Z', username: 'name4'},
-    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name5'},
-    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name6'},
-    { id: 7, comment_content: 'comment7' , created_at: '2024-01-30T00:00:00Z', username: 'name7'},
-  ]); 
+  const [spoilerDetail, setSpoilerDetail] = useState(null);
+  const [comments, setComments] = useState(null);
+
+  useEffect(() => {
+    // if (!id) {
+    //   return '';
+    // }
+    const getBook = async () => {
+      try {
+        //TODO: 
+        // const response = await axiosInstance.get(`/book/${id}`); 
+        // const data = await response.json();
+        const data = {
+          id:"책 아이디",
+          name:"당신은 사업가입니까",
+          author:"캐럴로스 저",
+          published:"알에이치코리아",
+          book_img:"../../assets/images/booksample.png",
+          coupang_link:"https://www.coupang.com/vp/products/21038492?itemId=82145106&vendorItemId=3139880515&isAddedCart=",
+          is_exposed: false,
+          created_at:"2024-04-23T12:00:00Z",
+          updated_at:"2024-04-26T16:00:00Z"
+        }
+        setSpoilerDetail(data);
+      } catch (error) {
+        console.error("Error book data", error);
+      }
+    };
+    getBook();
+
+    const getComments = async () => {
+      try {
+        //TODO: 
+        // const response = await axiosInstance.get(`/comments/{spoiler_id}`); 
+        // const data = await response.json();
+        const data = [
+          { id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
+          { id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
+          { id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
+          { id: 4, comment_content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name4'},
+          { id: 5, comment_content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name5'},
+          { id: 6, comment_content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name6'},
+          { id: 7, comment_content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name7'},
+        ]
+        setComments(data);
+      } catch (error) {
+        console.error("Error comment data", error);
+      }
+    }
+    getComments();
+  }, []);
 
 
   const handleConfirmDelete = () => {
@@ -49,17 +93,18 @@ const BookSpoilerDetailPage = () => {
         linkLast="/bookspoilerdetail"
         depthLast="북스포일러 상세페이지"
         />
-        <div className="flex flex-col gap-14 pt-10">
-          <p className="font30 font800 w-[230px] textHighlight">도서명 북스포일러</p>
-          <div className="flex-col flex items-center gap-14">
+        <div className="block  flex-col gap-14 pt-10">
+          <span className="font800 font30 textHighlight">{spoilerDetail?.name} 북스포일러</span>
+          <div className="flex-col flex items-center gap-14 pt-14">
             <div className="flex gap-10 justify-center">
-              <img src={booksample} className="w-48"/>
+              {/* TODO: img {spoilerDetail?.book_img}*/}
+              <img src={booksample} className="w-48"/> 
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col items-center gap-2">
-                  <p className="font900 font22 secondary">당신은 사업가입니까</p>
+                  <p className="font900 font22 secondary">{spoilerDetail?.name}</p>
                   <div className="flex items-center justify-center">
-                    <p className="font600">캐럴 로스 저 ·</p>
-                    <p className="gray5">알에이치코리아</p>
+                    <p className="font600">{spoilerDetail?.author}·</p>
+                    <p className="gray5">{spoilerDetail?.published}</p>
                   </div>
                 </div>
                 <div className="flex white items-center justify-center gap-2">
@@ -70,7 +115,7 @@ const BookSpoilerDetailPage = () => {
                 <div className="flex items-start">
                   <div className="flex gap-2 items-center cursor-pointer pt-2"
                       onClick={() => open('https://www.coupang.com/', '_blank')}
-                    >
+                  >
                     <p className="font600 font14 grayb">책 사러가기</p>
                     <img src={arrow_right} className="w-2 "/>
                   </div>

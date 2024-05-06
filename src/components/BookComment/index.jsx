@@ -18,7 +18,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
 
   const perPage = 5;
   const firstIndex = (currentPage - 1) * perPage;
-  const currentComments = comments.slice(firstIndex, firstIndex + perPage);
+  const currentComments = comments?.slice(firstIndex, firstIndex + perPage);
 
   useEffect(() => {
     const handleClickOutsideTextarea = (event) => {
@@ -95,7 +95,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
     const updateComments = [...comments];
     updateComments[editMode].comment_content = editContent;
 
-    //TODO: 수정된 내용 서버 저장
+    //TODO: 수정된 내용 저장
 
     setComments(updateComments);
     setEditMode(-1); 
@@ -145,7 +145,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
     }
   };
 
-  const commentList = currentComments.map((comment, index) => ( 
+  const commentList = currentComments?.map((comment, index) => ( 
     <div 
       key={index} 
       className="flex flex-row px-4 py-3 rounded-lg bg-white justify-between"
@@ -249,7 +249,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
             </div>
           </div>
           <Pagination 
-            totalElements={comments.length} 
+            totalElements={comments?.length} 
             pagePerNumber={perPage} 
             currentPage={currentPage} 
             onPageChange={setCurrentPage} 

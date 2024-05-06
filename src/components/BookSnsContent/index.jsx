@@ -1,7 +1,11 @@
 import youtube from '../../assets/images/icons/youtube.svg'
 import blog from '../../assets/images/icons/blog.svg'
+// import { useState } from 'react';
 
 const BookSnsContent = () => {
+  // const [review, setReview] = useState(null);
+  //TODO: 외부 추천 서평 조회
+
   return (
     <>
       <div className='flex flex-col gap-3'>
