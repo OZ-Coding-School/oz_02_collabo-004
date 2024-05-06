@@ -7,17 +7,16 @@ const IndexPage = () => {
     <div className="w-full flex justify-center pt-[60px]">
       <div className="flex flex-col items-center pt-10 pb-20 gap-20">
         <div className="w-full">
-          <img src={mainBanner} alt="메인 배너 이미지" className="w-full"></img>
+          <img src={mainBanner} alt="메인 배너 이미지" className="w-full" />
         </div>
         <div className="w-[1080px]">
-          <span className="textHighlight BlackHanSans fon text-5xl	">
+          <span className="textHighlight font30 font800">
             북스포일러
           </span>
         </div>
         <div className="flex flex-col items-center slide_container gap-10">
           <div
-            className="
-        justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]"
+            className="justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]"
           >
             <BookCaroussel></BookCaroussel>
           </div>
@@ -38,6 +37,23 @@ const IndexPage = () => {
             alt="메인 배너 이미지"
             className="w-[1080px]"
           ></img>
+        </div>
+        {/* 권한이 관리자일 때만 보이도록 수정 */}
+        <div
+          className="fixed bottom-10 right-10"
+          style={{ zIndex: 999 }}
+        >
+          <Button
+            onClick={() => {
+              window.location.href = "/admin";
+            } }
+            outline
+            width="200px"
+            height="50px"
+            fontSize="18px"
+          >
+            관리자페이지 가기
+          </Button>
         </div>
       </div>
     </div>
