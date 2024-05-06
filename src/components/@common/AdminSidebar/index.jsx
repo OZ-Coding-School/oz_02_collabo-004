@@ -18,13 +18,13 @@ const AdminSidebar = () => {
 
   return (
     <nav className="rounded-3xl bg-secondary bg-opacity-15">
-      <div className='w-[220px] py-5 flex flex-col gap-5'>
+      <div className="w-[220px] py-5 flex flex-col gap-5">
         <p className="flex h-20 items-center justify-center font24 font800">
           BOOKSPOILER
         </p>
         <ul className="ml-7">
           <ListItem link="/admin">회원 관리</ListItem>
-          <li className="font18 pl-1 font-bold">
+          <li className="font18 font-bold">
             도서 관리
             <ul className="ml-5 list-disc">
               <ListItem link="/admin/booklist" height={'h-8'}>

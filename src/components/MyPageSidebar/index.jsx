@@ -34,7 +34,7 @@ const MyPageSidebar = () => {
   };
 
   return (
-    <nav className="w-[200px] h-[360px] flex justify-end text-xl">
+    <nav className="w-[200px] h-[360px] flex text-xl">
       <ul className="flex flex-col justify-between">
         <li className="font24 h-14 flex items-center font-bold text-gray-800">
           마이페이지
