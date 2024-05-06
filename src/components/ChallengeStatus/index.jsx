@@ -4,20 +4,23 @@ import checkbox_fill from "../../assets/images/icons/checkbox_fill.svg";
 import challenge_right_arrow from "../../assets/images/challenge_right_arrow.png";
 import challenge_left_arrow from "../../assets/images/challenge_left_arrow.png";
 
-const ChallengeStatus = () => {
+const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
   const [currentDay, setCurrentDay] = useState(1);
   const [completed, setCompleted] = useState(Array(6).fill(false));
 
   const prevDay = () => {
     setCurrentDay((prevDay) => (prevDay === 1 ? 6 : prevDay - 1));
+    setCurrentChallengeIndex((prevIndex) => (prevIndex === 0 ? 5 : prevIndex - 1));
   };
 
   const nextDay = () => {
     if (currentDay === 1) {
       setCurrentDay(2);
+      setCurrentChallengeIndex(1); 
     } else {
       setCurrentDay((prevDay) => (prevDay === 6 ? 1 : prevDay + 1));
-    } 
+      setCurrentChallengeIndex((prevIndex) => (prevIndex === 5 ? 0 : prevIndex + 1)); 
+    }
   };
 
   const completePercentage = ((currentDay - 1) / 5) * 100; 
