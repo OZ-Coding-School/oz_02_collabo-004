@@ -4,24 +4,63 @@ import comment from "../../assets/images/comment.png"
 import Location from "../../components/@common/Location";
 import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
-import challenge_spoiler from "../../assets/images/challenge_spoiler.png"
 import ChallengeStatus from "../../components/ChallengeStatus";
 import Modal from "../../components/@common/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ChallengeActionPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
-  const [comments, setComments] = useState([
-    //TODO: 데이터 (임시 리스트)
-    { id: 1, comment_content: 'comment1' , created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
-    { id: 2, comment_content: 'comment2' , created_at: '2024-04-20T00:00:00Z', username: 'name2'},
-    { id: 3, comment_content: 'comment3' , created_at: '2024-03-30T00:00:00Z', username: 'name3'},
-    { id: 4, comment_content: 'comment4' , created_at: '2024-03-30T00:00:00Z', username: 'name4'},
-    { id: 5, comment_content: 'comment5' , created_at: '2024-03-30T00:00:00Z', username: 'name5'},
-    { id: 6, comment_content: 'comment6' , created_at: '2024-02-30T00:00:00Z', username: 'name6'},
-    { id: 7, comment_content: 'comment7' , created_at: '2024-01-30T00:00:00Z', username: 'name7'},
-  ]); 
+  const [comments, setComments] = useState(null); 
+  const [challengeContent, setChallengeContent] = useState(null);
+  const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
+
+
+  useEffect(() => {
+    // if (!id) {
+    //   return '';
+    // }
+    const getChallengeComments = async () => {
+      try {
+        //TODO: 
+        // const response = await axiosInstance.get(`/comments/{challengespoiler_id}`); 
+        // const data = await response.json();
+        const data = [
+          { id: 1, challenge_spoiler_id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
+          { id: 2, challenge_spoiler_id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
+          { id: 3, challenge_spoiler_id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
+          { id: 4, challenge_spoiler_id: 4, comment_content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name4'},
+          { id: 5, challenge_spoiler_id: 5, comment_content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name5'},
+          { id: 6, challenge_spoiler_id: 6, comment_content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name6'},
+          { id: 7, challenge_spoiler_id: 7, comment_content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name7'},
+        ]
+        setComments(data);
+      } catch (error) {
+        console.error("Error challenge comment data", error);
+      }
+    }
+    getChallengeComments();
+
+    const getChallengeSpoiler = async () => {
+      try {
+        //TODO: 
+        // const response = await axiosInstance.get(`/{challenge_info_id}/spoiler/{challenge_spoiler_id}`); 
+        // const data = await response.json();
+        const data = [
+          {id:"1", day:1, title:"1일차 스포일러 제목", content:"1일차 스포일러 내용", challenge_info_id:1},
+          {id:"2", day:2, title:"2일차 스포일러 제목", content:"2일차 스포일러 내용", challenge_info_id:2},
+          {id:"3", day:3, title:"3일차 스포일러 제목", content:"3일차 스포일러 내용", challenge_info_id:3},
+          {id:"4", day:4, title:"4일차 스포일러 제목", content:"4일차 스포일러 내용", challenge_info_id:4},
+          {id:"5", day:5, title:"5일차 스포일러 제목", content:"5일차 스포일러 내용", challenge_info_id:5},
+          {id:"6", day:6, title:"완주 스포일러 제목", content:"6일차 스포일러 내용", challenge_info_id:6},
+        ]
+        setChallengeContent(data);
+      } catch (error) {
+        console.error("Error challenge spoiler data", error);
+      }
+    };
+    getChallengeSpoiler();
+  }, []);
 
   const handleConfirmDelete = () => {
     if (deleteCommentIndex !== null) {
@@ -33,7 +72,6 @@ const ChallengeActionPage = () => {
       setModalOpen(true);
     }
   };
-
 
   return (
     <div className="w-full flex justify-center pt-[80px]">
@@ -73,17 +111,16 @@ const ChallengeActionPage = () => {
                   <div className="keyred rounded-md px-2 py-1 w-[80px] text-center">자청</div>
                   <div className="keydeepblue rounded-md px-2 py-1 w-[80px] text-center">김성공</div>
                 </div>
-                <ChallengeStatus />
+                <ChallengeStatus 
+                  setCurrentChallengeIndex={setCurrentChallengeIndex} 
+                />
               </div>
             </div>
             <div className="flex flex-col items-center md gap-14 pt-10 pb-14 rounded-3xl border-2">
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 pl-1">
-                  <img src={challenge_spoiler} alt="comment" className="w-20 h-18"/>
-                  <p className="font20 font800">챌린지 n일차</p>
-                </div> 
-                <ChallengeSpoiler />
-              </div>
+              <ChallengeSpoiler 
+                challengeContent={challengeContent}
+                currentChallengeIndex={currentChallengeIndex}
+              />
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <img src={comment} alt="comment" className="w-20 h-18"/>
