@@ -216,7 +216,7 @@ const BookComment = ({
               )}
             </div>
           ) : (
-            <p>{comment.comment_content}</p>
+            <p dangerouslySetInnerHTML={{ __html: comment.comment_content.replace(/\n/g, '<br>') }} />
           )}
         </div>
       </div>
