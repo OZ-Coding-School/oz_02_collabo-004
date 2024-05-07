@@ -12,7 +12,7 @@ const BookSpoilerPage = () => {
   return (
     <>
       <div className="w-full flex justify-center">
-        <div className="flex pt-[100px] md">
+        <div className="flex pt-[120px] md">
           <Location
             number={2}
             link1="/"
@@ -22,9 +22,9 @@ const BookSpoilerPage = () => {
           />
         </div>
       </div>
-      <div className="flex justify-center flex-wrap py-10">
+      <div className="flex justify-center flex-wrap pt-10 pb-20">
         <div className="flex flex-col md gap-y-7">
-          <div className="font800 font30 flex textHighlight w-[8.5rem]">
+          <div className="font800 font30 flex textHighlight w-[9rem] justify-center">
             북스포일러
           </div>
           <BookInfoCard onClick={handleClicked} count={count} />
