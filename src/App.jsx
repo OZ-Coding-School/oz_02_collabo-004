@@ -40,7 +40,7 @@ function App() {
         <Route path="/payment/complete" element={<PaymentComplete />} />
         <Route path="/myinfo" element={<MyInfoPage />} />
       </Route>
-      <Route path="/admin" element={<AdminLayout />}>
+      <Route path="/manager" element={<AdminLayout />}>
         <Route index element={<AdminUserPage />} />
         <Route path="comment" element={<AdminCommentPage />} />
         <Route path="challenge" element={<AdminChallengePage />} />

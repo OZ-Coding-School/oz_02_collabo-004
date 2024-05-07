@@ -92,8 +92,6 @@ const ChallengeActionPage = () => {
     }
     const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
     setCurrentDay(nextIndex);
-    // const nextIndex = currentChallengeIndex === 5 ? 1 : currentDay + 1;
-    // setCurrentDay(nextIndex)
   };
 
 
@@ -138,7 +136,6 @@ const ChallengeActionPage = () => {
                 <ChallengeStatus 
                   setCurrentChallengeIndex={setCurrentChallengeIndex} 
                   completeChallenges={completeChallenge} 
-                  currentChallengeIndex={currentChallengeIndex} 
                   currentDay={currentDay}
                   setCurrentDay={setCurrentDay}
                 />

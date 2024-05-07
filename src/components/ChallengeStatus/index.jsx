@@ -6,12 +6,9 @@ import challenge_left_arrow from "../../assets/images/challenge_left_arrow.png";
 const ChallengeStatus = ({ 
   setCurrentChallengeIndex, 
   completeChallenges, 
-  currentChallengeIndex,
   currentDay,
   setCurrentDay
 }) => {
-  
-  // const [completed, setCompleted] = useState(Array(6).fill(false));
 
   const prevDay = () => {
     setCurrentDay((prevDay) => (prevDay === 1 ? 6 : prevDay - 1));
