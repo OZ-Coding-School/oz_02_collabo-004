@@ -37,8 +37,10 @@ const PaymentPage = () => {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="py-[100px] flex flex-col md gap-y-7">
-        <p className="textHighlight w-28 text-3xl font-bold">결제하기</p>
+      <div className="py-[120px] flex flex-col md gap-y-7">
+        <p className="textHighlight w-28 font800 font30 text-center">
+          결제하기
+        </p>
         <div className="flex flex-col px-10 gap-y-10">
           <div className="flex flex-col gap-y-7">
             <p className="font-bold text-2xl border-b border-black pb-3">
