@@ -4,7 +4,17 @@ import Pagination from "../@common/Pagination";
 import more from "../../assets/images/icons/more.svg";
 import { useEffect, useRef, useState } from "react";
 
-const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, placeholder, minLength, showCharCount }) => {
+const BookComment = ({ 
+  comments, 
+  setModalOpen, 
+  setComments, 
+  onDeleteComment, 
+  placeholder, 
+  minLength, 
+  showCharCount,
+  handleCompleteSubmit,
+  setCurrentDay
+}) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverCommentIndex, setHoverCommentIndex] = useState(-1); 
@@ -40,7 +50,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
   }, [editMode]);
   
 
-  const handleSubmitComment = () => {
+  const handleCommentSubmit = async () => {
     if (editMode !== -1) {
       alert("댓글 수정을 완료해주세요!");
       return;
@@ -50,22 +60,50 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
       alert("내용을 입력하셔야 등록됩니다.");
       return;
     }
-
+  
     if (newComment.length < minLength) {
       alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
       return;
     }
   
-    const newUserComment = {
-      username: "사용자명", 
-      created_at: new Date().toISOString(), 
-      comment_content: newComment
-    };
+    try {
+      const newUserComment = {
+        username: "사용자명", 
+        created_at: new Date().toISOString(), 
+        comment_content: newComment
+      };
+  
+      //TODO: 
+      // const response = await axiosInstance.post(`/comment/create/${challengespoiler_id}`, newUserComment);
+      // if (!response.data) {
+      //   throw new Error('Failed to create comment');
+      // }
+      // setComments([response.data, ...comments]);
+      // setCurrentPage(1); 
+      // setEditMode(-1);
+      // setNewComment("");
+      // if (typeof handleCompleteSubmit === 'function') { 
+      //  handleCompleteSubmit(); 
+      // }
+      // } catch (error) {
+      //   console.error('Error creating comment:', error);
+      //   alert('댓글 등록에 실패했습니다.');
+      // }
+      
+      const createComments = [newUserComment, ...comments]; 
+      setComments(createComments);
+      setCurrentPage(1); 
+      setNewComment("");
+      setEditMode(-1);
 
-    const createComments = [newUserComment, ...comments]; 
-    setComments(createComments);
-    setCurrentPage(1); 
-    setNewComment("");
+      if (typeof handleCompleteSubmit === 'function') { 
+        handleCompleteSubmit(); 
+      }
+      // setCurrentDay((prevDay) => (prevDay === 5 ? 1 : prevDay + 1));
+    } catch (error) {
+      console.error('Error creating comment:', error);
+      alert('댓글 등록에 실패했습니다.');
+    }
   };
 
   const handleMouseEnter = (index) => {
@@ -235,7 +273,7 @@ const BookComment = ({ comments, setModalOpen, setComments, onDeleteComment, pla
                 )}
               </div>
               <Button 
-                onClick={handleSubmitComment} 
+                onClick={handleCommentSubmit} 
                 width="130px" 
                 height="40px" 
                 fontSize="18px" 
