@@ -45,7 +45,7 @@ const IndexPage = () => {
         >
           <Button
             onClick={() => {
-              window.location.href = "/admin";
+              window.location.href = "/manager";
             } }
             outline
             width="200px"

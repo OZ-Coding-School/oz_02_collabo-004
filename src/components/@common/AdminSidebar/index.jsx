@@ -23,18 +23,18 @@ const AdminSidebar = () => {
           BOOKSPOILER
         </p>
         <ul className="ml-7">
-          <ListItem link="/admin">회원 관리</ListItem>
+          <ListItem link="/manager">회원 관리</ListItem>
           <li className="font18 font-bold">
             도서 관리
             <ul className="ml-5 list-disc">
-              <ListItem link="/admin/booklist" height={'h-8'}>
+              <ListItem link="/manager/booklist" height={'h-8'}>
                 도서 리스트
               </ListItem>
-              <ListItem link="/admin/bookcreate">도서 등록/수정</ListItem>
+              <ListItem link="/manager/bookcreate">도서 등록/수정</ListItem>
             </ul>
           </li>
-          <ListItem link="/admin/challenge">챌린지 관리</ListItem>
-          <ListItem link="/admin/comment">댓글 관리</ListItem>
+          <ListItem link="/manager/challenge">챌린지 관리</ListItem>
+          <ListItem link="/manager/comment">댓글 관리</ListItem>
         </ul>
       </div>
     </nav>
