@@ -14,7 +14,8 @@ const ChallengeActionPage = () => {
   const [comments, setComments] = useState(null); 
   const [challengeContent, setChallengeContent] = useState(null);
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
-
+  const [completeChallenge, setCompleteChallenge] = useState(Array(6).fill(false)); 
+  const [currentDay, setCurrentDay] = useState(1);
 
   useEffect(() => {
     // if (!id) {
@@ -73,6 +74,29 @@ const ChallengeActionPage = () => {
     }
   };
 
+  const handleCompleteSubmit = () => {
+    const updateCompleteChallenge = [...completeChallenge];
+    updateCompleteChallenge[currentChallengeIndex] = true;
+    setCompleteChallenge(updateCompleteChallenge);
+  
+    const nextChallengeIndex = currentChallengeIndex === 5 ? 0 : currentChallengeIndex + 1;
+    setCurrentChallengeIndex(nextChallengeIndex);
+
+    if (currentDay === 6) {
+      const completedChallenges = completeChallenge.filter(challenge => challenge).length;
+      const totalChallenges = completeChallenge.length;
+      const completionPercentage = (completedChallenges / totalChallenges) * 100;
+      if (completionPercentage === 100) {
+        return;
+      }
+    }
+    const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
+    setCurrentDay(nextIndex);
+    // const nextIndex = currentChallengeIndex === 5 ? 1 : currentDay + 1;
+    // setCurrentDay(nextIndex)
+  };
+
+
   return (
     <div className="w-full flex justify-center pt-[80px]">
       <div className="flex flex-col md justify-center pt-10 pb-20">
@@ -113,6 +137,10 @@ const ChallengeActionPage = () => {
                 </div>
                 <ChallengeStatus 
                   setCurrentChallengeIndex={setCurrentChallengeIndex} 
+                  completeChallenges={completeChallenge} 
+                  currentChallengeIndex={currentChallengeIndex} 
+                  currentDay={currentDay}
+                  setCurrentDay={setCurrentDay}
                 />
               </div>
             </div>
@@ -135,6 +163,7 @@ const ChallengeActionPage = () => {
                                망각하지 않도록 꼭 생각을 글로 남겨보세요!"
                   minLength={400}
                   showCharCount={true}
+                  handleCompleteSubmit={handleCompleteSubmit}
                 />
               </div>
 

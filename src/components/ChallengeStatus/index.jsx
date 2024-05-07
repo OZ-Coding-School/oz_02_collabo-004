@@ -1,19 +1,34 @@
-import { useState } from "react";
 import checkbox from "../../assets/images/icons/checkbox.svg";
 import checkbox_fill from "../../assets/images/icons/checkbox_fill.svg";
 import challenge_right_arrow from "../../assets/images/challenge_right_arrow.png";
 import challenge_left_arrow from "../../assets/images/challenge_left_arrow.png";
 
-const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
-  const [currentDay, setCurrentDay] = useState(1);
-  const [completed, setCompleted] = useState(Array(6).fill(false));
+const ChallengeStatus = ({ 
+  setCurrentChallengeIndex, 
+  completeChallenges, 
+  currentChallengeIndex,
+  currentDay,
+  setCurrentDay
+}) => {
+  
+  // const [completed, setCompleted] = useState(Array(6).fill(false));
 
   const prevDay = () => {
     setCurrentDay((prevDay) => (prevDay === 1 ? 6 : prevDay - 1));
-    setCurrentChallengeIndex((prevIndex) => (prevIndex === 0 ? 5 : prevIndex - 1));
+    setCurrentChallengeIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
+
+    let prevDay = currentDay - 1;
+
+    if (prevDay > 0) 
+      setCurrentDay(prevDay);
+    else
+      setCurrentDay(1)
   };
 
   const nextDay = () => {
+    if (currentDay === 6) {
+      return;
+    }
     if (currentDay === 1) {
       setCurrentDay(2);
       setCurrentChallengeIndex(1); 
@@ -23,13 +38,10 @@ const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
     }
   };
 
-  const completePercentage = ((currentDay - 1) / 5) * 100; 
-
-  const toggleComplete = (index) => {
-    const newCompleted = [...completed];
-    newCompleted[index] = !newCompleted[index];
-    setCompleted(newCompleted);
-  };
+  const completedChallenges = completeChallenges.filter(challenge => challenge).length;
+  const totalChallenges = completeChallenges.length;
+  const completePercentage = (completedChallenges / totalChallenges) * 100;
+  const displayPercentage = completedChallenges === 6 ? 100 : completePercentage;
 
   const statusCard = Array.from({ length: 6 }, (_, index) => ({
     day: index + 1,
@@ -43,7 +55,6 @@ const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
     >
       <div
         className={`flex flex-col w-32 justify-center ${index + 1 === currentDay ? 'bg-white' : 'bg-graymain'} h-28 px-3 rounded-2xl gap-2`}
-        onClick={() => toggleComplete(index)}
       > 
       {( index <= 4 ? 
         <p className="font800 font22 text-center">
@@ -55,9 +66,9 @@ const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
           </p>
       ))}
         <div className="flex items-center gap-1">
-          <img src={completed[index] ? checkbox_fill : checkbox} className="w-3 h-3 cursor-pointer" />
+          <img src={completeChallenges[index] ? checkbox_fill : checkbox} className="w-3 h-3 cursor-pointer" />
           <p className="flex justify-start font12 font600 black">
-            {completed[index] ? '완료' : '미완료'}
+            {completeChallenges[index] ? '완료' : '미완료'}
           </p>
         </div>
       </div>
@@ -85,9 +96,9 @@ const ChallengeStatus = ({ setCurrentChallengeIndex }) => {
       <div className="flex flex-col px-5 pt-2 pb-4 gap-1">
         <p className="font12 white"> {'userId'} 님의 챌린지 현황 </p>
         <div className="relative h-1 bg-black w-full rounded-full">
-          <div className="absolute top-0 h-1 bg-primary rounded-full" style={{ width: `${completePercentage}%` }}></div>
+          <div className="absolute top-0 h-1 bg-primary rounded-full" style={{ width: `${displayPercentage}%` }}></div>
           <div className="flex font12 gap-2 pt-3 text-[13px]"> 
-            <p className="primary font800"> {completePercentage.toFixed(0)}% </p>
+            <p className="primary font800"> {displayPercentage.toFixed(1)}% </p>
             <p className="white font600">챌린지 완료</p>
           </div>
         </div>
