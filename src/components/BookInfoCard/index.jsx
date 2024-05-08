@@ -11,8 +11,9 @@ const BookInfoCard = ({ onClick, count }) => {
   return (
     <>
       <div className="flex gap-14 justify-around flex-wrap">
-        <div className=" bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
-          <div className="flex flex-col items-center gap-5 ">
+        <div className="relative flex justify-center">
+          <div className=" bg-primary w-80 h-[38rem] flex flex-col justify-center items-center absolute top-[150px]"></div>
+          <div className="flex flex-col items-center gap-5 relative">
             <Link to="/bookspoilerdetail">
               <img
                 // book_img
@@ -25,7 +26,6 @@ const BookInfoCard = ({ onClick, count }) => {
                 {/* name */}
                 사람을 좋아하는 헤드헌터
               </p>
-
               <div className="flex justify-center">
                 <span className="font-bold">
                   {/* author */}
@@ -50,7 +50,8 @@ const BookInfoCard = ({ onClick, count }) => {
           </div>
         </div>
 
-        <div className=" bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
+        <div className="relative flex justify-center">
+          <div className=" bg-primary w-80 h-[38rem] flex flex-col justify-center items-center absolute top-[150px]"></div>
           <div className="flex flex-col items-center gap-5 relative">
             <Link to="/bookspoilerdetail">
               <img
@@ -64,7 +65,6 @@ const BookInfoCard = ({ onClick, count }) => {
                 {/* name */}
                 사람을 좋아하는 헤드헌터
               </p>
-
               <div className="flex justify-center">
                 <span className="font-bold">
                   {/* author */}
@@ -89,7 +89,8 @@ const BookInfoCard = ({ onClick, count }) => {
           </div>
         </div>
 
-        <div className="relative bg-primary w-80 h-[50rem] flex flex-col justify-center items-center">
+        <div className="relative flex justify-center">
+          <div className=" bg-primary w-80 h-[38rem] flex flex-col justify-center items-center absolute top-[150px]"></div>
           <div className="flex flex-col items-center gap-5 relative">
             <Link to="/bookspoilerdetail">
               <img
@@ -103,7 +104,6 @@ const BookInfoCard = ({ onClick, count }) => {
                 {/* name */}
                 사람을 좋아하는 헤드헌터
               </p>
-
               <div className="flex justify-center">
                 <span className="font-bold">
                   {/* author */}
