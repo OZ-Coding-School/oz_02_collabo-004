@@ -8,27 +8,27 @@ import Location from "../../components/@common/Location";
 import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
 import Modal from "../../components/@common/Modal";
-// import axiosInstance from "../../utils/axios"
 import { useEffect, useState } from "react";
+import { RandomColor } from '../../utils/RandomColor';
+// import { isEmptyId } from "../../api/common";
 // import { useParams } from "react-router-dom";
+// import { getBook } from "../../api/book";
 
 const BookSpoilerDetailPage = () => {
   // const { id } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
   const [spoilerDetail, setSpoilerDetail] = useState(null);
+  const [keyword, setKeyword] = useState(null);
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    // if (!id) {
-    //   return '';
-    // }
+    // if (isEmptyId(id)) return '';
     const getBook = async () => {
       try {
-        //TODO: 
-        // const response = await axiosInstance.get(`/book/${id}`); 
-        // const data = await response.json();
-        const data = {
+        // const response = await getBook(id);
+        // let data = await response.json();
+        let data = {
           id:"책 아이디",
           name:"당신은 사업가입니까",
           author:"캐럴로스 저",
@@ -37,21 +37,42 @@ const BookSpoilerDetailPage = () => {
           coupang_link:"https://www.coupang.com/vp/products/21038492?itemId=82145106&vendorItemId=3139880515&isAddedCart=",
           is_exposed: false,
           created_at:"2024-04-23T12:00:00Z",
-          updated_at:"2024-04-26T16:00:00Z"
+          updated_at:"2024-04-26T16:00:00Z",
         }
         setSpoilerDetail(data);
       } catch (error) {
         console.error("Error book data", error);
       }
-    };
+    }
     getBook();
+  }, []);
 
+  useEffect( () => {
+    // if (isEmptyId(id)) return '';
+    const getBookKeywords = async () => {
+      try {
+        // const response = await getBookKeywords(id);
+        // const data = await response.json();
+        let data = [
+          { id: 1, kw: '키워드1', book_id: '2'},
+          { id: 2, kw: '키워드2', book_id: '2'},
+          { id: 3, kw: '키워드3', book_id: '2'},
+        ]
+        setKeyword(data);
+      } catch (error) {
+        console.error("Error keyword data", error);
+      }
+    }
+    getBookKeywords();
+  }, []);
+
+  useEffect( () => {
+    // if (isEmptyId(id)) return '';
     const getComments = async () => {
       try {
-        //TODO: 
-        // const response = await axiosInstance.get(`/comments/{spoiler_id}`); 
+        // const response = await getComments(id); 
         // const data = await response.json();
-        const data = [
+        let data = [
           { id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
           { id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
           { id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
@@ -67,7 +88,6 @@ const BookSpoilerDetailPage = () => {
     }
     getComments();
   }, []);
-
 
   const handleConfirmDelete = () => {
     if (deleteCommentIndex !== null) {
@@ -108,9 +128,15 @@ const BookSpoilerDetailPage = () => {
                   </div>
                 </div>
                 <div className="flex white items-center justify-center gap-2">
-                  <div className="keypurple rounded-md px-2 py-1 w-[80px] text-center">창업</div>
-                  <div className="keyred rounded-md px-2 py-1 w-[80px] text-center">자청</div>
-                  <div className="keydeepblue rounded-md px-2 py-1 w-[80px] text-center">김성공</div>
+                {keyword && keyword.map((kw) => (
+                  <div 
+                    key={kw.id} 
+                    className="rounded-md px-2 py-1 w-[80px] text-center"
+                    style={{ backgroundColor: RandomColor() }}
+                  >
+                    {kw.kw}
+                  </div>
+                ))}
                 </div>
                 <div className="flex items-start">
                   <div className="flex gap-2 items-center cursor-pointer pt-2"
