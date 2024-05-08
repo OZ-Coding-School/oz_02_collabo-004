@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Input from '../../components/@common/Input';
-import AdminRecommendSpoiler from '../../components/AdminRecommendSpolier';
+import AdminRecommendSpoiler from '../../components/AdminRecommendSpoiler';
+import Button from '../../components/@common/Button';
 
 const AdminBookCreatePage = () => {
   const ImageUpload = () => {
@@ -22,7 +23,7 @@ const AdminBookCreatePage = () => {
           type="file"
           accept="image/*"
           onChange={onchangeImageUpload}
-          className="overflow-hidden w-[5rem]"
+          className="overflow-hidden w-[4.8rem]"
         />
       </>
     );
@@ -32,7 +33,7 @@ const AdminBookCreatePage = () => {
     <form>
       <div className="w-[800px] flex flex-col gap-5">
         <div className="flex justify-between gap-3">
-          <div className="font-bold text-2xl w-[7rem]">기본 정보</div>
+          <div className="font-bold text-2xl w-[8rem]">기본 정보</div>
           <div className="flex flex-col flex-1 gap-3">
             <div className="flex">
               <p className="w-[5rem]">책 제목</p>
@@ -55,7 +56,7 @@ const AdminBookCreatePage = () => {
         <AdminRecommendSpoiler number={2} />
         <AdminRecommendSpoiler number={3} />
         <div className="flex gap-3">
-          <div className="font-bold text-2xl w-[7rem]">키워드</div>
+          <div className="font-bold text-2xl w-[8rem]">키워드</div>
           <div className="flex gap-3 pl-[4.5rem] items-center">
             <div>
               <input
@@ -79,7 +80,7 @@ const AdminBookCreatePage = () => {
           </div>
         </div>
         <div className="flex gap-3">
-          <div className="font-bold text-2xl w-[7rem]">스포일러</div>
+          <div className="font-bold text-2xl w-[8rem]">스포일러</div>
           <div className="flex flex-col flex-1 gap-3">
             <div className="flex">
               <p className="w-[5rem]">작성자</p>
@@ -96,12 +97,9 @@ const AdminBookCreatePage = () => {
           </div>
         </div>
         <div className="flex justify-end">
-          <button
-            type="submit"
-            className="bg-blue-700 text-white w-[5rem] h-[2rem] rounded-2xl"
-          >
+          <Button type={'submit'} width={'5rem'}>
             저장
-          </button>
+          </Button>
         </div>
       </div>
     </form>
