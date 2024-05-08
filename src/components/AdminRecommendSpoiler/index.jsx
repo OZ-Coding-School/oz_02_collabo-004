@@ -3,7 +3,7 @@ import Input from '../@common/Input';
 const AdminRecommendSpoiler = ({ number }) => {
   return (
     <div className="flex justify-between gap-3">
-      <div className="font-bold text-2xl w-[7rem]">추천 서평 {number}</div>
+      <div className="font-bold text-2xl w-[8rem]">추천 서평 {number}</div>
       <div className="flex flex-col flex-1 gap-3">
         <div className="flex">
           <p className="w-[5rem]">채널명</p>
