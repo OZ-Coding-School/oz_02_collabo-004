@@ -13,7 +13,6 @@ const BookComment = ({
   minLength, 
   showCharCount,
   handleCompleteSubmit,
-  setCurrentDay
 }) => {
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -99,7 +98,7 @@ const BookComment = ({
       if (typeof handleCompleteSubmit === 'function') { 
         handleCompleteSubmit(); 
       }
-      // setCurrentDay((prevDay) => (prevDay === 5 ? 1 : prevDay + 1));
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error('Error creating comment:', error);
       alert('댓글 등록에 실패했습니다.');
