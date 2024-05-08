@@ -36,7 +36,7 @@ const Header = () => {
             alt="로고 이미지"
           ></img>
         </div>
-        <div className="flex justify-between w-2/12 items-center">
+        <div className="flex justify-between w-[14rem] items-center">
           <a
             className="cursor-pointer"
             onClick={() => {
