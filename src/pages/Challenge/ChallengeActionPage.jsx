@@ -78,9 +78,6 @@ const ChallengeActionPage = () => {
     const updateCompleteChallenge = [...completeChallenge];
     updateCompleteChallenge[currentChallengeIndex] = true;
     setCompleteChallenge(updateCompleteChallenge);
-  
-    const nextChallengeIndex = currentChallengeIndex === 5 ? 0 : currentChallengeIndex + 1;
-    setCurrentChallengeIndex(nextChallengeIndex);
 
     if (currentDay === 6) {
       const completedChallenges = completeChallenge.filter(challenge => challenge).length;
@@ -89,9 +86,15 @@ const ChallengeActionPage = () => {
       if (completionPercentage === 100) {
         return;
       }
+      setCurrentDay(6);
+      setCurrentChallengeIndex(5);
+    } else {
+      const nextChallengeIndex = currentChallengeIndex === 5 ? 0 : currentChallengeIndex + 1;
+      setCurrentChallengeIndex(nextChallengeIndex);
+
+      const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
+      setCurrentDay(nextIndex);
     }
-    const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
-    setCurrentDay(nextIndex);
   };
 
 
