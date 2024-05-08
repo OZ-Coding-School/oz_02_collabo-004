@@ -3,10 +3,16 @@ import BookCardLink from './BookCardLink';
 import BookImage from '../../assets/images/bookimage.jpg';
 import BookCardKeyword from './BookCardKeyword';
 import BookCardLinkNone from './BookCardLinkNone';
+import { useState } from 'react';
+import Modal from './Modal';
 
 const BookInfoCard = ({ onClick, count }) => {
   // 미리보기로 3개 넣어놨습니다.
   // 추후에 데이터 받으면 1개로 줄여서 수정 할 예정입니다.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -44,7 +50,7 @@ const BookInfoCard = ({ onClick, count }) => {
               {count <= 3 ? (
                 <BookCardLink onClick={onClick} />
               ) : (
-                <BookCardLinkNone />
+                <BookCardLinkNone onClick={openModal} />
               )}
             </div>
           </div>
@@ -83,7 +89,7 @@ const BookInfoCard = ({ onClick, count }) => {
               {count <= 3 ? (
                 <BookCardLink onClick={onClick} />
               ) : (
-                <BookCardLinkNone />
+                <BookCardLinkNone onClick={openModal} />
               )}
             </div>
           </div>
@@ -122,12 +128,13 @@ const BookInfoCard = ({ onClick, count }) => {
               {count <= 3 ? (
                 <BookCardLink onClick={onClick} />
               ) : (
-                <BookCardLinkNone />
+                <BookCardLinkNone onClick={openModal} />
               )}
             </div>
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 };
