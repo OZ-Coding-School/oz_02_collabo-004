@@ -4,9 +4,9 @@ import kakao from "../../assets/images/icons/kakao.svg"
 import axiosInstance from '../../utils/axios'
 
 const LoginPage = () => {
-  //TODO: 
+
   const kakaoLogin = () => {
-    axiosInstance.post('user/account/login');
+    axiosInstance.post('/user/account/login');
   }
 
   const buttonStyle = {

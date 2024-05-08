@@ -97,8 +97,8 @@ const BookComment = ({
 
       if (typeof handleCompleteSubmit === 'function') { 
         handleCompleteSubmit(); 
+        window.scrollTo(0, 0);
       }
-      window.scrollTo(0, 0);
     } catch (error) {
       console.error('Error creating comment:', error);
       alert('댓글 등록에 실패했습니다.');
