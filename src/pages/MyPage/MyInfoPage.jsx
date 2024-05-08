@@ -5,15 +5,24 @@ import Location from "../../components/@common/Location";
 import MyPageSidebar from "../../components/MyPageSidebar";
 import { useState, useRef } from "react";
 import Modal from "../../components/@common/Modal/userDeleteModal";
+import profileImage from "../../assets/images/profileImage-1.jpg";
 
 const MyInfoPage = () => {
-  const [Image, setImage] = useState(
-    "https://i.pinimg.com/564x/74/eb/90/74eb907a211a6f91e7c201e1863a3a2c.jpg"
-  );
+  const userData = [
+    {
+      id: 1,
+      nickName: "hachiware",
+      mbti: "ESTJ",
+      userId: "gusrud4337@naver.com",
+      phoneNumber: "010-8748-4337",
+    },
+  ];
+
+  const [Image, setImage] = useState(profileImage);
   const fileInput = useRef(null);
 
   const onImageDelete = (e) => {
-    setImage(null);
+    setImage(profileImage);
   };
 
   const onImageChange = (e) => {
@@ -26,9 +35,7 @@ const MyInfoPage = () => {
       };
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      setImage(
-        "https://i.pinimg.com/564x/74/eb/90/74eb907a211a6f91e7c201e1863a3a2c.jpg"
-      );
+      setImage(profileImage);
     }
   };
 
@@ -89,23 +96,29 @@ const MyInfoPage = () => {
                 <div className="grid grid-rows-3 grid-flow-col gap-8 w-[42rem]">
                   <div className="flex flex-col">
                     <label>닉네임</label>
-                    <Input></Input>
+                    <Input placeholder={userData[0].nickName}></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>아이디</label>
-                    <Input></Input>
+                    <Input disabled placeholder={userData[0].userId}></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>연결된 소셜계정</label>
-                    <Input></Input>
+                    <Input
+                      disabled
+                      placeholder={"카카오로 연결된 소셜계정"}
+                    ></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>mbti</label>
-                    <Input></Input>
+                    <Input placeholder={userData[0].mbti}></Input>
                   </div>
                   <div className="flex flex-col">
-                    <label>닉네임</label>
-                    <Input></Input>
+                    <label>휴대전화</label>
+                    <Input
+                      disabled
+                      placeholder={userData[0].phoneNumber}
+                    ></Input>
                   </div>
                   <div className="flex flex-col justify-end items-center w-[21rem]">
                     <Button height={"2.5rem"} width={"15rem"}>
