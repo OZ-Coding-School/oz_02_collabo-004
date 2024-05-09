@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import Button from "../../components/@common/Button";
 import arrow_down_fill from '../../assets/images/icons/arrow_down_fill.svg'
-import useOnClickOutside from '../../hooks/useOnClickOuiside';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const AdminChallengePage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
