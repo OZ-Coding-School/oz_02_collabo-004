@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useOnClickOutside from '../../../hooks/useOnClickOuiside'; 
+import useOnClickOutside from '../../../hooks/useOnClickOutside'; 
 import { useRef, useState } from 'react';
 import exit from '../../../assets/images/icons/exit.svg';
 import modal_check from '../../../assets/images/icons/modal_check.svg';
