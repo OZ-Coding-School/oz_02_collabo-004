@@ -27,31 +27,22 @@ const Header = () => {
     >
       <div className="md h-[90px] flex justify-between items-center">
         <div>
-          <img
-            className="w-14 cursor-pointer"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-            src={logo_noText}
-            alt="로고 이미지"
-          ></img>
+          <Link to={"/"}>
+            <img
+              className="w-14 cursor-pointer"
+              src={logo_noText}
+              alt="로고 이미지"
+            ></img>
+          </Link>
         </div>
         <div className="flex justify-between w-[14rem] items-center">
-          <a
-            className="cursor-pointer"
-            onClick={() => {
-              window.location.href = "/bookspoiler";
-            }}
-          >
-            북스포일러
-          </a>
-          <a
-            onClick={() => {
-              window.location.href = "/challenge";
-            }}
-          >
-            챌린지
-          </a>
+          <Link to={"/bookspoiler"}>
+            <span className="cursor-pointer">북스포일러</span>
+          </Link>
+          <Link to={"/challenge"}>
+            <span className="cursor-pointer">챌린지</span>
+          </Link>
+
           {isLoggedIn ? (
             <Avatar>로그아웃</Avatar>
           ) : (
