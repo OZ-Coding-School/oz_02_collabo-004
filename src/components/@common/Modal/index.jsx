@@ -6,7 +6,13 @@ import modal_check from '../../../assets/images/icons/modal_check.svg';
 import modal_delete from '../../../assets/images/icons/modal_delete.svg';
 import Button from '../Button';
 
-const Modal = ({ setModalOpen, message, onConfirm, onCancel }) => {
+const Modal = ({ 
+  setModalOpen, 
+  message, 
+  onConfirm, 
+  onCancel,
+}) => {
+
   const [confirmed, setConfirmed] = useState(false);
   const ref = useRef(null);
   

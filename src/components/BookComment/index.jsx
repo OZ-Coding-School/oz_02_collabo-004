@@ -3,17 +3,21 @@ import Button from "../@common/Button";
 import Pagination from "../@common/Pagination";
 import more from "../../assets/images/icons/more.svg";
 import { useEffect, useRef, useState } from "react";
+import useMutate from "../../hooks/useMutate";
+import BookEditComment from "./BookEditComment";
+import BookDeleteComment from "./BookDeleteComment";
 
 const BookComment = ({ 
+  spoilerId,
   comments, 
-  setModalOpen, 
   setComments, 
-  onDeleteComment, 
   placeholder, 
   minLength, 
   showCharCount,
   handleCompleteSubmit,
 }) => {
+  const { mutate: bookCreateComment } = useMutate(`/comment/create/${spoilerId}`);
+  
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
   const [hoverCommentIndex, setHoverCommentIndex] = useState(-1); 
@@ -64,41 +68,45 @@ const BookComment = ({
       alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
       return;
     }
-  
+
     try {
       const newUserComment = {
-        username: "사용자명", 
-        created_at: new Date().toISOString(), 
-        comment_content: newComment
+        //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
+        //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
+        user: 1, 
+        comment_content: newComment,
+        spoiler_info: spoilerId,
       };
-  
-      //TODO: 
-      // const response = await axiosInstance.post(`/comment/create/${challengespoiler_id}`, newUserComment);
-      // if (!response.data) {
-      //   throw new Error('Failed to create comment');
-      // }
-      // setComments([response.data, ...comments]);
-      // setCurrentPage(1); 
-      // setEditMode(-1);
-      // setNewComment("");
-      // if (typeof handleCompleteSubmit === 'function') { 
-      //  handleCompleteSubmit(); 
-      // }
-      // } catch (error) {
-      //   console.error('Error creating comment:', error);
-      //   alert('댓글 등록에 실패했습니다.');
-      // }
-      
-      const createComments = [newUserComment, ...comments]; 
-      setComments(createComments);
-      setCurrentPage(1); 
-      setNewComment("");
-      setEditMode(-1);
-
-      if (typeof handleCompleteSubmit === 'function') { 
-        handleCompleteSubmit(); 
-        window.scrollTo(0, 0);
+      const response = await bookCreateComment(newUserComment)
+      if(response.data) {
+        const newCommentData = {
+          comment_content: newComment,
+          created_at: new Date().toISOString(),
+          username: 'name8'
+        };
+        //기존 목록에 새 댓글을 추가해서 새로운 배열 생성
+        const updatedComments = [newCommentData, ...comments];
+        setComments(updatedComments);
+        console.log(updatedComments, 'updatedComments 확인')
+        //나머지 작업
+        if (typeof handleCompleteSubmit === 'function') { 
+          handleCompleteSubmit(); 
+          window.scrollTo(0, 0);
+        }
+        setNewComment('');
+      } else {
+        throw new Error('Fail bookCreateComment')
       }
+      // 기존에 프론트에서 등록/수정했던 로직
+      // const createComments = [newUserComment, ...comments]; 
+      // setComments(createComments);
+      // setCurrentPage(1); 
+      // setNewComment("");
+      // setEditMode(-1);
+      // if (typeof handleCompleteSubmit === 'function') { 
+      //   handleCompleteSubmit(); 
+      //   window.scrollTo(0, 0);
+      // }
     } catch (error) {
       console.error('Error creating comment:', error);
       alert('댓글 등록에 실패했습니다.');
@@ -122,25 +130,6 @@ const BookComment = ({
     setEditMode(index);
     setEditContent(comments[index].comment_content);
     setEditCharCount(comments[index].comment_content.length);
-  };
-
-  const handleEditSubmit = () => {
-    if (editContent.length < minLength) {
-      alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
-      return;
-    }
-    const updateComments = [...comments];
-    updateComments[editMode].comment_content = editContent;
-
-    //TODO: 수정된 내용 저장
-
-    setComments(updateComments);
-    setEditMode(-1); 
-  };
-
-  const handleDeleteClick = (index) => {
-    onDeleteComment(index);
-    setModalOpen(true); 
   };
 
   const handleCharCount = (event) => {
@@ -200,6 +189,7 @@ const BookComment = ({
         </div>
         <div className="w-[500px] font14 flex items-center relative">
           {editMode === index ? (
+           
             <div className="relative">
               <textarea
                 ref={textareaRef}
@@ -222,12 +212,15 @@ const BookComment = ({
       <div className="relative flex flex-col items-center w-6">
         <div className="cursor-pointer" onClick={handleMoreClick}>
           {editMode === index ? (
-            <div 
-              onClick={handleEditSubmit}
-              className="font12 font600 cursor-pointer hover:font800 secondary hover:black pt-2"
-            >
-              수정
-            </div>
+             <BookEditComment 
+              comment={comment}
+              editContent={editContent}
+              minLength={minLength}
+              comments={comments}
+              editMode={editMode}
+              setComments={setComments}
+              setEditMode={setEditMode}
+            />
           ) : (
             <img src={more} className="pt-3"/>
           )}
@@ -239,11 +232,11 @@ const BookComment = ({
                 >
                   수정
                 </li>
-                <li className="flex justify-center cursor-pointer w-20 px-6 py-3 hover:bg-graylight hover:rounded-r-md hover:font700 font14"
-                    onClick={() => handleDeleteClick(index)}
-                >
-                  삭제
-                </li>
+                <BookDeleteComment 
+                  comment={comment}
+                  comments={comments}
+                  setComments={setComments}
+                />
               </ul>
             </div>
           )}
@@ -254,7 +247,7 @@ const BookComment = ({
 
   return (
     <>
-      <div className="flex w-[860px] ">
+      <div className="flex w-[860px]">
         <div className="flex flex-col gap-3 pt-7 pb-3 md bg-primary items-center justify-between rounded-2xl shadow-lg">
           <div className="flex flex-col gap-4 w-[800px]">
             <div className="flex items-center bg-white justify-between rounded-lg p-8">
