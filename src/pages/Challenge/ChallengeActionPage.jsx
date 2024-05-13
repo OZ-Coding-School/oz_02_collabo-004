@@ -1,4 +1,4 @@
-import BookComment from "../../components/BookComment"
+// import BookComment from "../../components/BookComment"
 import ChallengeSpoiler from "../../components/ChallengeSpoiler"
 import comment from "../../assets/images/comment.png"
 import Location from "../../components/@common/Location";
@@ -6,9 +6,18 @@ import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
 import ChallengeStatus from "../../components/ChallengeStatus";
 import Modal from "../../components/@common/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
 
-const ChallengeActionPage = () => {
+const ChallengeActionPage = ({
+  userId,
+  challengespoilerId,
+  challengeinfoId,
+
+}) => {
+  const { id } = useParams();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
   const [comments, setComments] = useState(null); 
@@ -17,85 +26,90 @@ const ChallengeActionPage = () => {
   const [completeChallenge, setCompleteChallenge] = useState(Array(6).fill(false)); 
   const [currentDay, setCurrentDay] = useState(1);
 
-  useEffect(() => {
-    // if (!id) {
-    //   return '';
-    // }
-    const getChallengeComments = async () => {
-      try {
-        //TODO: 
-        // const response = await axiosInstance.get(`/comments/{challengespoiler_id}`); 
-        // const data = await response.json();
-        const data = [
-          { id: 1, challenge_spoiler_id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
-          { id: 2, challenge_spoiler_id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
-          { id: 3, challenge_spoiler_id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
-          { id: 4, challenge_spoiler_id: 4, comment_content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name4'},
-          { id: 5, challenge_spoiler_id: 5, comment_content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name5'},
-          { id: 6, challenge_spoiler_id: 6, comment_content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name6'},
-          { id: 7, challenge_spoiler_id: 7, comment_content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name7'},
-        ]
-        setComments(data);
-      } catch (error) {
-        console.error("Error challenge comment data", error);
-      }
+    // let response = {
+    //   data: [
+    //     { id: 1, content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name1'},
+    //     { id: 2, content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name2'},
+    //     { id: 3, content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name3'},
+    //     { id: 4, content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name4'},
+    //     { id: 5, content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name5'},
+    //     { id: 6, content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name6'},
+    //     { id: 7, content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', user: 'name7'},
+    //   ],
+    //   ok: true
+    // };
+    // const { data: challengeComment, setData: setChallengeComment } = useFetch(`/dicomments/${challengespoilerId}`, response);
+
+    // let response2 = {
+    //   data: [
+    //     {id:"1", day:1, title:"1일차 스포일러 제목", content:"1일차 스포일러 내용", challenge_info_id:1},
+    //     {id:"2", day:2, title:"2일차 스포일러 제목", content:"2일차 스포일러 내용", challenge_info_id:2},
+    //     {id:"3", day:3, title:"3일차 스포일러 제목", content:"3일차 스포일러 내용", challenge_info_id:3},
+    //     {id:"4", day:4, title:"4일차 스포일러 제목", content:"4일차 스포일러 내용", challenge_info_id:4},
+    //     {id:"5", day:5, title:"5일차 스포일러 제목", content:"5일차 스포일러 내용", challenge_info_id:5},
+    //     {id:"6", day:6, title:"완주 스포일러 제목", content:"6일차 스포일러 내용", challenge_info_id:6},
+    //   ],
+    //   ok: true
+    // };
+    // const { data: challengeSpoiler } = useFetch(`/challenge-spoiler/${challengeInfoId}`, response2);
+
+    let response3 = {
+      challenge_info: {
+        id: 1,
+        created_at: "2024-05-09T14:34:13.156710",
+        updated_at: "2024-05-09T14:51:51.676834",
+        user: 1,
+        book: 1,
+      },
+      book_info: {
+        id: 1,
+        name: "당신은 사업가입니까",
+        author: "최은영",
+        published: "문학동네",
+        book_img: "",
+        coupang_link: "",
+        is_exposed: 1,
+        created_at: "2024-05-09T14:34:13.156710",
+        updated_at: "2024-05-09T14:51:51.676834"
+      },
+      ok: true
     }
-    getChallengeComments();
+    const { data: challengeBook } = useFetch(`/mychallenge/detail/${userId}/${challengeinfoId}`, response3);
 
-    const getChallengeSpoiler = async () => {
-      try {
-        //TODO: 
-        // const response = await axiosInstance.get(`/{challenge_info_id}/spoiler/{challenge_spoiler_id}`); 
-        // const data = await response.json();
-        const data = [
-          {id:"1", day:1, title:"1일차 스포일러 제목", content:"1일차 스포일러 내용", challenge_info_id:1},
-          {id:"2", day:2, title:"2일차 스포일러 제목", content:"2일차 스포일러 내용", challenge_info_id:2},
-          {id:"3", day:3, title:"3일차 스포일러 제목", content:"3일차 스포일러 내용", challenge_info_id:3},
-          {id:"4", day:4, title:"4일차 스포일러 제목", content:"4일차 스포일러 내용", challenge_info_id:4},
-          {id:"5", day:5, title:"5일차 스포일러 제목", content:"5일차 스포일러 내용", challenge_info_id:5},
-          {id:"6", day:6, title:"완주 스포일러 제목", content:"6일차 스포일러 내용", challenge_info_id:6},
-        ]
-        setChallengeContent(data);
-      } catch (error) {
-        console.error("Error challenge spoiler data", error);
-      }
-    };
-    getChallengeSpoiler();
-  }, []);
-
-  const handleConfirmDelete = () => {
-    if (deleteCommentIndex !== null) {
-      const updateComments = [...comments];
-      updateComments.splice(deleteCommentIndex, 1);
+  console.log("challengeBook", challengeBook)
+  // const handleConfirmDelete = () => {
+  //   if (deleteCommentIndex !== null) {
+  //     const updateComments = [...comments];
+  //     updateComments.splice(deleteCommentIndex, 1);
       
-      setComments(updateComments);
-      setDeleteCommentIndex(null);
-      setModalOpen(true);
-    }
-  };
+  //     setComments(updateComments);
+  //     setDeleteCommentIndex(null);
+  //     setModalOpen(true);
+  //   }
+  // };
 
-  const handleCompleteSubmit = () => {
-    const updateCompleteChallenge = [...completeChallenge];
-    updateCompleteChallenge[currentChallengeIndex] = true;
-    setCompleteChallenge(updateCompleteChallenge);
+  // const handleCompleteSubmit = () => {
+  //   const updateCompleteChallenge = [...completeChallenge];
+  //   updateCompleteChallenge[currentChallengeIndex] = true;
+  //   setCompleteChallenge(updateCompleteChallenge);
 
-    if (currentDay === 6) {
-      const completedChallenges = completeChallenge.filter(challenge => challenge).length;
-      const totalChallenges = completeChallenge.length;
-      const completionPercentage = (completedChallenges / totalChallenges) * 100;
-      if (completionPercentage === 100) {
-        return;
-      }
-      setCurrentDay(6);
-      setCurrentChallengeIndex(5);
-    } else {
-      const nextChallengeIndex = currentChallengeIndex === 5 ? 0 : currentChallengeIndex + 1;
-      setCurrentChallengeIndex(nextChallengeIndex);
+  //   if (currentDay === 6) {
+  //     const completedChallenges = completeChallenge.filter(challenge => challenge).length;
+  //     const totalChallenges = completeChallenge.length;
+  //     const completionPercentage = (completedChallenges / totalChallenges) * 100;
+  //     if (completionPercentage === 100) {
+  //       return;
+  //     }
+  //     setCurrentDay(6);
+  //     setCurrentChallengeIndex(5);
+  //   } else {
+  //     const nextChallengeIndex = currentChallengeIndex === 5 ? 0 : currentChallengeIndex + 1;
+  //     setCurrentChallengeIndex(nextChallengeIndex);
 
-      const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
-      setCurrentDay(nextIndex);
-    }
-  };
+  //     const nextIndex = currentDay === 6 && nextChallengeIndex === 0 ? currentDay : currentDay === 6 ? 6 : currentDay + 1;
+  //     setCurrentDay(nextIndex);
+  //   }
+  // };
 
 
   return (
@@ -125,7 +139,7 @@ const ChallengeActionPage = () => {
               </div>
               <div className="flex flex-col gap-5 pt-3 items-center">
                 <div className="flex flex-col gap-2">
-                  <p className="font900 font24 secondary">당신은 사업가입니까</p>
+                  <p className="font900 font24 secondary">{challengeBook?.book_info.name}</p>
                   <div className="flex items-center justify-center">
                     <p className="font600 font18">캐럴 로스 저 ·</p>
                     <p className="gray5">알에이치코리아</p>
@@ -154,7 +168,7 @@ const ChallengeActionPage = () => {
                   <img src={comment} alt="comment" className="w-20 h-18"/>
                   <p className="font20 font800">챌린지 완료하기</p>
                 </div> 
-                <BookComment 
+                {/* <BookComment 
                   comments={comments} 
                   setModalOpen={setModalOpen}
                   setComments={setComments}
@@ -164,7 +178,7 @@ const ChallengeActionPage = () => {
                   minLength={400}
                   showCharCount={true}
                   handleCompleteSubmit={handleCompleteSubmit}
-                />
+                /> */}
               </div>
 
             </div>
