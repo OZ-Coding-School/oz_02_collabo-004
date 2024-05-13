@@ -5,57 +5,17 @@ import bookmark_line from "../../assets/images/icons/bookmark_line.svg"
 import bookmark_fill from "../../assets/images/icons/bookmark_fill.svg"
 import share_line from "../../assets/images/icons/share_line.svg"
 import share_fill from "../../assets/images/icons/share_fill.svg"
-// import axiosInstance from "../../utils/axios"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const BookQuratorSpoiler = () => {
-  const [adminQuratorSpoiler, setAdminQuratorSpoiler] = useState(null);
-  const [adminUser, setAdminUser] = useState(null);
+const BookQuratorSpoiler = ({
+  quratorSpoiler,
+  adminUserInfo,
+}) => {
   const [action, setAction] = useState({
     like: { active: false, count: 0 },
     bookmark: { active: false, count: 0 },
     share: { active: false }
   });
-
-  useEffect(() => {
-    const getQuratorSpoiler = async () => {
-      try {
-        // const response = await axiosInstance.get("/book/{book_id}/spoiler/{spoiler_id}"); 
-        // const data = await response.json();
-        const data = {
-          id:"스포일러 아이디",
-          title:"사업 성공을 꿈꾸는가, 현실적인 조언을 준다.",
-          content:`사업 성공을 꿈꾸는 저에게 현실적인 조언을 제시하는 책이었습니다. 
-                  사업을 여러차례 해왔지만 많은 어려움을 겪으며 멘탈을 바로잡기란 쉽지 않았죠
-                  그럴때마다 이 책을 열어보며 마음을 다스렸습니다. 
-                  누구나 다 실패할 수 있고, 사업은 당연히 어려운 것이란걸 리마인딩 하는 좋은 책이었어요. 
-                  그리고 좋은 사업가가 되기 위해 다시한번 마인드셋을 하는 계기가 되었습니다. 
-                  사업의 어려움과 현실에 대해 이해하고싶은 분들께 이 책을 추천드려요. 
-                  아래 무료 스포일러를 엄선해 모아두었으니 살펴보세요. 
-                  대략적인 내용이 파악되신 분들은 챌린지 참여도 추천드립니다. `,
-          writer:"민정"
-        }
-        setAdminQuratorSpoiler(data);
-      } catch (error) {
-        console.error("Error qurator spoiler data", error)
-      }
-    }
-    getQuratorSpoiler();
-
-    const getAdminUserInfo = async () => {
-      try {
-        // const response = await axiosInstance.get("/users/{id}"); 
-        // const data = await response.json();
-        const data = {
-          mbti: "ISTP",
-        }
-      setAdminUser(data);
-      } catch (error) {
-        console.error("Error qurator admin info data", error)
-      }
-    }
-    getAdminUserInfo();
-  }, [])
 
   const toggleAction = (actionType) => {
     const updateAction = { ...action };
@@ -104,11 +64,12 @@ const BookQuratorSpoiler = () => {
           <div className="flex items-center gap-5">
             <Avatar
               size="large"
+              // source={profile_img}
               source="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/1a92/image/_9FUTEe2WluHy6oMjq-hQ77RlEE.JPG"
             />
             <div className="flex flex-col">
-              <p className="font600 font18">{adminQuratorSpoiler?.writer}님의 북스포일러</p>
-              <p className="gray8">큐레이터 · {adminUser?.mbti}</p>
+              <p className="font600 font18">{quratorSpoiler?.writer}님의 북스포일러</p>
+              <p className="gray8">큐레이터 · {adminUserInfo?.mbti}</p>
             </div>
           </div>
           <div className="flex gap-6 cursor-pointer">
@@ -138,8 +99,8 @@ const BookQuratorSpoiler = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <p className="font600 font20">{adminQuratorSpoiler?.title}</p>
-          <p className="font16">{adminQuratorSpoiler?.content}</p>
+          <p className="font600 font20">{quratorSpoiler?.title}</p>
+          <p className="font16">{quratorSpoiler?.content}</p>
         </div>
       </div>
     </>

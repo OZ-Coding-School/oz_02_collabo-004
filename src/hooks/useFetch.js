@@ -18,7 +18,9 @@ export default function useFetch(url, response, method= "GET", body = null) {
       if (!response.ok) {
         throw new Error('서버 응답 실패');
       }
-      setData(response.data);
+      // console.log(response)
+      // console.log(response.data)
+      setData(response);
     } catch (error) {
       console.error(error);
       console.log(`[GET] - 서버와 통신 과정에서 문제 발생`);

@@ -11,8 +11,9 @@ const BookDeleteComment = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (index) => {
     setModalOpen(true)
+    setDeleteCommentIndex(index)
   }
 
   const handleConfirmDelete = (id) => {

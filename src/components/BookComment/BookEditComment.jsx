@@ -17,7 +17,7 @@ const BookEditComment = ({
       return;
     }
     const updateComments = [...comments];
-    updateComments[editMode].comment_content = editContent;
+    updateComments[editMode].content = editContent;
     setComments(updateComments);
     setEditMode(-1); 
     bookUpdateComment(id);

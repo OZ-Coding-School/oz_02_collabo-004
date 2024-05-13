@@ -70,19 +70,22 @@ const BookComment = ({
     }
 
     try {
+      //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
+      //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
+      //TODO: newCommentData > id (코멘트아이디) 수정
       const newUserComment = {
-        //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
-        //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
         user: 1, 
-        comment_content: newComment,
+        content: newComment,
         spoiler_info: spoilerId,
       };
       const response = await bookCreateComment(newUserComment)
       if(response.data) {
         const newCommentData = {
-          comment_content: newComment,
+          //id: response.data.id
+          id: 8,
+          content: newComment,
           created_at: new Date().toISOString(),
-          username: 'name8'
+          user: 'name8'
         };
         //기존 목록에 새 댓글을 추가해서 새로운 배열 생성
         const updatedComments = [newCommentData, ...comments];
@@ -128,8 +131,8 @@ const BookComment = ({
   
   const handleEditClick = (index) => {
     setEditMode(index);
-    setEditContent(comments[index].comment_content);
-    setEditCharCount(comments[index].comment_content.length);
+    setEditContent(comments[index].content);
+    setEditCharCount(comments[index].content.length);
   };
 
   const handleCharCount = (event) => {
@@ -184,12 +187,11 @@ const BookComment = ({
           source="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/1a92/image/_9FUTEe2WluHy6oMjq-hQ77RlEE.JPG"
         />
         <div className="flex flex-col justify-center">
-          <p className="font600">{comment.username}</p>
+          <p className="font600">{comment.user}</p>
           <p className="font14 grayb">{formatTime(comment.created_at)}</p>
         </div>
         <div className="w-[500px] font14 flex items-center relative">
           {editMode === index ? (
-           
             <div className="relative">
               <textarea
                 ref={textareaRef}
@@ -205,7 +207,7 @@ const BookComment = ({
               )}
             </div>
           ) : (
-            <p dangerouslySetInnerHTML={{ __html: comment.comment_content.replace(/\n/g, '<br>') }} />
+            <p dangerouslySetInnerHTML={{ __html: comment.content ? comment.content.replace(/\n/g, '<br>') : '' }} />
           )}
         </div>
       </div>
