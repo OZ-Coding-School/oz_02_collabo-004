@@ -7,133 +7,58 @@ import Button from "../../components/@common/Button";
 import Location from "../../components/@common/Location";
 import arrow_right from "../../assets/images/icons/arrow_right.svg"
 import booksample from "../../assets/images/booksample.png"
-import Modal from "../../components/@common/Modal";
-import { useState } from "react";
 import { RandomColor } from '../../utils/RandomColor';
 // import { isEmptyId } from "../../api/common";
 // import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-const BookSpoilerDetailPage = ({ bookId }) => {
+const BookSpoilerDetailPage = ({ bookId, spoilerId }) => {
   // const { id } = useParams();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
-  // const [spoilerDetail, setSpoilerDetail] = useState(null);
-  // const [keyword, setKeyword] = useState(null);
-  const [comments, setComments] = useState(null);
-
-  let response = {
-    data : {},
-    ok : true
-  };
-
-  let response2 = {
-    data : {},
-    ok : true
-  };
-
-  response.data = {
-    id:"책 아이디",
-    name:"당신은 사업가입니까",
-    author:"캐럴로스 저",
-    published:"알에이치코리아",
-    book_img:"../../assets/images/booksample.png",
-    coupang_link:"https://www.coupang.com/vp/products/21038492?itemId=82145106&vendorItemId=3139880515&isAddedCart=",
-    is_exposed: false,
-    created_at:"2024-04-23T12:00:00Z",
-    updated_at:"2024-04-26T16:00:00Z",
-  };
-
-  const { data: book } = useFetch(`/book/${bookId}`, response);
-
-  response2.data = [
-    { id: 1, kw: '키워드1', book_id: '2'},
-    { id: 2, kw: '키워드2', book_id: '2'},
-    { id: 3, kw: '키워드3', book_id: '2'},
-  ]    
-  const { data: keyword } = useFetch(`book/${bookId}/keywords`, response2);
 
   // if (isLoading) {
   //   return <div>Loading...</div>;
   // }
 
-  // useEffect(() => {
-  //   // if (isEmptyId(id)) return '';
-  //   const getBook = async () => {
-  //     try {
-  //       // const response = await getBook(id);
-  //       // let data = await response.json();
-  //       let data = {
-  //         id:"책 아이디",
-  //         name:"당신은 사업가입니까",
-  //         author:"캐럴로스 저",
-  //         published:"알에이치코리아",
-  //         book_img:"../../assets/images/booksample.png",
-  //         coupang_link:"https://www.coupang.com/vp/products/21038492?itemId=82145106&vendorItemId=3139880515&isAddedCart=",
-  //         is_exposed: false,
-  //         created_at:"2024-04-23T12:00:00Z",
-  //         updated_at:"2024-04-26T16:00:00Z",
-  //       }
-  //       setSpoilerDetail(data);
-  //     } catch (error) {
-  //       console.error("Error book data", error);
-  //     }
-  //   }
-  //   getBook();
-  // }, []);
-
-  // useEffect( () => {
-  //   // if (isEmptyId(id)) return '';
-  //   const getBookKeywords = async () => {
-  //     try {
-  //       // const response = await getBookKeywords(id);
-  //       // const data = await response.json();
-  //       let data = [
-  //         { id: 1, kw: '키워드1', book_id: '2'},
-  //         { id: 2, kw: '키워드2', book_id: '2'},
-  //         { id: 3, kw: '키워드3', book_id: '2'},
-  //       ]
-  //       setKeyword(data);
-  //     } catch (error) {
-  //       console.error("Error keyword data", error);
-  //     }
-  //   }
-  //   getBookKeywords();
-  // }, []);
-
-  // useEffect( () => {
-  //   // if (isEmptyId(id)) return '';
-  //   const getComments = async () => {
-  //     try {
-  //       // const response = await getComments(id); 
-  //       // const data = await response.json();
-  //       let data = [
-  //         { id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
-  //         { id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
-  //         { id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
-  //         { id: 4, comment_content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name4'},
-  //         { id: 5, comment_content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name5'},
-  //         { id: 6, comment_content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name6'},
-  //         { id: 7, comment_content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name7'},
-  //       ]
-  //       setComments(data);
-  //     } catch (error) {
-  //       console.error("Error comment data", error);
-  //     }
-  //   }
-  //   getComments();
-  // }, []);
-
-  const handleConfirmDelete = () => {
-    if (deleteCommentIndex !== null) {
-      const updateComments = [...comments];
-      updateComments.splice(deleteCommentIndex, 1);
-      
-      setComments(updateComments);
-      setDeleteCommentIndex(null);
-      setModalOpen(true);
-    }
+  let response = {
+    data : {
+      id:"책 아이디",
+      name:"당신은 사업가입니까",
+      author:"캐럴로스 저",
+      published:"알에이치코리아",
+      book_img:"../../assets/images/booksample.png",
+      coupang_link:"https://www.coupang.com/vp/products/21038492?itemId=82145106&vendorItemId=3139880515&isAddedCart=",
+      is_exposed: false,
+      created_at:"2024-04-23T12:00:00Z",
+      updated_at:"2024-04-26T16:00:00Z",
+    },
+    ok : true
   };
+  const { data: book } = useFetch(`/book/${bookId}`, response);
+
+  let response2 = {
+    data: [
+      { id: 1, kw: '키워드1', book_id: '2'},
+      { id: 2, kw: '키워드2', book_id: '2'},
+      { id: 3, kw: '키워드3', book_id: '2'},
+    ],
+    ok: true
+  }
+  const { data: keyword } = useFetch(`book/${bookId}/keywords`, response2);
+
+  let response3 = {
+    data: [
+      //TODO: user ID 가 아니라, username 으로 오게 해달라고 요청
+      { id: 1, comment_content: 'comment1', created_at: '2024-04-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name1'},
+      { id: 2, comment_content: 'comment2', created_at: '2024-04-20T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name2'},
+      { id: 3, comment_content: 'comment3', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name3'},
+      { id: 4, comment_content: 'comment4', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name4'},
+      { id: 5, comment_content: 'comment5', created_at: '2024-03-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name5'},
+      { id: 6, comment_content: 'comment6', created_at: '2024-02-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name6'},
+      { id: 7, comment_content: 'comment7', created_at: '2024-01-30T00:00:00Z', update_at: '2024-04-31T00:00:00Z', username: 'name7'},
+    ],
+    ok: true
+  };
+  const { data: bookComment, setData: setBookComment } = useFetch(`/comments/${spoilerId}`, response3);
 
 
   return (
@@ -204,10 +129,9 @@ const BookSpoilerDetailPage = ({ bookId }) => {
                   <p className="font20 font800">내 생각 공유하기</p>
                 </div> 
                 <BookComment 
-                  comments={comments} 
-                  setModalOpen={setModalOpen}
-                  setComments={setComments}
-                  onDeleteComment={setDeleteCommentIndex}
+                  spoilerId={spoilerId}
+                  comments={bookComment} 
+                  setComments={setBookComment}
                   placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 
                                망각하지 않도록 꼭 생각을 글로 남겨보세요!"
                 />
@@ -216,15 +140,6 @@ const BookSpoilerDetailPage = ({ bookId }) => {
           </div>
         </div>
       </div>
-      {modalOpen ? 
-        <Modal 
-          setModalOpen={setModalOpen}
-          message="댓글을 삭제하시겠습니까?"
-          onCancel={() => setModalOpen(false)}
-          onConfirm={handleConfirmDelete}
-        />
-      : null
-      }
     </div>
   )
 }
