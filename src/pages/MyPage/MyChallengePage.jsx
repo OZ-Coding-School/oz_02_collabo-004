@@ -49,7 +49,7 @@ const MyChallengePage = () => {
               </div>
             </div>
             <div className="flex flex-col items-end">
-              <MyChallengeStatus />
+              {/* <MyChallengeStatus /> */}
             </div>
           </div>
         </div>
