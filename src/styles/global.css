@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  * {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  body {
+    background-color: #fff;
+  }
+  .BlackHanSans {
+    font-family: 'Black Han Sans', sans-serif;
+  }
+  .NanumGothicCoding {
+    font-family: 'Nanum Gothic Coding', sans-serif;
+  }
+  .font12 {
+    font-size: 12px;
+  }
+  .font14 {
+    font-size: 14px;
+  }
+  .font16 {
+    font-size: 16px;
+  }
+  .font18 {
+    font-size: 18px;
+  }
+  .font20 {
+    font-size: 20px;
+  }
+  .font22 {
+    font-size: 22px;
+  }
+  .font24 {
+    font-size: 24px;
+  }
+  .font26 {
+    font-size: 26px;
+  }
+  .font28 {
+    font-size: 28px;
+  }
+  .font30 {
+    font-size: 30px;
+  }
+  .font32 {
+    font-size: 32px;
+  }
+  .font34 {
+    font-size: 34px;
+  }
+  .font36 {
+    font-size: 36px;
+  }
+  .font38 {
+    font-size: 38px;
+  }
+  .font40 {
+    font-size: 40px;
+  }
+
+  .font400 {
+    font-weight: 400;
+  }
+  .font500 {
+    font-weight: 500;
+  }
+  .font600 {
+    font-weight: 600;
+  }
+  .font700 {
+    font-weight: 700;
+  }
+  .font800 {
+    font-weight: 800;
+  }
+  .font900 {
+    font-weight: 900;
+  }
+
+  .white {
+    color: #fff;
+  }
+  .black {
+    color: #000;
+  }
+  .primary {
+    color: #fcf2c9;
+  }
+  .secondary {
+    color: #517cce;
+  }
+  .graymain {
+    color: #d0d0d0;
+  }
+  .graylight {
+    color: #eaeaea;
+  }
+  .graymedium {
+    color: #d1d1d1;
+  }
+  .grayb {
+    color: #bbb;
+  }
+  .gray3 {
+    color: #333;
+  }
+  .gray5 {
+    color: #555;
+  }
+  .gray8 {
+    color: #888;
+  }
+
+  .bg-white {
+    background-color: #fff;
+  }
+  .bg-black {
+    background-color: #000;
+  }
+  .bg-primary {
+    background-color: #fcf2c9;
+  }
+  .bg-secondary {
+    background-color: #517cce;
+  }
+  .bg-graymain {
+    background-color: #d0d0d0;
+  }
+  .bg-graylight {
+    background-color: #eaeaea;
+  }
+  .bg-graymedium {
+    background-color: #d1d1d1;
+  }
+  .bg-gray5 {
+    background-color: #555;
+  }
+  .bg-gray8 {
+    background-color: #888;
+  }
+
+  .keyred {
+    background-color: #ff0606;
+  }
+  .keyyellow {
+    background-color: #ffd600;
+  }
+  .keypurple {
+    background-color: #eb00ff;
+  }
+  .keydeeppurple {
+    background-color: #5200ff;
+  }
+  .keyblue {
+    background-color: #00b2fe;
+  }
+  .keydeepblue {
+    background-color: #061fff;
+  }
+  .keyocean {
+    background-color: #00ffff;
+  }
+  .keygreen {
+    background-color: #61e80e;
+  }
+  .keydeepgreen {
+    background-color: #00cd52;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  .mypagesidebar-list-style {
+    @apply flex w-[200px] h-12 font18 pl-1 items-center rounded-full text-gray-700;
+  }
+
+  .textHighlight {
+    background: linear-gradient(to top, #eaeaea 40%, transparent 40%);
+  }
+
+  .textarea-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  .box::-webkit-scrollbar{
+    display:none;
+  }
+  .box{
+    -ms-overflow-style: none;
+ }
+}
+
+@keyframes shake {
+  0% { transform: translateX(-3px); }
+  25% { transform: translateX(3px); }
+  50% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+  100% { transform: translateX(0); }
+}
+
+@media (min-width: 480px) {
+  .ss {
+    width: 480px;
+  }
+}
+@media (min-width: 620px) {
+  .sm {
+    width: 620px;
+  }
+}
+@media (min-width: 768px) {
+  .sl {
+    width: 768px;
+  }
+}
+@media (min-width: 1080px) {
+  .md {
+    width: 1080px;
+  }
+}
+@media (min-width: 1200px) {
+  .lg {
+    width: 1200px;
+  }
+}
+@media (min-width: 1500px) {
+  .xl {
+    width: 1500px;
+  }
+}
