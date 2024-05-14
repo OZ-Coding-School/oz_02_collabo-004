@@ -1,8 +1,20 @@
 import Location from '../../components/@common/Location';
 import MyChallengeStatus from '../../components/MyChallengeStatus';
 import MyPageSidebar from '../../components/MyPageSidebar';
+import useFetch from '../../hooks/useFetch';
 
 const MyChallengePage = () => {
+  let response_total = {
+    data: {},
+    ok: true,
+  };
+
+  response_total.data = {
+    total: 56,
+  };
+
+  const { data: total } = useFetch('/challenge/total', response_total);
+
   return (
     <div className="w-full flex justify-center pt-[80px]">
       <div className="flex flex-col md justify-start pt-10 pb-20">
@@ -25,7 +37,7 @@ const MyChallengePage = () => {
               <p className="text-xl font-semibold">
                 지금 Rose님 포함 총&nbsp;
                 <span className="text-secondary text-2xl font-extrabold">
-                  54개
+                  {total?.total}개
                 </span>
                 의 챌린지가 진행중입니다!
               </p>
@@ -37,8 +49,6 @@ const MyChallengePage = () => {
               </div>
             </div>
             <div className="flex flex-col items-end">
-              <MyChallengeStatus />
-              <MyChallengeStatus />
               <MyChallengeStatus />
             </div>
           </div>
