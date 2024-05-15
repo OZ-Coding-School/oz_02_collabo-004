@@ -1,22 +1,27 @@
 import useMutate from '../../hooks/useMutate';
 
-const BookEditComment = ({
+const ChallengeEditComment = ({
     comment,
     editContent,
+    minLength,
     comments,
     editMode,
     setComments,
     setEditMode,
   }) => {
-  const { mutate: bookUpdateComment } = useMutate(`/comment/update/${comment.id}`, 'PUT');
+  const { mutate: challengeUpdateComment } = useMutate(`/dicomment/update/${comment.id}`, 'PUT');
+
 
   const handleEditSubmit = (id) => {
+    if (editContent.length < minLength) {
+      alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
+      return;
+    }
     const updateComments = [...comments];
     updateComments[editMode].content = editContent;
     setComments(updateComments);
     setEditMode(-1); 
-    bookUpdateComment(id);
-    console.log(updateComments, 'challengeUpdateComment 챌린지 수정 확인')
+    challengeUpdateComment(id)
   };
 
   return (
@@ -29,4 +34,4 @@ const BookEditComment = ({
 )
 }
 
-export default BookEditComment
+export default ChallengeEditComment

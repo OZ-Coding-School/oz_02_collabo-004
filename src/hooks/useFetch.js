@@ -20,7 +20,7 @@ export default function useFetch(url, response, method= "GET", body = null) {
       }
       // console.log(response)
       // console.log(response.data)
-      setData(response);
+      setData(response.data);
     } catch (error) {
       console.error(error);
       console.log(`[GET] - 서버와 통신 과정에서 문제 발생`);

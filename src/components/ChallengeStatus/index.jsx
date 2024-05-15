@@ -35,10 +35,12 @@ const ChallengeStatus = ({
     }
   };
 
-  const completedChallenges = completeChallenges.filter(challenge => challenge).length;
-  const totalChallenges = completeChallenges.length;
+  let completedChallenges = completeChallenges.filter(challenge => challenge).length;
+  const totalChallenges = 5;
+  if (completedChallenges === 6) {
+    completedChallenges = 5;
+  }
   const completePercentage = (completedChallenges / totalChallenges) * 100;
-  const displayPercentage = completedChallenges === 6 ? 100 : completePercentage;
 
   const statusCard = Array.from({ length: 6 }, (_, index) => ({
     day: index + 1,
@@ -93,9 +95,9 @@ const ChallengeStatus = ({
       <div className="flex flex-col px-5 pt-2 pb-4 gap-1">
         <p className="font12 white"> {'userId'} 님의 챌린지 현황 </p>
         <div className="relative h-1 bg-black w-full rounded-full">
-          <div className="absolute top-0 h-1 bg-primary rounded-full" style={{ width: `${displayPercentage}%` }}></div>
+          <div className="absolute top-0 h-1 bg-primary rounded-full" style={{ width: `${completePercentage}%` }}></div>
           <div className="flex font12 gap-2 pt-3 text-[13px]"> 
-            <p className="primary font800"> {displayPercentage.toFixed(1)}% </p>
+            <p className="primary font800"> {completePercentage}% </p>
             <p className="white font600">챌린지 완료</p>
           </div>
         </div>

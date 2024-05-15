@@ -1,4 +1,4 @@
-import BookComment from "../../components/BookComment"
+import BookComment from "../../components/BookComment/BookComment"
 import comment from "../../assets/images/comment.png"
 import BookSnsContent from "../../components/BookSnsContent";
 import BookQuratorSpoiler from "../../components/BookQuratorSpoiler";
@@ -204,7 +204,7 @@ const BookSpoilerDetailPage = ({
                   <p className="font20 font800">내 생각 공유하기</p>
                 </div> 
                 <BookComment 
-                  spoilerId={id}
+                  id={id}
                   comments={bookComment} 
                   setComments={setBookComment}
                   placeholder="머릿속에 들어온 내용을 글로 작성함으로써 한번 더 뇌에 새길 수 있습니다. 

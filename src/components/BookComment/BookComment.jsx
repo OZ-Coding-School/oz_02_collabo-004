@@ -8,15 +8,12 @@ import BookEditComment from "./BookEditComment";
 import BookDeleteComment from "./BookDeleteComment";
 
 const BookComment = ({ 
-  spoilerId,
+  id,
   comments, 
   setComments, 
   placeholder, 
-  minLength, 
-  showCharCount,
-  handleCompleteSubmit,
 }) => {
-  const { mutate: bookCreateComment } = useMutate(`/comment/create/${spoilerId}`);
+  const { mutate: bookCreateComment } = useMutate(`/comment/create/${id}`);
   
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,8 +21,6 @@ const BookComment = ({
   const [isMoreVisible, setIsMoreVisible] = useState(false); 
   const [editMode, setEditMode] = useState(-1);
   const [editContent, setEditContent] = useState(""); 
-  const [charCount, setCharCount] = useState(0); 
-  const [editCharCount, setEditCharCount] = useState(0); 
 
   const textareaRef = useRef(null); 
 
@@ -63,55 +58,34 @@ const BookComment = ({
       alert("내용을 입력하셔야 등록됩니다.");
       return;
     }
-  
-    if (newComment.length < minLength) {
-      alert(`${minLength}자 이상 작성해야 해당 일차의 챌린지 완료 댓글이 등록됩니다.`);
-      return;
-    }
+
+    //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
+    //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
+    //TODO: newCommentData > id (코멘트아이디) 실제 응답 아이디로 수정
+    const newBookComment = {
+      user: 1, 
+      content: newComment,
+      spoiler_info: id,
+    };
 
     try {
-      //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
-      //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
-      //TODO: newCommentData > id (코멘트아이디) 수정
-      const newUserComment = {
-        user: 1, 
-        content: newComment,
-        spoiler_info: spoilerId,
-      };
-      const response = await bookCreateComment(newUserComment)
-      if(response.data) {
-        const newCommentData = {
-          //id: response.data.id
+      const response = await bookCreateComment(newBookComment);
+      console.log('API 응답', response.data); //API 응답데이터 확인
+      if (response.data) {
+        const createdComment = {
+          // id: response.data.id,
           id: 8,
           content: newComment,
           created_at: new Date().toISOString(),
-          user: 'name8'
+          user: 'name8',
         };
-        //기존 목록에 새 댓글을 추가해서 새로운 배열 생성
-        const updatedComments = [newCommentData, ...comments];
+        const updatedComments = [createdComment, ...comments];
+        console.log('업데이트된 댓글 목록', updatedComments); //업데이트 댓글목록 확인
         setComments(updatedComments);
-        console.log(updatedComments, 'updatedComments 확인')
-        //나머지 작업
-        if (typeof handleCompleteSubmit === 'function') { 
-          handleCompleteSubmit(); 
-          window.scrollTo(0, 0);
-        }
         setNewComment('');
-      } else {
-        throw new Error('Fail bookCreateComment')
       }
-      // 기존에 프론트에서 등록/수정했던 로직
-      // const createComments = [newUserComment, ...comments]; 
-      // setComments(createComments);
-      // setCurrentPage(1); 
-      // setNewComment("");
-      // setEditMode(-1);
-      // if (typeof handleCompleteSubmit === 'function') { 
-      //   handleCompleteSubmit(); 
-      //   window.scrollTo(0, 0);
-      // }
     } catch (error) {
-      console.error('Error creating comment:', error);
+      console.error('댓글 등록 에러', error);
       alert('댓글 등록에 실패했습니다.');
     }
   };
@@ -132,17 +106,6 @@ const BookComment = ({
   const handleEditClick = (index) => {
     setEditMode(index);
     setEditContent(comments[index].content);
-    setEditCharCount(comments[index].content.length);
-  };
-
-  const handleCharCount = (event) => {
-    const count = event.target.value.length;
-    setCharCount(count);
-  };
-
-  const handleEditCharCount = (event) => {
-    const count = event.target.value.length;
-    setEditCharCount(count);
   };
 
   const formatTime = (timeString) => {
@@ -197,14 +160,9 @@ const BookComment = ({
                 ref={textareaRef}
                 id={`comment-textarea-${index}`}
                 value={editContent}
-                onChange={(e) => {setEditContent(e.target.value); handleEditCharCount(e);}}
+                onChange={(e) => {setEditContent(e.target.value);}}
                 className="resize-none w-[500px] whitespace-pre-line focus:outline-none secondary box"
               />
-              {showCharCount && editMode === index && (
-                <span className={`absolute bottom-2 right-0 top-12 ${editCharCount < minLength ? 'text-red-500' : ''} text-[10px]`}>
-                  {editCharCount}/{minLength}
-                </span>
-              )}
             </div>
           ) : (
             <p dangerouslySetInnerHTML={{ __html: comment.content ? comment.content.replace(/\n/g, '<br>') : '' }} />
@@ -217,7 +175,6 @@ const BookComment = ({
              <BookEditComment 
               comment={comment}
               editContent={editContent}
-              minLength={minLength}
               comments={comments}
               editMode={editMode}
               setComments={setComments}
@@ -258,13 +215,8 @@ const BookComment = ({
                   className="w-full font14 resize-none pl-5 pr-12 placeholder-multiline whitespace-pre-line focus:outline-none box" 
                   placeholder={placeholder}
                   value={newComment}
-                  onChange={(e) => {setNewComment(e.target.value); handleCharCount(e);}} 
+                  onChange={(e) => {setNewComment(e.target.value);}} 
                 />
-                {showCharCount && newComment && (
-                  <span className={`absolute bottom-2 right-12 top-12 ${charCount < minLength ? 'text-red-500' : ''} text-[10px]`}>
-                    {charCount}/{minLength}
-                  </span>
-                )}
               </div>
               <Button 
                 onClick={handleCommentSubmit} 
