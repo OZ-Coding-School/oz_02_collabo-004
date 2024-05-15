@@ -1,11 +1,18 @@
 import challenge_spoiler from '../../assets/images/challenge_spoiler.png'
 
-const ChallengeSpoiler = ({ challengeContent, currentChallengeIndex  }) => {
+const ChallengeSpoiler = ({ 
+  challengeSpoiler, 
+  currentChallengeIndex  
+}) => {
 
   return (
     <>
-      {challengeContent &&  challengeContent.map((challenge, index) => (
-        <div key={challenge.id} className="flex flex-col" style={{ display: index === currentChallengeIndex ? 'block' : 'none' }}> 
+      {challengeSpoiler &&  challengeSpoiler.map((challenge, index) => (
+        <div 
+          key={challenge.id} 
+          className="flex flex-col" 
+          style={{ display: index === currentChallengeIndex ? 'block' : 'none' }}
+        > 
           <div className="flex items-center gap-3 pl-1 pb-[12px]">
             <img src={challenge_spoiler} alt="comment" className="w-20 h-18"/>
             <p className="font20 font800">챌린지 {challenge.day}일차</p>
