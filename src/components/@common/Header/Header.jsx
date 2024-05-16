@@ -49,14 +49,21 @@ const Header = () => {
             ></img>
           </Link>
         </div>
-        <div className="flex justify-between w-[14rem] items-center">
-          <Link to={"/bookspoiler"}>
-            <span className="cursor-pointer">북스포일러</span>
-          </Link>
-          <Link to={"/challenge"}>
-            <span className="cursor-pointer">챌린지</span>
-          </Link>
-
+        <div className="flex justify-between items-center gap-10">
+          <div className="flex gap-7">
+            <Link to={"/bookspoiler"}>
+              <span className="cursor-pointer">북스포일러</span>
+            </Link>
+            <Link to={"/challenge"}>
+              <span className="cursor-pointer">챌린지</span>
+            </Link>
+            {isLoggedIn ? (
+              <Link to={"/mychallenge"}>
+                <span className="cursor-pointer">마이페이지</span>
+              </Link>
+             ) : ( null )} 
+          </div>
+          
           {isLoggedIn ? (
             <Avatar onClick={handlekakaoLogout}>나가기</Avatar>
           ) : (

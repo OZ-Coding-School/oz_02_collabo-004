@@ -31,7 +31,7 @@ function App() {
         <Route path="/styleguide" element={<StyleGuide />} />
         <Route path="/bookspoiler" element={<BookSpoilerPage />} />
         <Route path="/bookspoilerdetail/:id" element={<BookSpoilerDetailPage />} />
-        <Route path="/challengeaction/:id" element={<ChallengeActionPage />} />
+        <Route path="/challengeaction" element={<ChallengeActionPage />} />
         <Route path="/challenge" element={<ChallengePage />} />
         <Route path="/mypaymentlist" element={<MyPaymentListPage />} />
         <Route path="/payment" element={<PaymentPage />} />
