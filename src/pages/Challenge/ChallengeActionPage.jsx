@@ -114,12 +114,14 @@ const ChallengeActionPage = ({
     <div className="w-full flex justify-center pt-[80px]">
       <div className="flex flex-col md justify-center pt-10 pb-20">
       <Location
-        number={3}
+        number={4}
         link1="/"
-        link2="/challenge"
+        link2="/mychallenge"
+        link3="/mychallenge"
         depth1="Home"
-        depth2="챌린지"
-        linkLast="/bookspoilerdetail"
+        depth2="마이페이지"
+        depth3="내 챌린지"
+        linkLast="/challengeaction"
         depthLast="챌린지 북스포일러"
       />
         <div className="flex flex-col gap-14 pt-10">
