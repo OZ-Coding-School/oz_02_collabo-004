@@ -2,10 +2,24 @@ import { useEffect, useState } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import logo_noText from "../../../assets/images/logo_noText.png";
+import useMutate from "../../../hooks/useMutate";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [scrollShadow, setScrollShadow] = useState(false);
+
+  let response = {
+    data : {
+      "id":123456789
+   },
+    ok: true
+   }
+  const { mutate: kakaoLogout } = useMutate(`/users/kakao/logout`, response);
+  console.log(kakaoLogout)
+
+  const handlekakaoLogout = () => {
+    kakaoLogout();
+  }
 
   const handleScroll = () => {
     const bottomShadow = window.scrollY > 0;
@@ -44,7 +58,7 @@ const Header = () => {
           </Link>
 
           {isLoggedIn ? (
-            <Avatar>로그아웃</Avatar>
+            <Avatar onClick={handlekakaoLogout}>나가기</Avatar>
           ) : (
             <Link to={"/login"}>
               <Avatar>로그인</Avatar>

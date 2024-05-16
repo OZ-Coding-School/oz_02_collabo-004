@@ -15,7 +15,6 @@ const ChallengeActionPage = ({
   userId,
   challengeSpoilerId,
   challengeInfoId,
-
 }) => {
   const { id } = useParams();
 
@@ -111,7 +110,6 @@ const ChallengeActionPage = ({
     }
   };
 
-
   return (
     <div className="w-full flex justify-center pt-[80px]">
       <div className="flex flex-col md justify-center pt-10 pb-20">
@@ -158,6 +156,8 @@ const ChallengeActionPage = ({
                 ))}
                 </div>
                 <ChallengeStatus 
+                  userId={userId}
+                  challengeInfoId={challengeInfoId}
                   setCurrentChallengeIndex={setCurrentChallengeIndex} 
                   completeChallenges={completeChallenge} 
                   currentDay={currentDay}
@@ -186,7 +186,6 @@ const ChallengeActionPage = ({
                   handleCompleteSubmit={handleCompleteSubmit}
                 />
               </div>
-
             </div>
           </div>
         </div>
