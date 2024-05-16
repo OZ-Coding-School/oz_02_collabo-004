@@ -1,4 +1,4 @@
-import mainBanner from "../../assets/images/mainBanner.png";
+import challengeDetail from "../../assets/images/challengeDetail.gif";
 import BookCaroussel from "../../components/BookCaroussel/BookCarrousel";
 import Location from "../../components/@common/Location";
 
@@ -26,9 +26,8 @@ const ChallengePage = () => {
             <BookCaroussel></BookCaroussel>
           </div>
           <div className="w-full">
-            {/* 챌린지 설명 하드코딩 부분 */}
             <img
-              src={mainBanner}
+              src={challengeDetail}
               alt="메인 배너 이미지"
               className="w-[1080px]"
             ></img>
