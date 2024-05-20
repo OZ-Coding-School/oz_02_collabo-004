@@ -62,6 +62,7 @@ const BookCaroussel = () => {
 
   const location = useLocation();
   const [counter, setCounter] = useState(0);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const handleLeftClick = () => {
     if (counter > 0) {
@@ -125,7 +126,7 @@ const BookCaroussel = () => {
                 </div>
                 {location.pathname === "/challenge" ? (
                   <div className="w-[240px] z-30 flex justify-center">
-                    <Link to={`/challengeaction`}>
+                    <Link to={isLoggedIn ? "/payment" : "/login"}>
                       <Button>챌린지용 북스포일러 열람하기</Button>
                     </Link>
                   </div>
