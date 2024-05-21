@@ -1,14 +1,24 @@
 import { useState } from 'react';
 import BookInfoCard from '../../components/BookInfoCard';
 import Location from '../../components/@common/Location';
+import { BOOK_DATA } from '../../components/BookInfoCard/data';
+import useFetch from '../../hooks/useFetch';
 
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
 
   const handleClicked = () => {
     setCount(count + 1);
-    // console.log(count);
   };
+
+  let response = {
+    data: {},
+    ok: true,
+  };
+  response.data = BOOK_DATA;
+  const { data: book } = useFetch('/books/all', response);
+  console.log(book);
+
   return (
     <>
       <div className="w-full flex justify-center">
@@ -24,10 +34,20 @@ const BookSpoilerPage = () => {
       </div>
       <div className="flex justify-center flex-wrap pt-10 pb-20">
         <div className="flex flex-col md gap-y-7">
-          <div className="font800 font30 flex textHighlight w-[9rem] justify-center">
+          <div className="font800 font30 flex textHighlight w-[9rem] justify-center text-nowrap">
             북스포일러
           </div>
-          <BookInfoCard onClick={handleClicked} count={count} />
+          <div className="flex gap-14 justify-around flex-wrap">
+            {book &&
+              book.map((item) => (
+                <BookInfoCard
+                  onClick={handleClicked}
+                  count={count}
+                  {...item}
+                  key={item.name}
+                />
+              ))}
+          </div>
         </div>
       </div>
     </>
