@@ -7,7 +7,7 @@ const BookDeleteComment = ({
   comments,
   setComments,
   }) => {
-  const { mutate: bookDeleteComment } = useMutate(`/comment/delete/${comment.id}`);
+  const { mutate: bookDeleteComment } = useMutate(`/comments/comment/delete/${comment.id}`);
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
 

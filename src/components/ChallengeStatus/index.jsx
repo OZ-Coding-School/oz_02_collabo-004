@@ -42,7 +42,7 @@ const ChallengeStatus = ({
     ],
     ok: true
   }
-  const { data: myChallengeStatus } = useFetch(` /mychallenge/doing/${userId}`, response);
+  const { data: myChallengeStatus } = useFetch(`/challenges/mychallenge/doing/${userId}`, response);
 
   let response2 = {
     data: {
@@ -58,7 +58,7 @@ const ChallengeStatus = ({
     },
     ok: true
   }
-  const { data: myChallengeComplete } = useFetch(`/mychallenge/status/${userId}/${challengeInfoId}`, response2);
+  const { data: myChallengeComplete } = useFetch(`/challenges/mychallenge/status/${userId}/${challengeInfoId}`, response2);
 
   const prevDay = () => {
     setCurrentDay((prevDay) => (prevDay === 1 ? 6 : prevDay - 1));

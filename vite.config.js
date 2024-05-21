@@ -14,4 +14,15 @@ export default defineConfig({
       ],
     },
   },
+  server: {
+    proxy: {
+        "/api": {
+            target: 'http://ec2-13-209-68-37.ap-northeast-2.compute.amazonaws.com:8000',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ""),
+            secure: false,
+            ws: true,
+        },
+    },
+  },
 });

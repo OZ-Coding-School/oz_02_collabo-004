@@ -46,7 +46,7 @@ const BookSpoilerDetailPage = ({
     ],
     ok: true
   }
-  const { data: keyword } = useFetch(`book/${bookId}/keywords`, response2);
+  const { data: keyword } = useFetch(`/book/${bookId}/keywords`, response2);
 
   let response3 = {
     data: [
@@ -146,8 +146,7 @@ const BookSpoilerDetailPage = ({
           <span className="font800 font30 textHighlight">{book?.name} 북스포일러</span>
           <div className="flex-col flex items-center gap-14 pt-14">
             <div className="flex gap-10 justify-center">
-              {/* TODO: img {book?.book_img}*/}
-              <img src={booksample} className="w-48"/> 
+              <img src={book?.book_img} className="w-48"/> 
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col items-center gap-2">
                   <p className="font900 font22 secondary">{book?.name}</p>
@@ -169,7 +168,7 @@ const BookSpoilerDetailPage = ({
                 </div>
                 <div className="flex items-start">
                   <div className="flex gap-2 items-center cursor-pointer pt-2"
-                      onClick={() => open('https://www.coupang.com/', '_blank')}
+                      onClick={() =>  open(book?.coupang_link, '_blank')}
                   >
                     <p className="font600 font14 grayb">책 사러가기</p>
                     <img src={arrow_right} className="w-2 "/>

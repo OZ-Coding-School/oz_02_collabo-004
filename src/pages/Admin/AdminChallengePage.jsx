@@ -1,13 +1,48 @@
 import { useRef, useState } from 'react';
-import Button from "../../components/@common/Button";
 import arrow_down_fill from '../../assets/images/icons/arrow_down_fill.svg'
 import useOnClickOutside from '../../hooks/useOnClickOutside';
+import useFetch from '../../hooks/useFetch';
+import { useParams } from 'react-router-dom';
+import AdminChallengeSpoiler from '../../components/AdminChallengeSpoiler';
 
-const AdminChallengePage = () => {
+const AdminChallengePage = ({
+  bookId,
+  challengeSpoilerId,
+}) => {
+  const { id } = useParams();
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectListItem, setSelectListItem] = useState('');
-  
+  const [bookPrice, setBookPrice] = useState('');
+
   const dropdownRef = useRef(null); 
+
+  let response = {
+    data: [
+      {id:"1", day:1, title:"1일차 스포일러 제목", content:"1일차 스포일러 내용", challenge_info_id:1},
+      {id:"2", day:2, title:"2일차 스포일러 제목", content:"2일차 스포일러 내용", challenge_info_id:2},
+      {id:"3", day:3, title:"3일차 스포일러 제목", content:"3일차 스포일러 내용", challenge_info_id:3},
+      {id:"4", day:4, title:"4일차 스포일러 제목", content:"4일차 스포일러 내용", challenge_info_id:4},
+      {id:"5", day:5, title:"5일차 스포일러 제목", content:"5일차 스포일러 내용", challenge_info_id:5},
+      {id:"6", day:6, title:"완주 스포일러 제목", content:"6일차 스포일러 내용", challenge_info_id:6},
+    ],
+    ok: true
+  };
+  const { data: challengeSpoiler, setData: setChallengeSpoiler } = useFetch(`/book/${bookId}/challenge_spoiler/list`, response);
+
+  let response2 = {
+    data: [
+      {
+        id:"1",
+        name:"인스타브레인",
+      },
+      {
+        id:"2",
+        name:"뇌, 과학의 비밀을 풀다",
+      }
+    ],
+    ok: true
+  };
+  const { data: bookList } = useFetch(`/books`, response2);
 
   useOnClickOutside(dropdownRef, () => {
     if (showDropdown) {
@@ -18,12 +53,21 @@ const AdminChallengePage = () => {
   const handleListItemClick = (item) => {
     setSelectListItem(item);
     setShowDropdown(false); 
+    // setSelectListItem(book.name);
+    // setBookId(book.id);
+    // setShowDropdown(false);
   };
 
   const handleInputChange = (e) => {
     setSelectListItem(e.target.value);
   };
 
+  const handleBookPriceChange = (e) => {
+    const { value } = e.target;
+    if (/^\d*$/.test(value)) {
+      setBookPrice(value);
+    }
+  };
 
   return (
     <div className="flex">
@@ -54,10 +98,16 @@ const AdminChallengePage = () => {
                     />
                   </div>
                   {showDropdown && (
-                    <ul className="absolute w-[300px] flex flex-col z-10 font18 bg-secondary white"  ref={dropdownRef}>
-                      <li className="hover:bg-primary hover:secondary cursor-pointer p-2" onClick={() => handleListItemClick('리스트 항목 1')}>리스트 항목 1</li>
-                      <li className="hover:bg-primary hover:secondary cursor-pointer p-2" onClick={() => handleListItemClick('리스트 항목 2')}>리스트 항목 2</li>
-                      <li className="hover:bg-primary hover:secondary cursor-pointer p-2" onClick={() => handleListItemClick('리스트 항목 3')}>리스트 항목 3</li>
+                    <ul className="absolute w-[300px] flex flex-col z-10 font18 bg-secondary white" ref={dropdownRef}>
+                      {bookList && bookList.map(book => (
+                        <li
+                          key={book.id}
+                          className="hover:bg-primary hover:secondary cursor-pointer p-2"
+                          onClick={() => handleListItemClick(book.name)}
+                        >
+                          {book.name}
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </div>
@@ -66,7 +116,12 @@ const AdminChallengePage = () => {
                 <p className="font18 font800">책 가격</p>
                 <div className='flex items-center gap-3'>
                   <div className='flex relative items-center'>
-                    <input type="text" className="w-[170px] font16 border gray8 border-gray8 rounded-sm p-1"/>
+                    <input 
+                      type="text" 
+                      className="w-[170px] font16 border gray8 border-gray8 rounded-sm p-1"
+                      value={bookPrice}
+                      onChange={handleBookPriceChange}
+                    />
                   </div>
                   <p>원</p>
                 </div>
@@ -80,35 +135,13 @@ const AdminChallengePage = () => {
                 챌린지용 일차별 스포일러 작성
               </p>
             </div>
-            <div className="flex flex-col gap-5">
-            {[...Array(6).keys()].map(index => (
-              <div key={index} className="flex items-start gap-5">
-                <p className="font20 font800 w-[50px]">
-                  {index === 5 ? '완주' : `${index + 1}일차`}
-                </p>
-                <div className='flex flex-col items-start gap-3'>
-                  <div className='flex items-center gap-3'>
-                    <p className='font500'>제목</p>
-                    <input type="text" className="w-[600px] font16 border gray8 border-gray8 rounded-sm p-1"/>
-                  </div>
-                  <div className='flex items-center gap-3'>
-                    <p className='font500'>본문</p>
-                    <input type="text" className="w-[600px] font16 border gray8 border-gray8 rounded-sm p-1"/>
-                  </div>
-                </div>
-              </div>
-              ))}
-            </div>
-            <div className='flex justify-end'>
-              <Button 
-                onClick={''} 
-                width="150px" height="45px" fontSize="18px" fontWeight="600"
-              >
-                저장
-              </Button>
-            </div>
+            <AdminChallengeSpoiler 
+              bookId={bookId}
+              challengeSpoilerId={challengeSpoilerId}
+              challengeSpoiler={challengeSpoiler}
+              setChallengeSpoiler={setChallengeSpoiler}
+            />
           </div>
-
         </div>
       </div>
     </div>

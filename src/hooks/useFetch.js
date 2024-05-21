@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-// import axiosInstance from "../utils/axios"
+import axiosInstance from "../utils/axios"
 
-export default function useFetch(url, response, method= "GET", body = null) {
+export default function useFetch(url, method= "GET", body = null) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // const requestOptions = {
-      //   method: method,
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // };
-      // const response = await axiosInstance(url, requestOptions);
+      const requestOptions = {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'withCredentials': true
+        },
+      };
+      const response = await axiosInstance(
+        `${url}`, 
+        requestOptions
+      );
       if (!response.ok) {
         throw new Error('서버 응답 실패');
       }
@@ -29,7 +33,7 @@ export default function useFetch(url, response, method= "GET", body = null) {
     }
   };
 
-  useEffect(() => {
+  useEffect((fetchData) => {
     fetchData();
   }, [url, method, body]);
 

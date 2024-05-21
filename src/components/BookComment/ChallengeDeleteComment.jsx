@@ -7,7 +7,7 @@ const ChallengeDeleteComment = ({
   comments,
   setComments,
   }) => {
-  const { mutate: challengeDeleteComment } = useMutate(`/dicomment/delete/${comment.id}`);
+  const { mutate: challengeDeleteComment } = useMutate(`challenges/dicomment/delete/${comment.id}`);
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
 
