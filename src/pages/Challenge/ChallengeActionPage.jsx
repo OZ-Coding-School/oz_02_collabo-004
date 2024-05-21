@@ -17,7 +17,6 @@ const ChallengeActionPage = ({
   challengeInfoId,
 }) => {
   const { id } = useParams();
-
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [completeChallenge, setCompleteChallenge] = useState(Array(6).fill(false)); 
   const [currentDay, setCurrentDay] = useState(1);
@@ -34,7 +33,7 @@ const ChallengeActionPage = ({
       ],
       ok: true
     };
-    const { data: challengeComment, setData: setChallengeComment } = useFetch(`/dicomments/${challengeSpoilerId}`, response);
+    const { data: challengeComment, setData: setChallengeComment } = useFetch(`/challenges/dicomments/${challengeSpoilerId}`, response);
 
     let response2 = {
       data: [
@@ -47,7 +46,8 @@ const ChallengeActionPage = ({
       ],
       ok: true
     };
-    const { data: challengeSpoiler } = useFetch(`/${challengeInfoId}/spoiler/${challengeSpoilerId}`, response2);
+    //챌린지 별 챌린지 스포일러 리스트 불러오기
+    const { data: challengeSpoiler } = useFetch(`/challenge/${challengeInfoId}/challenge_spoiler_list`, response2);
 
     let response3 = {
       data: {
@@ -72,7 +72,7 @@ const ChallengeActionPage = ({
       },
       ok: true
     }
-    const { data: challengeBook } = useFetch(`/mychallenge/detail/${userId}/${challengeInfoId}`, response3);
+    const { data: challengeBook } = useFetch(`/challenges/mychallenge/detail/${userId}/${challengeInfoId}`, response3);
 
     let response4 = {
       data: [
@@ -82,7 +82,7 @@ const ChallengeActionPage = ({
       ],
       ok: true
     }
-    const { data: keyword } = useFetch(`book/${bookId}/keywords`, response4);
+    const { data: keyword } = useFetch(`/book/${bookId}/keywords`, response4);
 
   const handleCompleteSubmit = () => {
     const updateCompleteChallenge = [...completeChallenge];
@@ -129,10 +129,9 @@ const ChallengeActionPage = ({
           <div className="flex-col flex items-center gap-14">
             <div className="flex gap-10 justify-center">
               <div className="flex flex-col justify-center">
-                {/* TODO: img {challengeBook?.book_info.book_img}*/}
-                <img src={booksample} className="w-72"/>
+                <img src={challengeBook?.book_info.book_img} className="w-72"/>
                 <div className="flex gap-2 items-center cursor-pointer pt-2"
-                     onClick={() => open('https://www.coupang.com/', '_blank')}
+                     onClick={() => open(challengeBook?.book_info.coupang_link, '_blank')}
                   >
                   <p className="font600 font14 grayb pl-4">책 사러가기</p>
                   <img src={arrow_right} className="w-2"/>

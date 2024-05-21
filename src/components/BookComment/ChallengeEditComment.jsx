@@ -9,7 +9,7 @@ const ChallengeEditComment = ({
     setComments,
     setEditMode,
   }) => {
-  const { mutate: challengeUpdateComment } = useMutate(`/dicomment/update/${comment.id}`, 'PUT');
+  const { mutate: challengeUpdateComment } = useMutate(`challenges/dicomment/update/${comment.id}`, 'PUT');
 
 
   const handleEditSubmit = (id) => {

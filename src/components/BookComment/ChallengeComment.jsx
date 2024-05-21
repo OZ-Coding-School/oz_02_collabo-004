@@ -16,7 +16,7 @@ const ChallengeComment = ({
   showCharCount,
   handleCompleteSubmit,
 }) => {
-  const { mutate: challengeCreateComment } = useMutate(`/dicomment/create/${id}`);
+  const { mutate: challengeCreateComment } = useMutate(`/challenges/dicomment/create/${id}`);
   
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,7 +77,7 @@ const ChallengeComment = ({
       content: newComment,
       challengespoiler_info: id,
     }
-    try {
+    try { 
       const challengeResponse  = await challengeCreateComment(newChallengeComment)
       if(challengeResponse.data) {
         const newCommentData = {

@@ -8,7 +8,7 @@ const BookEditComment = ({
     setComments,
     setEditMode,
   }) => {
-  const { mutate: bookUpdateComment } = useMutate(`/comment/update/${comment.id}`, 'PUT');
+  const { mutate: bookUpdateComment } = useMutate(`/comments/comment/update/${comment.id}`, 'PUT');
 
   const handleEditSubmit = (id) => {
     const updateComments = [...comments];

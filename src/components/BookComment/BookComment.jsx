@@ -13,7 +13,7 @@ const BookComment = ({
   setComments, 
   placeholder, 
 }) => {
-  const { mutate: bookCreateComment } = useMutate(`/comment/create/${id}`);
+  const { mutate: bookCreateComment } = useMutate(`/comments/comment/create/${id}`);
   
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
