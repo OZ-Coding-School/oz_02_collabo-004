@@ -11,6 +11,11 @@ const MyPageSidebar = () => {
     setHoveredItem(null);
   };
 
+  const handlekakaoLogout = () => {
+    kakaoLogout();
+  }
+  console.log(handlekakaoLogout)
+
   const hoveredItemStyle = (index) => ({
     color: hoveredItem === index ? '#1f2937' : '',
     backgroundColor: hoveredItem === index ? '#d1d5db' : '',
@@ -54,10 +59,6 @@ const MyPageSidebar = () => {
 
         <ListItem index={3} link="/myinfo">
           정보수정
-        </ListItem>
-
-        <ListItem index={4} link="/" color="gray-500">
-          로그아웃
         </ListItem>
 
         <hr className="border border-solid" />

@@ -8,6 +8,13 @@ import Modal from "../../components/@common/Modal/userDeleteModal";
 import profileImage from "../../assets/images/profileImage-1.jpg";
 
 const MyInfoPage = () => {
+  // let response = {
+  //   data: {},
+  //   ok: true,
+  // };
+  // response.data = userData;
+  // const { data: userData } = useFetch('/users', response);
+
   const userData = [
     {
       id: 1,
@@ -18,6 +25,7 @@ const MyInfoPage = () => {
     },
   ];
 
+  // 이미지 변경
   const [Image, setImage] = useState(profileImage);
   const fileInput = useRef(null);
 
@@ -38,8 +46,12 @@ const MyInfoPage = () => {
       setImage(profileImage);
     }
   };
-
+  // 모달오픈
   const [isOpen, setIsOpen] = useState(false);
+
+  //닉네임, mbti변경
+  const [nickName, setNickName] = useState(userData[0].nickName);
+  const [MBTI, setMBTI] = useState(userData[0].mbti);
 
   return (
     <div className="w-full flex justify-center pt-[80px]">
@@ -96,29 +108,29 @@ const MyInfoPage = () => {
                 <div className="grid grid-rows-3 grid-flow-col gap-8 w-[42rem]">
                   <div className="flex flex-col">
                     <label>닉네임</label>
-                    <Input placeholder={userData[0].nickName}></Input>
+                    <Input
+                      value={nickName}
+                      onChange={(e) => setNickName(e.target.value)}
+                    ></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>아이디</label>
-                    <Input disabled placeholder={userData[0].userId}></Input>
+                    <Input disabled value={userData[0].userId}></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>연결된 소셜계정</label>
-                    <Input
-                      disabled
-                      placeholder={"카카오로 연결된 소셜계정"}
-                    ></Input>
+                    <Input disabled value={"카카오로 연결된 소셜계정"}></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>mbti</label>
-                    <Input placeholder={userData[0].mbti}></Input>
+                    <Input
+                      value={MBTI}
+                      onChange={(e) => setMBTI(e.target.value)}
+                    ></Input>
                   </div>
                   <div className="flex flex-col">
                     <label>휴대전화</label>
-                    <Input
-                      disabled
-                      placeholder={userData[0].phoneNumber}
-                    ></Input>
+                    <Input disabled value={userData[0].phoneNumber}></Input>
                   </div>
                   <div className="flex flex-col justify-end items-center w-[21rem]">
                     <Button height={"2.5rem"} width={"15rem"}>

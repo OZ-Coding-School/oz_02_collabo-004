@@ -38,9 +38,7 @@ const AdminHeader = () => {
         </div>
         <div>
           {isLoggedIn ? (
-            <Link to={'/logout'}>
-              <Avatar>나가기</Avatar>
-            </Link>
+            <Avatar onClick={''}>로그아웃</Avatar>
           ) : (
             <Link to={'/login'}>
               <Avatar>로그인</Avatar>

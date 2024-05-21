@@ -4,11 +4,11 @@ import Pagination from "../@common/Pagination";
 import more from "../../assets/images/icons/more.svg";
 import { useEffect, useRef, useState } from "react";
 import useMutate from "../../hooks/useMutate";
-import BookEditComment from "./BookEditComment";
-import BookDeleteComment from "./BookDeleteComment";
+import ChallengeEditComment from "./ChallengeEditComment";
+import ChallengeDeleteComment from "./ChallengeDeleteComment";
 
-const BookComment = ({ 
-  spoilerId,
+const ChallengeComment = ({ 
+  id,
   comments, 
   setComments, 
   placeholder, 
@@ -16,7 +16,7 @@ const BookComment = ({
   showCharCount,
   handleCompleteSubmit,
 }) => {
-  const { mutate: bookCreateComment } = useMutate(`/comment/create/${spoilerId}`);
+  const { mutate: challengeCreateComment } = useMutate(`/challenges/dicomment/create/${id}`);
   
   const [newComment, setNewComment] = useState(""); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,53 +69,50 @@ const BookComment = ({
       return;
     }
 
-    try {
-      //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
-      //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
-      //TODO: newCommentData > id (코멘트아이디) 수정
-      const newUserComment = {
-        user: 1, 
-        content: newComment,
-        spoiler_info: spoilerId,
-      };
-      const response = await bookCreateComment(newUserComment)
-      if(response.data) {
+    //TODO: username > user 수정, user 는 카카오 사용자정보 context 저장 / name8 수정
+    //TODO: 카카오 유저 인덱스 변수명이 아직 뭐로 저장되어있는지 모름 (1 > 수정)
+    //TODO: newCommentData > id (코멘트아이디) 실제 응답 아이디로 수정
+    const newChallengeComment = {
+      user: 1,
+      content: newComment,
+      challengespoiler_info: id,
+    }
+    try { 
+      const challengeResponse  = await challengeCreateComment(newChallengeComment)
+      if(challengeResponse.data) {
         const newCommentData = {
           //id: response.data.id
           id: 8,
           content: newComment,
           created_at: new Date().toISOString(),
-          user: 'name8'
+          user: 'name8',
         };
-        //기존 목록에 새 댓글을 추가해서 새로운 배열 생성
         const updatedComments = [newCommentData, ...comments];
         setComments(updatedComments);
-        console.log(updatedComments, 'updatedComments 확인')
-        //나머지 작업
+        console.log(updatedComments, 'updatedComments 챌린지 댓글 확인')
         if (typeof handleCompleteSubmit === 'function') { 
           handleCompleteSubmit(); 
           window.scrollTo(0, 0);
         }
         setNewComment('');
-      } else {
-        throw new Error('Fail bookCreateComment')
-      }
-      // 기존에 프론트에서 등록/수정했던 로직
-      // const createComments = [newUserComment, ...comments]; 
-      // setComments(createComments);
-      // setCurrentPage(1); 
-      // setNewComment("");
-      // setEditMode(-1);
-      // if (typeof handleCompleteSubmit === 'function') { 
-      //   handleCompleteSubmit(); 
-      //   window.scrollTo(0, 0);
-      // }
+      } 
     } catch (error) {
-      console.error('Error creating comment:', error);
-      alert('댓글 등록에 실패했습니다.');
+      console.error('Error creating challenge comment:', error);
+      alert('챌린지 댓글 등록에 실패했습니다.');
     }
   };
 
+  // 기존에 프론트에서 등록/수정했던 로직
+  // const createComments = [newUserComment, ...comments]; 
+  // setComments(createComments);
+  // setCurrentPage(1); 
+  // setNewComment("");
+  // setEditMode(-1);
+  // if (typeof handleCompleteSubmit === 'function') { 
+  //   handleCompleteSubmit(); 
+  //   window.scrollTo(0, 0);
+  // }
+  
   const handleMouseEnter = (index) => {
     setHoverCommentIndex(index);
   };
@@ -214,7 +211,7 @@ const BookComment = ({
       <div className="relative flex flex-col items-center w-6">
         <div className="cursor-pointer" onClick={handleMoreClick}>
           {editMode === index ? (
-             <BookEditComment 
+             <ChallengeEditComment 
               comment={comment}
               editContent={editContent}
               minLength={minLength}
@@ -234,7 +231,7 @@ const BookComment = ({
                 >
                   수정
                 </li>
-                <BookDeleteComment 
+                <ChallengeDeleteComment 
                   comment={comment}
                   comments={comments}
                   setComments={setComments}
@@ -291,5 +288,4 @@ const BookComment = ({
     </>
   )
 }
-
-export default BookComment;
+export default ChallengeComment;

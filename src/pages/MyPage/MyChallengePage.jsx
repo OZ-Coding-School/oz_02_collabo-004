@@ -3,17 +3,40 @@ import MyChallengeStatus from '../../components/MyChallengeStatus';
 import MyPageSidebar from '../../components/MyPageSidebar';
 import useFetch from '../../hooks/useFetch';
 
-const MyChallengePage = () => {
+const MyChallengePage = ({ userId }) => {
   let response_total = {
-    data: {},
+    data: { total: 56 },
     ok: true,
   };
-
-  response_total.data = {
-    total: 56,
-  };
-
   const { data: total } = useFetch('/challenge/total', response_total);
+
+  let response_list = {
+    data: [
+      {
+        id: 1,
+        created_at: '2024-05-09T14:34:13.156710',
+        updated_at: '2024-05-09T14:51:51.676834',
+        user: 1,
+        book: 1,
+      },
+      {
+        id: 2,
+        created_at: '2024-05-09T14:50:40.439757',
+        updated_at: '2024-05-09T14:51:38.736475',
+        user: 2,
+        book: 2,
+      },
+      {
+        id: 3,
+        created_at: '2024-05-09T15:04:00.240304',
+        updated_at: '2024-05-09T15:04:00.240327',
+        user: 3,
+        book: 3,
+      },
+    ],
+    ok: true,
+  };
+  const { data: list } = useFetch(`/mychallenges/${userId}`, response_list);
 
   return (
     <div className="w-full flex justify-center pt-[80px]">
@@ -49,7 +72,15 @@ const MyChallengePage = () => {
               </div>
             </div>
             <div className="flex flex-col items-end">
-              {/* <MyChallengeStatus /> */}
+              {list &&
+                list.map((book) => (
+                  <MyChallengeStatus
+                    key={book.id}
+                    bookId={book.book}
+                    userId={userId}
+                    challengeInfoId={book.id}
+                  />
+                ))}
             </div>
           </div>
         </div>

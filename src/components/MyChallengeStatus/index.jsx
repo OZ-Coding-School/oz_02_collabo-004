@@ -4,40 +4,78 @@ import Button from '../@common/Button';
 import booksample from '../../assets/images/bookimage.jpg';
 import { Link } from 'react-router-dom';
 
-const MyChallengeStatus = ({ book_id, user_id, challengeinfo_id }) => {
+const MyChallengeStatus = ({ bookId, userId, challengeInfoId }) => {
   let response_keyword = {
-    data: {},
+    data: [
+      { id: 1, kw: '뇌과학', book_id: 1 },
+      { id: 2, kw: '자청', book_id: 1 },
+      { id: 3, kw: '모니카', book_id: 1 },
+    ],
     ok: true,
   };
-
-  let response_challenge = {
-    data: {},
-    ok: true,
-  };
-
-  response_keyword.data = [
-    { id: 1, kw: '뇌과학', book_id: 1 },
-    { id: 2, kw: '자청', book_id: 1 },
-    { id: 3, kw: '모니카', book_id: 1 },
-  ];
-
   const { data: keyword } = useFetch(
-    `/book/${book_id}/keywords`,
+    `/book/${bookId}/keywords`,
     response_keyword
   );
 
-  response_challenge.data = {
-    id: '1',
-    book_img: '../../assets/images/booksample.png',
-    name: '당신은 사업가입니까',
-    author: '캐럴로스 저',
-    published: '알에이치코리아',
+  let response_challenge = {
+    data: {
+      challenge_info: {
+        id: 1,
+        created_at: '2024-05-09T14:34:13.156710',
+        updated_at: '2024-05-09T14:51:51.676834',
+        user: 1,
+        book: 1,
+      },
+      book_info: {
+        id: 1,
+        name: '당신은 사업가입니까',
+        author: '캐럴 로스 저',
+        published: '알에이치코리아',
+        book_img: '',
+        coupang_link: '',
+        is_exposed: 1,
+        created_at: '2024-05-09T14:34:13.156710',
+        updated_at: '2024-05-09T14:51:51.676834',
+      },
+    },
+    ok: true,
   };
-
   const { data: challenge } = useFetch(
-    `/mychallenge/detail/${user_id}/${challengeinfo_id}`,
+    `/mychallenge/detail/${userId}/${challengeInfoId}`,
     response_challenge
   );
+
+  let response_doing = {
+    data: [
+      {
+        user_id: 1,
+        challengeinfo_id: 1,
+        user_doing: 60,
+      },
+      {
+        user_id: 1,
+        challengeinfo_id: 2,
+        user_doing: 40,
+      },
+      {
+        user_id: 1,
+        challengeinfo_id: 3,
+        user_doing: 20,
+      },
+    ],
+    ok: true,
+  };
+  const { data: doing } = useFetch(
+    `mychallenge/doing/${userId}`,
+    response_doing
+  );
+
+  const matchedDoing =
+    doing &&
+    challenge &&
+    doing.find((item) => item.challengeinfo_id === challenge.challenge_info.id)
+      ?.user_doing;
 
   return (
     <div className="relative w-[800px] h-[260px]">
@@ -50,14 +88,16 @@ const MyChallengeStatus = ({ book_id, user_id, challengeinfo_id }) => {
         </div>
 
         <div className="flex items-end col-span-2 text-2xl font-extrabold">
-          {challenge?.name}
+          {challenge?.book_info.name}
         </div>
 
         <div className="flex flex-col w-[240px]">
           <div className="">
-            <span className="text-xl font-bold">{challenge?.author}&nbsp;</span>
+            <span className="text-xl font-bold">
+              {challenge?.book_info.author}&nbsp;
+            </span>
             <span className="text-xl text-gray-500">
-              ・ {challenge?.published}
+              ・ {challenge?.book_info.published}
             </span>
           </div>
           <div className="flex white py-2 gap-2">
@@ -81,7 +121,12 @@ const MyChallengeStatus = ({ book_id, user_id, challengeinfo_id }) => {
           <div className="flex justify-between text-xl">
             <span className="text-blue-800 font-bold">D-2</span>
             <span className="font-light">
-              <span className="text-blue-800">80%</span>&nbsp;챌린지 완료
+              {matchedDoing !== undefined ? (
+                <span className="text-blue-800">{matchedDoing}%</span>
+              ) : (
+                <span>Loading...</span>
+              )}
+              &nbsp;챌린지 완료
             </span>
           </div>
           <div className="flex flex-col font-light">
@@ -97,7 +142,12 @@ const MyChallengeStatus = ({ book_id, user_id, challengeinfo_id }) => {
         </div>
 
         <div className="flex items-center col-span-2">
-          <Link to="/challengeaction">
+          <Link
+            to="/challengeaction"
+            bookId={challenge?.book_info.id}
+            userId={userId}
+            challengeInfoId={challenge?.challenge_info.id}
+          >
             <Button
               width="500px"
               height="50px"

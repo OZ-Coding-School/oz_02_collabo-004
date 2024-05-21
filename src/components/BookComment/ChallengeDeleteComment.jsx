@@ -2,12 +2,12 @@ import { useState } from "react";
 import useMutate from "../../hooks/useMutate";
 import Modal from "../@common/Modal"
 
-const BookDeleteComment = ({
+const ChallengeDeleteComment = ({
   comment,
   comments,
   setComments,
   }) => {
-  const { mutate: bookDeleteComment } = useMutate(`/comments/comment/delete/${comment.id}`);
+  const { mutate: challengeDeleteComment } = useMutate(`challenges/dicomment/delete/${comment.id}`);
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteCommentIndex, setDeleteCommentIndex] = useState(null); 
 
@@ -21,7 +21,7 @@ const BookDeleteComment = ({
       const updateComments = [...comments];
       updateComments.splice(deleteCommentIndex, 1);
       setComments(updateComments);
-      bookDeleteComment(id);
+      challengeDeleteComment(id);
       setDeleteCommentIndex(null);
       setModalOpen(true);
     }
@@ -49,4 +49,4 @@ const BookDeleteComment = ({
   )
 }
 
-export default BookDeleteComment
+export default ChallengeDeleteComment

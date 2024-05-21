@@ -2,10 +2,24 @@ import { useEffect, useState } from "react";
 import Avatar from "../Avatar";
 import { Link } from "react-router-dom";
 import logo_noText from "../../../assets/images/logo_noText.png";
+import useMutate from "../../../hooks/useMutate";
 
 const Header = () => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [scrollShadow, setScrollShadow] = useState(false);
+
+  let response = {
+    data : {
+      "id":123456789
+   },
+    ok: true
+   }
+  const { mutate: kakaoLogout } = useMutate(`/users/kakao/logout`, response);
+  console.log(kakaoLogout)
+
+  const handlekakaoLogout = () => {
+    kakaoLogout();
+  }
 
   const handleScroll = () => {
     const bottomShadow = window.scrollY > 0;
@@ -35,16 +49,23 @@ const Header = () => {
             ></img>
           </Link>
         </div>
-        <div className="flex justify-between w-[14rem] items-center">
-          <Link to={"/bookspoiler"}>
-            <span className="cursor-pointer">북스포일러</span>
-          </Link>
-          <Link to={"/challenge"}>
-            <span className="cursor-pointer">챌린지</span>
-          </Link>
-
+        <div className="flex justify-between items-center gap-10">
+          <div className="flex gap-7">
+            <Link to={"/bookspoiler"}>
+              <span className="cursor-pointer">북스포일러</span>
+            </Link>
+            <Link to={"/challenge"}>
+              <span className="cursor-pointer">챌린지</span>
+            </Link>
+            {isLoggedIn ? (
+              <Link to={"/mychallenge"}>
+                <span className="cursor-pointer">마이페이지</span>
+              </Link>
+             ) : ( null )} 
+          </div>
+          
           {isLoggedIn ? (
-            <Avatar>로그아웃</Avatar>
+            <Avatar onClick={handlekakaoLogout}>나가기</Avatar>
           ) : (
             <Link to={"/login"}>
               <Avatar>로그인</Avatar>
