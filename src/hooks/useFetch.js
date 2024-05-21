@@ -7,6 +7,7 @@ export default function useFetch(url, method= "GET", body = null) {
 
   const fetchData = async () => {
     setIsLoading(true);
+    console.log(method)
     try {
       const requestOptions = {
         method: method,
@@ -15,6 +16,7 @@ export default function useFetch(url, method= "GET", body = null) {
           'withCredentials': true
         },
       };
+    
       const response = await axiosInstance(
         `${url}`, 
         requestOptions
@@ -33,7 +35,7 @@ export default function useFetch(url, method= "GET", body = null) {
     }
   };
 
-  useEffect((fetchData) => {
+  useEffect(() => {
     fetchData();
   }, [url, method, body]);
 
