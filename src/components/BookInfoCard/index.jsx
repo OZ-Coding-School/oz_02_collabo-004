@@ -25,7 +25,7 @@ const BookInfoCard = ({
       <div className="relative flex justify-center">
         <div className=" bg-primary w-80 h-[38rem] flex flex-col justify-center items-center absolute top-[150px]"></div>
         <div className="flex flex-col items-center gap-5 relative">
-          <Link to="/bookspoilerdetail">
+          <Link to="/bookspoilerdetail/:id">
             <img src={book_img} className=" w-56 h-80" />
           </Link>
           <div className="text-center flex flex-col">
