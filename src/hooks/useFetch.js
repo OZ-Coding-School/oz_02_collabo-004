@@ -18,7 +18,7 @@ export default function useFetch(url, method= "GET", body = null) {
       };
     
       const response = await axiosInstance(
-        `/api${url}`, 
+        `${url}`, 
         requestOptions
       );
       if (!response.ok) {

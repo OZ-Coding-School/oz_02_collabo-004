@@ -22,7 +22,7 @@ export default function useMutate(url, method = 'POST') {
       console.log(body, "body")
       
       const response = await axiosInstance(
-        `/api${url}`,
+        `${url}`,
       requestOptions
       );
       // const response = {
