@@ -38,8 +38,8 @@ const BookSpoilerPage = () => {
             북스포일러
           </div>
           <div className="flex gap-14 justify-around flex-wrap">
-            {book &&
-              book.map((item) => (
+            {
+              book?.map((item) => (
                 <BookInfoCard
                   onClick={handleClicked}
                   count={count}
