@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import BookInfoCard from '../../components/BookInfoCard';
-import Location from '../../components/@common/Location';
+import { useState } from "react";
+import BookInfoCard from "../../components/BookInfoCard";
+import Location from "../../components/@common/Location";
 // import { BOOK_DATA } from '../../components/BookInfoCard/data';
-import useFetch from '../../hooks/useFetch';
+import useFetch from "../../hooks/useFetch";
 
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
@@ -16,8 +16,8 @@ const BookSpoilerPage = () => {
   //   ok: true,
   // };
   // response.data = BOOK_DATA;
-  const { data: book } = useFetch('/books/all', 'GET');
-  console.log(book + '북 리스트 출력 확인 !!!!!!!!');
+  const { data: book } = useFetch("/books/all");
+  console.log(book + "북 리스트 출력 확인 !!!!!!!!");
 
   return (
     <>
@@ -38,15 +38,14 @@ const BookSpoilerPage = () => {
             북스포일러
           </div>
           <div className="flex gap-14 justify-around flex-wrap">
-            {
-              book?.map((item) => (
-                <BookInfoCard
-                  onClick={handleClicked}
-                  count={count}
-                  {...item}
-                  key={item.name}
-                />
-              ))}
+            {book?.map((item) => (
+              <BookInfoCard
+                onClick={handleClicked}
+                count={count}
+                {...item}
+                key={item.name}
+              />
+            ))}
           </div>
         </div>
       </div>
