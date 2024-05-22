@@ -16,7 +16,7 @@ const BookSpoilerPage = () => {
   //   ok: true,
   // };
   // response.data = BOOK_DATA;
-  const { data: book } = useFetch('/books/all');
+  const { data: book } = useFetch('/books/all', 'GET');
   console.log(book + '북 리스트 출력 확인 !!!!!!!!');
 
   return (
