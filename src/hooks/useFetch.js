@@ -35,7 +35,7 @@ export default function useFetch(url, method = "GET", body = null) {
 
   useEffect(() => {
     fetchData();
-  }, [url, method, body]);
+  }, []);
 
   //리패치 함수
   const refetch = () => {
