@@ -19,7 +19,8 @@ const LoginPage = () => {
 
   const handleKakaoLogin = () => {
     console.log("작동")
-    kakaoLogin();
+    // kakaoLogin();
+    kakaoLogin
   };
 
 

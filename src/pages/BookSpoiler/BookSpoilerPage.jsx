@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BookInfoCard from '../../components/BookInfoCard';
 import Location from '../../components/@common/Location';
-import { BOOK_DATA } from '../../components/BookInfoCard/data';
+// import { BOOK_DATA } from '../../components/BookInfoCard/data';
 import useFetch from '../../hooks/useFetch';
 
 const BookSpoilerPage = () => {
@@ -11,12 +11,12 @@ const BookSpoilerPage = () => {
     setCount(count + 1);
   };
 
-  let response = {
-    data: {},
-    ok: true,
-  };
-  response.data = BOOK_DATA;
-  const { data: book } = useFetch('/books/all', response);
+  // let response = {
+  //   data: {},
+  //   ok: true,
+  // };
+  // response.data = BOOK_DATA;
+  const { data: book } = useFetch('/books/all');
   console.log(book);
 
   return (
