@@ -16,7 +16,7 @@ const BookSpoilerPage = () => {
   //   ok: true,
   // };
   // response.data = BOOK_DATA;
-  const { data: book } = useFetch('http://ec2-13-209-68-37.ap-northeast-2.compute.amazonaws.com:8000/books/all');
+  const { data: book } = useFetch('/books/all');
   console.log(book + '북 리스트 출력 확인 !!!!!!!!');
 
   return (
