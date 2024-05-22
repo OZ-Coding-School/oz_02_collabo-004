@@ -2,8 +2,13 @@ import Button from "../../components/@common/Button";
 import mainBanner from "../../assets/images/bookspoilerMain.png";
 import bookspoilerDetail from "../../assets/images/bookspoilerDetail.png";
 import BookCaroussel from "../../components/BookCaroussel/BookCarrousel";
+import useFetch from "../../hooks/useFetch";
 
 const IndexPage = () => {
+  const { data: book } = useFetch("/books/all");
+
+  console.log({ book });
+
   return (
     <div className="w-full flex justify-center pt-[60px]">
       <div className="flex flex-col items-center pt-10 pb-20 gap-20">
