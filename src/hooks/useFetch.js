@@ -25,8 +25,8 @@ export default function useFetch(url, method= "GET", body = null) {
         throw new Error('서버 응답 실패');
       }
       console.log(response)
-      console.log(response)
-      
+      console.log(response.data)
+
       setData(response.data);
     } catch (error) {
       console.error(error);
