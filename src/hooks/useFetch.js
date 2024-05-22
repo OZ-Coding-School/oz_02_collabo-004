@@ -17,7 +17,7 @@ export default function useFetch(url, method = "GET", body = null) {
         },
       };
 
-      const response = await axiosInstance(`${url}/`, requestOptions);
+      const response = await axiosInstance(`${url}`, requestOptions);
       if (!response.ok) {
         throw new Error("서버 응답 실패");
       }
