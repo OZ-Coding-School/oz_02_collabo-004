@@ -16,7 +16,7 @@ const BookSpoilerPage = () => {
   //   ok: true,
   // };
   // response.data = BOOK_DATA;
-  const { data: book } = useFetch('/books/all');
+  const { data: book } = useFetch('http://ec2-13-209-68-37.ap-northeast-2.compute.amazonaws.com:8000/books/all');
   console.log(book);
 
   return (
