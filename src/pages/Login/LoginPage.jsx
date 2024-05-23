@@ -1,25 +1,26 @@
 import logo from "../../assets/images/logo.png"
 import kakao from "../../assets/images/icons/kakao.svg"
-import useMutate from "../../hooks/useMutate";
-import { useContext, useEffect } from "react";
-import { UserContext } from "../../context/userContext";
-import { useNavigate } from "react-router-dom";
+// import { useContext, useEffect } from "react";
+// import { UserContext } from "../../context/userContext";
+// import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 const LoginPage = () => {
-  const { setUser } = useContext(UserContext);
-  const navigate = useNavigate();
-  const { data, mutate: kakaoLogin } = useMutate(`/users/kakao`);
+  // const { setUser } = useContext(UserContext);
+  // const navigate = useNavigate();
+  const { data: kakaoLogin } = useFetch(`/users/kakao`);
 
-  useEffect(() => {
-    if (data) {
-      setUser(data); 
-      navigate('/'); 
-    }
-  }, [data, setUser, navigate]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setUser(data); 
+  //     navigate('/'); 
+  //   }
+  // }, [data, setUser, navigate]);
 
   const handleKakaoLogin = () => {
     console.log("작동")
-    kakaoLogin();
+    // kakaoLogin();
+    kakaoLogin
   };
 
 
