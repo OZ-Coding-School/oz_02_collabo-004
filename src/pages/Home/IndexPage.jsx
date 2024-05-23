@@ -35,7 +35,6 @@ const IndexPage = () => {
             <BookCaroussel></BookCaroussel>
           </div>
           <Link to={"/bookspoiler"}>
-            {" "}
             <Button width="220px" height="50px" fontSize="20px">
               북스포일러 더보기
             </Button>
