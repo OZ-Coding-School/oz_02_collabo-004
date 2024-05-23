@@ -1,23 +1,29 @@
-import { useState } from "react";
-import BookInfoCard from "../../components/BookInfoCard";
-import Location from "../../components/@common/Location";
-// import { BOOK_DATA } from '../../components/BookInfoCard/data';
-import useFetch from "../../hooks/useFetch";
+
+import { useState } from 'react';
+import BookInfoCard from '../../components/BookInfoCard';
+import Location from '../../components/@common/Location';
+import { BOOK_DATA } from '../../components/BookInfoCard/data';
+import useFetch from '../../hooks/useFetch';
+import Modal from '../../components/BookInfoCard/Modal';
 
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleClicked = () => {
     setCount(count + 1);
   };
 
-  // let response = {
-  //   data: {},
-  //   ok: true,
-  // };
-  // response.data = BOOK_DATA;
-  const { data: book } = useFetch("/books/all");
-  console.log(book + "북 리스트 출력 확인 !!!!!!!!");
+
+  let response = {
+    data: {},
+    ok: true,
+  };
+  response.data = BOOK_DATA;
+  const { data: book } = useFetch('/books/all/', response);
 
   return (
     <>
@@ -38,15 +44,18 @@ const BookSpoilerPage = () => {
             북스포일러
           </div>
           <div className="flex gap-14 justify-around flex-wrap">
-            {book?.map((item) => (
-              <BookInfoCard
-                onClick={handleClicked}
-                count={count}
-                {...item}
-                key={item.name}
-              />
-            ))}
+            {book &&
+              book.map((item) => (
+                <BookInfoCard
+                  onClick={handleClicked}
+                  count={count}
+                  {...item}
+                  key={item.name}
+                  openModal={openModal}
+                />
+              ))}
           </div>
+          <Modal isOpen={isModalOpen} closeModal={closeModal} />
         </div>
       </div>
     </>

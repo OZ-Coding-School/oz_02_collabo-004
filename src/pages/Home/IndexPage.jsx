@@ -1,3 +1,4 @@
+
 import Button from "../../components/@common/Button";
 import mainBanner from "../../assets/images/bookspoilerMain.png";
 import bookspoilerDetail from "../../assets/images/bookspoilerDetail.png";
@@ -34,6 +35,7 @@ const IndexPage = () => {
           <div className="justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]">
             <BookCaroussel></BookCaroussel>
           </div>
+
           <Link to={"/bookspoiler"}>
             <Button width="220px" height="50px" fontSize="20px">
               북스포일러 더보기

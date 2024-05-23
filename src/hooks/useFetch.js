@@ -7,17 +7,14 @@ export default function useFetch(url, method = "GET", body = null) {
 
   const fetchData = async () => {
     setIsLoading(true);
-    console.log(method);
     try {
-      const requestOptions = {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-          withCredentials: true,
-        },
-      };
-
-      const response = await axiosInstance(`${url}`, requestOptions);
+      // const requestOptions = {
+      //   method: method,
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      // };
+      // const response = await axiosInstance(url, requestOptions);
       if (!response.ok) {
         throw new Error("서버 응답 실패");
       }

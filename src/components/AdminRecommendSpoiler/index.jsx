@@ -1,25 +1,51 @@
 import Input from '../@common/Input';
 
-const AdminRecommendSpoiler = ({ number }) => {
+const AdminRecommendSpoiler = ({
+  number,
+  channel,
+  recommendDetail,
+  url,
+  setChannel,
+  setUrl,
+  setRecommendDetail,
+  recommendName,
+  setRecommendName,
+}) => {
   return (
     <div className="flex justify-between gap-3">
       <div className="font-bold text-2xl w-[8rem]">추천 서평 {number}</div>
       <div className="flex flex-col flex-1 gap-3">
         <div className="flex">
           <p className="w-[5rem]">채널명</p>
-          <Input element={'admin'} />
+          <Input
+            element={'admin'}
+            value={channel}
+            onChange={(e) => setChannel(e.target.value)}
+          />
         </div>
         <div className="flex">
           <p className="w-[5rem]">URL</p>
-          <Input element={'admin'} />
+          <Input
+            element={'admin'}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
         </div>
         <div className="flex">
           <p className="w-[5rem]">제목</p>
-          <Input element={'admin'} />
+          <Input
+            element={'admin'}
+            value={recommendName}
+            onChange={(e) => setRecommendName(e.target.value)}
+          />
         </div>
         <div className="flex">
           <p className="w-[5rem]">본문</p>
-          <Input element={'admin'} />
+          <Input
+            element={'admin'}
+            value={recommendDetail}
+            onChange={(e) => setRecommendDetail(e.target.value)}
+          />
         </div>
         <div className="flex gap-3 items-center pl-[4.5rem]">
           <label className="flex gap-2">

@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import BookCardLink from './BookCardLink';
 import BookCardKeyword from './BookCardKeyword';
 import BookCardLinkNone from './BookCardLinkNone';
-import { useState } from 'react';
-import Modal from './Modal';
 
 const BookInfoCard = ({
   onClick,
@@ -12,14 +10,8 @@ const BookInfoCard = ({
   name,
   author,
   published,
+  openModal,
 }) => {
-  // 미리보기로 3개 넣어놨습니다.
-  // 추후에 데이터 받으면 1개로 줄여서 수정 할 예정입니다.
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   return (
     <>
       <div className="relative flex justify-center">
@@ -32,8 +24,8 @@ const BookInfoCard = ({
             <p className="font-black text-2xl">{name}</p>
             <div className="flex justify-center">
               <span className="font-bold">
-                {author}
-                <span className="font-bold text-gray8"> · {published}</span>
+                {author} ·
+                <span className="font-bold text-gray8"> {published}</span>
               </span>
             </div>
             <div className="flex gap-2 justify-center">
@@ -49,7 +41,6 @@ const BookInfoCard = ({
           </div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 };

@@ -143,7 +143,7 @@ const MyChallengeStatus = ({ bookId, userId, challengeInfoId }) => {
 
         <div className="flex items-center col-span-2">
           <Link
-            to="/challengeaction"
+            to="/challengeaction/:id"
             bookId={challenge?.book_info.id}
             userId={userId}
             challengeInfoId={challenge?.challenge_info.id}

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import BookCardKeyword from "../BookInfoCard/BookCardKeyword";
 import { Link, useLocation } from "react-router-dom";
@@ -6,6 +7,7 @@ import leftArrow from "../../assets/images/challenge_left_arrow.png";
 import rightArrow from "../../assets/images/challenge_right_arrow.png";
 import useFetch from "../../hooks/useFetch";
 import { BOOK_DATA } from "../../components/BookInfoCard/data";
+
 
 const BookCaroussel = ({
   bookId,
@@ -56,6 +58,7 @@ const BookCaroussel = ({
               }}
             >
               <div className="z-20">
+
                 {location.pathname === "/challenge" ? (
                   <div className="bg-primary w-[280px] h-[400px] absolute top-[160px] z-20"></div>
                 ) : (
@@ -83,14 +86,14 @@ const BookCaroussel = ({
                 <div className="flex gap-2 justify-center w-[230px] z-30">
                   <BookCardKeyword />
                 </div>
-                {location.pathname === "/challenge" ? (
+                {location.pathname === '/challenge' ? (
                   <div className="w-[240px] z-30 flex justify-center">
-                    <Link to={isLoggedIn ? "/payment" : "/login"}>
+                    <Link to={isLoggedIn ? '/payment' : '/login'}>
                       <Button>챌린지용 북스포일러 열람하기</Button>
                     </Link>
                   </div>
                 ) : (
-                  ""
+                  ''
                 )}
               </div>
             </div>
