@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import axiosInstance from "../utils/axios";
+import { useEffect, useState } from 'react';
+// import axiosInstance from "../utils/axios"
 
-export default function useFetch(url, method = "GET", body = null) {
+export default function useFetch(url, response, method = 'GET', body = null) {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,15 +16,14 @@ export default function useFetch(url, method = "GET", body = null) {
       // };
       // const response = await axiosInstance(url, requestOptions);
       if (!response.ok) {
-        throw new Error("서버 응답 실패");
+        throw new Error('서버 응답 실패');
       }
-      console.log(response);
-      console.log(response.data);
-
+      // console.log(response)
+      // console.log(response.data)
       setData(response.data);
     } catch (error) {
-      console.error(error);
-      console.log(`[GET] - 서버와 통신 과정에서 문제 발생`);
+      // console.error(error);
+      // console.log(`[GET] - 서버와 통신 과정에서 문제 발생`);
     } finally {
       setIsLoading(false);
     }
