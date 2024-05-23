@@ -1,9 +1,15 @@
-import Button from "../../components/@common/Button";
-import mainBanner from "../../assets/images/bookspoilerMain.png";
-import bookspoilerDetail from "../../assets/images/bookspoilerDetail.png";
-import BookCaroussel from "../../components/BookCaroussel/BookCarrousel";
+import Button from '../../components/@common/Button';
+import mainBanner from '../../assets/images/bookspoilerMain.png';
+import bookspoilerDetail from '../../assets/images/bookspoilerDetail.png';
+import BookCaroussel from '../../components/BookCaroussel/BookCarrousel';
+import useFetch from '../../hooks/useFetch';
+import { Link } from 'react-router-dom';
 
 const IndexPage = () => {
+  const { data: book } = useFetch('/books/all');
+
+  console.log({ book });
+
   return (
     <div className="w-full flex justify-center pt-[60px]">
       <div className="flex flex-col items-center pt-10 pb-20 gap-20">
@@ -28,16 +34,11 @@ const IndexPage = () => {
           <div className="justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]">
             <BookCaroussel></BookCaroussel>
           </div>
-          <Button
-            onClick={() => {
-              window.location.href = "/bookspoiler";
-            }}
-            width="220px"
-            height="50px"
-            fontSize="20px"
-          >
-            북스포일러 더보기
-          </Button>
+          <Link to={'/bookspoiler'}>
+            <Button width="220px" height="50px" fontSize="20px">
+              북스포일러 더보기
+            </Button>
+          </Link>
         </div>
         <div>
           <img
@@ -47,7 +48,7 @@ const IndexPage = () => {
           ></img>
         </div>
         {/* 권한이 관리자일 때만 보이도록 수정 */}
-        <div className="fixed bottom-10 right-10" style={{ zIndex: 999 }}>
+        {/* <div className="fixed bottom-10 right-10" style={{ zIndex: 999 }}>
           <Button
             onClick={() => {
               window.location.href = "/manager";
@@ -59,7 +60,7 @@ const IndexPage = () => {
           >
             관리자페이지 가기
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import BookInfoCard from '../../components/BookInfoCard';
 import Location from '../../components/@common/Location';
-// import { BOOK_DATA } from '../../components/BookInfoCard/data';
+import { BOOK_DATA } from '../../components/BookInfoCard/data';
 import useFetch from '../../hooks/useFetch';
 import Modal from '../../components/BookInfoCard/Modal';
-import axios from 'axios';
-
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +21,6 @@ const BookSpoilerPage = () => {
   };
   response.data = BOOK_DATA;
   const { data: book } = useFetch('/books/all/', response);
-
 
   return (
     <>
