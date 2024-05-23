@@ -11,14 +11,13 @@ const BookCardKeyword = () => {
   };
   response.data = KEYWORD_DATA;
   const { data: keyword } = useFetch('/books/all', response);
-  console.log(keyword);
 
   return (
     <>
       {keyword &&
         keyword.map((item) => (
           <div
-            key={item.id}
+            key={item.keyword}
             style={{ background: item.color }}
             className="w-[4.5rem] h-8 flex items-center justify-center text-white font-bold rounded"
           >

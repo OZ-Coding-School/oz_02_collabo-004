@@ -25,8 +25,8 @@ const Modal = ({ isOpen, closeModal }) => {
           // TODO token={KAKAO_JAVASCRIPT_KEY}
           buttonText="kakao"
           // TODO onSuccess={responseKaKao}
-          onFail={console.error}
-          onLogout={console.info}
+          // onFail={console.error}
+          // onLogout={console.info}
           getProfile={true}
           style={buttonStyle}
         >
