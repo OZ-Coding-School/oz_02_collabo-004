@@ -16,7 +16,7 @@ const ChallengePage = () => {
           depthLast="챌린지"
         />
         <div className="flex flex-col gap-14 pt-10">
-          <p className="font30 font800 w-[230px] textHighlight">
+          <p className="font30 font800 w-[230px] textHighlight text-nowrap">
             진행가능한 챌린지
           </p>
           <div
