@@ -3,21 +3,27 @@ import BookInfoCard from '../../components/BookInfoCard';
 import Location from '../../components/@common/Location';
 // import { BOOK_DATA } from '../../components/BookInfoCard/data';
 import useFetch from '../../hooks/useFetch';
+import Modal from '../../components/BookInfoCard/Modal';
+import axios from 'axios';
 
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handleClicked = () => {
     setCount(count + 1);
   };
 
-  // let response = {
-  //   data: {},
-  //   ok: true,
-  // };
-  // response.data = BOOK_DATA;
-  const { data: book } = useFetch('/books/all');
-  console.log(book);
+  let response = {
+    data: {},
+    ok: true,
+  };
+  response.data = BOOK_DATA;
+  const { data: book } = useFetch('/books/all/', response);
+
 
   return (
     <>
@@ -45,9 +51,11 @@ const BookSpoilerPage = () => {
                   count={count}
                   {...item}
                   key={item.name}
+                  openModal={openModal}
                 />
               ))}
           </div>
+          <Modal isOpen={isModalOpen} closeModal={closeModal} />
         </div>
       </div>
     </>

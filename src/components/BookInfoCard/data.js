@@ -6,7 +6,7 @@ import book5 from '../../assets/images/bookimg/book5.jpeg';
 import book6 from '../../assets/images/bookimg/book6.jpeg';
 import book7 from '../../assets/images/bookimg/book7.jpeg';
 import book8 from '../../assets/images/bookimg/book8.jpg';
-import book9 from '../../assets/images/bookimg/book1.jpeg';
+import book9 from '../../assets/images/bookimg/book9.jpeg';
 import book10 from '../../assets/images/bookimg/book10.jpeg';
 
 export const BOOK_DATA = [
@@ -19,7 +19,7 @@ export const BOOK_DATA = [
   },
   {
     book_img: book2,
-    name: '마케팅설계자',
+    name: '마케팅 설계자',
     author: '러셀 브런슨',
     published: '윌북',
     book_id: 2,
