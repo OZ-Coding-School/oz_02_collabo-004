@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import BookCardKeyword from '../BookInfoCard/BookCardKeyword';
-import { Link, useLocation } from 'react-router-dom';
-import Button from '../@common/Button';
-import leftArrow from '../../assets/images/challenge_left_arrow.png';
-import rightArrow from '../../assets/images/challenge_right_arrow.png';
-import useFetch from '../../hooks/useFetch';
-import { BOOK_DATA } from '../../components/BookInfoCard/data';
+
+import React, { useState } from "react";
+import BookCardKeyword from "../BookInfoCard/BookCardKeyword";
+import { Link, useLocation } from "react-router-dom";
+import Button from "../@common/Button";
+import leftArrow from "../../assets/images/challenge_left_arrow.png";
+import rightArrow from "../../assets/images/challenge_right_arrow.png";
+import useFetch from "../../hooks/useFetch";
+import { BOOK_DATA } from "../../components/BookInfoCard/data";
+
 
 const BookCaroussel = ({
   bookId,
@@ -56,7 +58,8 @@ const BookCaroussel = ({
               }}
             >
               <div className="z-20">
-                {location.pathname === '/challenge' ? (
+
+                {location.pathname === "/challenge" ? (
                   <div className="bg-primary w-[280px] h-[400px] absolute top-[160px] z-20"></div>
                 ) : (
                   <div className="bg-primary w-[280px] h-[340px] absolute top-[160px] z-20"></div>

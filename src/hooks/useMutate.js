@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "../utils/axios";
 
-export default function useMutate(url, method = 'POST') {
+export default function useMutate(url, method = "POST") {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,30 +10,27 @@ export default function useMutate(url, method = 'POST') {
     setIsLoading(true);
     try {
       const requestOptions = {
-        method: method, 
+        method: method,
         headers: {
-          'Content-Type': 'application/json', 
-          'withCredentials': true
+          "Content-Type": "application/json",
+          withCredentials: true,
         },
-        body: JSON.stringify(body), 
+        body: JSON.stringify(body),
       };
 
-      console.log(url, "post url")
-      console.log(body, "body")
-      
-      const response = await axiosInstance(
-        `${url}`,
-      requestOptions
-      );
+      console.log(url, "post url");
+      console.log(body, "body");
+
+      const response = await axiosInstance(`${url}/`, requestOptions);
       // const response = {
       //   ok : true,
       //   data : "dd"
       // }
       if (!response.ok) {
-        throw new Error('서버 응답 실패'); 
+        throw new Error("서버 응답 실패");
       }
       setData(response.data);
-      return response
+      return response;
     } catch (error) {
       console.error(error);
       console.log(`서버와 통신 과정에서 문제 발생`);

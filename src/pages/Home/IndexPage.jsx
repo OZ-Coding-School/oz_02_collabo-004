@@ -1,12 +1,13 @@
-import Button from '../../components/@common/Button';
-import mainBanner from '../../assets/images/bookspoilerMain.png';
-import bookspoilerDetail from '../../assets/images/bookspoilerDetail.png';
-import BookCaroussel from '../../components/BookCaroussel/BookCarrousel';
-import useFetch from '../../hooks/useFetch';
-import { Link } from 'react-router-dom';
+
+import Button from "../../components/@common/Button";
+import mainBanner from "../../assets/images/bookspoilerMain.png";
+import bookspoilerDetail from "../../assets/images/bookspoilerDetail.png";
+import BookCaroussel from "../../components/BookCaroussel/BookCarrousel";
+import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const IndexPage = () => {
-  const { data: book } = useFetch('/books/all');
+  const { data: book } = useFetch("/books/all");
 
   console.log({ book });
 
@@ -34,7 +35,8 @@ const IndexPage = () => {
           <div className="justify-evenly flex items-center slide_carrousel w-[1080px] h-[490px]">
             <BookCaroussel></BookCaroussel>
           </div>
-          <Link to={'/bookspoiler'}>
+
+          <Link to={"/bookspoiler"}>
             <Button width="220px" height="50px" fontSize="20px">
               북스포일러 더보기
             </Button>

@@ -1,9 +1,11 @@
+
 import { useState } from 'react';
 import BookInfoCard from '../../components/BookInfoCard';
 import Location from '../../components/@common/Location';
 import { BOOK_DATA } from '../../components/BookInfoCard/data';
 import useFetch from '../../hooks/useFetch';
 import Modal from '../../components/BookInfoCard/Modal';
+
 const BookSpoilerPage = () => {
   const [count, setCount] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +16,7 @@ const BookSpoilerPage = () => {
   const handleClicked = () => {
     setCount(count + 1);
   };
+
 
   let response = {
     data: {},
